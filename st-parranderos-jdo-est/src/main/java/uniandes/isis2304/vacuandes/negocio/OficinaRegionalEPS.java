@@ -1,6 +1,7 @@
 package uniandes.isis2304.vacuandes.negocio;
 
 public class OficinaRegionalEPS implements VOOficinaRegionalEPS{
+	
 	private long idOficina;
 	private String region;
 	private String username;

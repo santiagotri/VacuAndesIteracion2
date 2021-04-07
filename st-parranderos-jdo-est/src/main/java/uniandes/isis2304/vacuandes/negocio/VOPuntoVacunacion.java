@@ -19,9 +19,9 @@ public interface VOPuntoVacunacion {
 	 */
 	public int getCapacidadAtencionTotalDiaria() ;
 	/**
-	 * @return the infraestructuraParaDoosis
+	 * @return the infraestructuraParaDosis
 	 */
-	public String getInfraestructuraParaDoosis() ;
+	public String getInfraestructuraParaDosis() ;
 	/**
 	 * @return the cantidadVacunasEnviables
 	 */
@@ -38,7 +38,7 @@ public interface VOPuntoVacunacion {
 	/**
 	 * @return the administrador
 	 */
-	public long getAdministrador();
+	public String getAdministrador();
 	
 	@Override
 	public String toString();

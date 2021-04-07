@@ -6,11 +6,11 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 	private String localizacion;
 	private int capacidadAtencionSimultanea;
 	private int capacidadAtencionTotalDiaria;
-	private String infraestructuraParaDoosis;
+	private String infraestructuraParaDosis;
 	private int cantidadVacunasEnviables;
 	private int cantidadVacunasActuales;
 	private String tipoPuntoVacunacion;
-	private long administrador;
+	private String administrador;
 	
 	
 	
@@ -19,21 +19,21 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 	 * @param localizacion
 	 * @param capacidadAtencionSimultanea
 	 * @param capacidadAtencionTotalDiaria
-	 * @param infraestructuraParaDoosis
+	 * @param infraestructuraParaDosis
 	 * @param cantidadVacunasEnviables
 	 * @param cantidadVacunasActuales
 	 * @param tipoPuntoVacunacion
 	 * @param administrador
 	 */
 	public PuntoVacunacion(long idPuntoVacunacion, String localizacion, int capacidadAtencionSimultanea,
-			int capacidadAtencionTotalDiaria, String infraestructuraParaDoosis, int cantidadVacunasEnviables,
-			int cantidadVacunasActuales, String tipoPuntoVacunacion, long administrador) {
+			int capacidadAtencionTotalDiaria, String infraestructuraParaDosis, int cantidadVacunasEnviables,
+			int cantidadVacunasActuales, String tipoPuntoVacunacion, String administrador) {
 		
 		this.idPuntoVacunacion = idPuntoVacunacion;
 		this.localizacion = localizacion;
 		this.capacidadAtencionSimultanea = capacidadAtencionSimultanea;
 		this.capacidadAtencionTotalDiaria = capacidadAtencionTotalDiaria;
-		this.infraestructuraParaDoosis = infraestructuraParaDoosis;
+		this.infraestructuraParaDosis = infraestructuraParaDosis;
 		this.cantidadVacunasEnviables = cantidadVacunasEnviables;
 		this.cantidadVacunasActuales = cantidadVacunasActuales;
 		this.tipoPuntoVacunacion = tipoPuntoVacunacion;
@@ -66,10 +66,10 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 		return capacidadAtencionTotalDiaria;
 	}
 	/**
-	 * @return the infraestructuraParaDoosis
+	 * @return the infraestructuraParaDosis
 	 */
-	public String getInfraestructuraParaDoosis() {
-		return infraestructuraParaDoosis;
+	public String getInfraestructuraParaDosis() {
+		return infraestructuraParaDosis;
 	}
 	/**
 	 * @return the cantidadVacunasEnviables
@@ -92,7 +92,7 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 	/**
 	 * @return the administrador
 	 */
-	public long getAdministrador() {
+	public String getAdministrador() {
 		return administrador;
 	}
 	/**
@@ -120,10 +120,10 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 		this.capacidadAtencionTotalDiaria = capacidadAtencionTotalDiaria;
 	}
 	/**
-	 * @param infraestructuraParaDoosis the infraestructuraParaDoosis to set
+	 * @param infraestructuraParaDosis the infraestructuraParaDosis to set
 	 */
-	public void setInfraestructuraParaDoosis(String infraestructuraParaDoosis) {
-		this.infraestructuraParaDoosis = infraestructuraParaDoosis;
+	public void setInfraestructuraParaDosis(String infraestructuraParaDosis) {
+		this.infraestructuraParaDosis = infraestructuraParaDosis;
 	}
 	/**
 	 * @param cantidadVacunasEnviables the cantidadVacunasEnviables to set
@@ -146,14 +146,14 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 	/**
 	 * @param administrador the administrador to set
 	 */
-	public void setAdministrador(long administrador) {
+	public void setAdministrador(String administrador) {
 		this.administrador = administrador;
 	}
 	@Override
 	public String toString() {
 		return "PuntoVacunacion [idPuntoVacunacion=" + idPuntoVacunacion + ", localizacion=" + localizacion
 				+ ", capacidadAtencionSimultanea=" + capacidadAtencionSimultanea + ", capacidadAtencionTotalDiaria="
-				+ capacidadAtencionTotalDiaria + ", infraestructuraParaDoosis=" + infraestructuraParaDoosis
+				+ capacidadAtencionTotalDiaria + ", infraestructuraParaDosis=" + infraestructuraParaDosis
 				+ ", cantidadVacunasEnviables=" + cantidadVacunasEnviables + ", cantidadVacunasActuales="
 				+ cantidadVacunasActuales + ", tipoPuntoVacunacion=" + tipoPuntoVacunacion + ", administrador="
 				+ administrador + "]";

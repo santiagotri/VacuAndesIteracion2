@@ -6,9 +6,6 @@ public class Trabajador implements VOTrabajador{
 	private String trabajo;
 	private boolean administradorVacuandes;
 	
-	
-	
-	
 	/**
 	 * @param cedula
 	 * @param trabajo
