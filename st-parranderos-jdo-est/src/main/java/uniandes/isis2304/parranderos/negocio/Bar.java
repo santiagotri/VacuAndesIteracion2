@@ -20,16 +20,15 @@ package uniandes.isis2304.parranderos.negocio;
  *
  * @author Germán Bravo
  */
-public class Bar implements VOBar
-{
-	/* ****************************************************************
-	 * 			Atributos
+public class Bar implements VOBar {
+	/*
+	 * **************************************************************** Atributos
 	 *****************************************************************/
 	/**
 	 * El identificador ÚNICO de los bares
 	 */
 	private long id;
-	
+
 	/**
 	 * El nombre del bar
 	 */
@@ -39,26 +38,25 @@ public class Bar implements VOBar
 	 * La ciudad donde se encuentra el bar
 	 */
 	private String ciudad;
-	
+
 	/**
 	 * El presupuesto del bar (ALTO, MEDIO, BAJO)
 	 */
 	private String presupuesto;
-	
+
 	/**
 	 * El número de sedes del bar en la ciudad
 	 */
 	private int cantSedes;
 
-	/* ****************************************************************
-	 * 			Métodos 
+	/*
+	 * **************************************************************** Métodos
 	 *****************************************************************/
-    /**
-     * Constructor por defecto
-     */
-	public Bar() 
-    {
-    	this.id = 0;
+	/**
+	 * Constructor por defecto
+	 */
+	public Bar() {
+		this.id = 0;
 		this.nombre = "";
 		this.ciudad = "";
 		this.presupuesto = "";
@@ -67,110 +65,98 @@ public class Bar implements VOBar
 
 	/**
 	 * Constructor con valores
-	 * @param id - El id del bart
-	 * @param nombre - El nombre del bar
-	 * @param ciudad - La ciudad del bar
+	 * 
+	 * @param id          - El id del bart
+	 * @param nombre      - El nombre del bar
+	 * @param ciudad      - La ciudad del bar
 	 * @param presupuesto - El presupuesto del bar (ALTO, MEDIO, BAJO)
-	 * @param cantSedes - Las sedes del bar (Mayor que 0)
+	 * @param cantSedes   - Las sedes del bar (Mayor que 0)
 	 */
-    public Bar(long id, String nombre, String ciudad, String presupuesto, int cantSedes) 
-    {
-    	this.id = id;
+	public Bar(long id, String nombre, String ciudad, String presupuesto, int cantSedes) {
+		this.id = id;
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 		this.presupuesto = presupuesto;
 		this.cantSedes = cantSedes;
 	}
 
-    /**
+	/**
 	 * @return El id del bar
 	 */
-	public long getId() 
-	{
+	public long getId() {
 		return id;
 	}
-	
+
 	/**
 	 * @param id - El nuevo id del bar
 	 */
-	public void setId(long id) 
-	{
+	public void setId(long id) {
 		this.id = id;
 	}
-	
+
 	/**
 	 * @return el nombre del bar
 	 */
-	public String getNombre() 
-	{
+	public String getNombre() {
 		return nombre;
 	}
-	
+
 	/**
 	 * @param nombre El nuevo nombre del bar
 	 */
-	public void setNombre(String nombre) 
-	{
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	/**
 	 * @return la ciudad del bar
 	 */
-	public String getCiudad() 
-	{
+	public String getCiudad() {
 		return ciudad;
 	}
-	
+
 	/**
 	 * @param ciudad - La nueva ciudad del bar
 	 */
-	public void setCiudad(String ciudad) 
-	{
+	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
-	
+
 	/**
 	 * @return El presupuesto del bar
 	 */
-	public String getPresupuesto() 
-	{
+	public String getPresupuesto() {
 		return presupuesto;
 	}
-	
+
 	/**
 	 * @param presupuesto - El nuevo presupuesto del bar (ALTO, MEDIO, BAJOO)
 	 */
-	public void setPresupuesto(String presupuesto) 
-	{
+	public void setPresupuesto(String presupuesto) {
 		this.presupuesto = presupuesto;
 	}
-	
+
 	/**
 	 * @return la cantSedes del bar
 	 */
-	public int getCantSedes() 
-	{
+	public int getCantSedes() {
 		return cantSedes;
 	}
-	
+
 	/**
 	 * @param cantSedes - la nueva cantidad de sedes del bar
 	 */
-	public void setCantSedes(int cantSedes) 
-	{
+	public void setCantSedes(int cantSedes) {
 		this.cantSedes = cantSedes;
 	}
-	
+
 	@Override
 	/**
 	 * @return Una cadena de caracteres con todos los atributos del bar
 	 */
-	public String toString() 
-	{
+	public String toString() {
 		return "Bar [id=" + id + ", nombre=" + nombre + ", ciudad=" + ciudad + ", presupuesto=" + presupuesto
 				+ ", cantSedes=" + cantSedes + "]";
 	}
-	
 
 }
