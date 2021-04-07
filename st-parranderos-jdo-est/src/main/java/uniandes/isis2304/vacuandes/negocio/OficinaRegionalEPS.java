@@ -16,7 +16,6 @@ public class OficinaRegionalEPS implements VOOficinaRegionalEPS{
 	 */
 	public OficinaRegionalEPS(long idOficina, String region, String username, int cantidadVacunasActuales,
 			long planDeVacunacion) {
-		super();
 		this.idOficina = idOficina;
 		this.region = region;
 		this.username = username;

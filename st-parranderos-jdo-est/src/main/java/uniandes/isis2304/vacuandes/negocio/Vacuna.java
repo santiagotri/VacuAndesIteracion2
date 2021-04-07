@@ -18,7 +18,6 @@ public class Vacuna implements VOVacuna {
 	 */
 	public Vacuna(long idVacuna, String condicionPreservacion, long puntoVacunacion, long planDeVacunacion,
 			long oficinaRegional, boolean utilizada) {
-		super();
 		this.idVacuna = idVacuna;
 		this.condicionPreservacion = condicionPreservacion;
 		this.puntoVacunacion = puntoVacunacion;

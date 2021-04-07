@@ -17,7 +17,6 @@ public class Usuario implements VOUsuario {
 	 * @param ciudadano
 	 */
 	public Usuario(String username, String contrasena, String correo, long planDeVacunacion, long ciudadano) {
-		super();
 		this.username = username;
 		this.contrasena = contrasena;
 		this.correo = correo;

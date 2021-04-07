@@ -8,7 +8,6 @@ public class MinisterioSalud implements VOMinisterioSalud{
 	 * @param planDeVacunacion
 	 */
 	public MinisterioSalud(long idMinisterio, long planDeVacunacion) {
-		super();
 		this.idMinisterio = idMinisterio;
 		this.planDeVacunacion = planDeVacunacion;
 	}
