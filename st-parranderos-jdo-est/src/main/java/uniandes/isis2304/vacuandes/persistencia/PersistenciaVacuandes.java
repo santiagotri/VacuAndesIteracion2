@@ -16,6 +16,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import uniandes.isis2304.parranderos.negocio.Bebida;
+import uniandes.isis2304.vacuandes.negocio.ListCondicionesCiudadano;
 
 
 public class PersistenciaVacuandes {
@@ -323,7 +324,7 @@ public class PersistenciaVacuandes {
 	
 	
 	
-	public Bebida adicionarCondicionCiudadano( String condicion, long cedula) 
+	public ListCondicionesCiudadano adicionarCondicionCiudadano( String condicion, long cedula) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -333,8 +334,8 @@ public class PersistenciaVacuandes {
             long tuplasInsertadas = sqlListCondicionesCiudadano.adicionarCondicionesCiudadano(pm, condicion, cedula);
             tx.commit();
             
-            log.trace ("Inserción bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-            return new Bebida (idBebida,nombre, idTipoBebida, gradoAlcohol);
+            log.trace ("Inserción condicionCiudadano: " + cedula + ": " + tuplasInsertadas + " tuplas insertadas");
+            return new ListCondicionesCiudadano(cedula, condicion);
         }
         catch (Exception e)
         {
@@ -350,6 +351,9 @@ public class PersistenciaVacuandes {
             }
             pm.close();
         }
+        
+        
+        
 	}
 	
 
