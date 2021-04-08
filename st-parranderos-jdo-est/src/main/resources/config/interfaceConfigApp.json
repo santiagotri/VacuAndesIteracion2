@@ -5,24 +5,71 @@
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "TipoBebida",
+		{ "menuTitle": "Registrar",
 		  "options":
 			[
 				{
-					"label": "Adicionar",
-					"event": "adicionarTipoBebida"
+					"label": "Condiciones de priorizacion",
+					"event": "registrarCondicionesDePriorizacion"
 				},
 				{
-					"label": "Listar",
-					"event": "listarTipoBebida"
+					"label": "Secuencia de estados validos",
+					"event": "registrarSecuenciaDeEstadosValidos"
 				},
 				{
-					"label": "Borrar por Id",
-					"event": "eliminarTipoBebidaPorId"
+					"label": "Oficina de EPS regional",
+					"event": "registrarOficinaDeEPSRegional"
 				},
 				{
-					"label": "Buscar por Nombre",
-					"event": "buscarTipoBebidaPorNombre"
+					"label": "Usuario de vacuandes",
+					"event": "registrarUsuarioDeVacuandes"
+				},
+				{
+					"label": "Ciudadanos colombianos",
+					"event": "registrarCiudadanosColombianos"
+				},
+				{
+					"label": "Punto de vacunacion",
+					"event": "registarPuntoDeVacunacion"
+				},
+				{
+					"label": "Avance en vacunacion de persona",
+					"event": "registrarAvanceEnVacunacionDePersona"
+				}
+				
+			]
+		},
+		{ "menuTitle": "Asignar",
+		  "options":
+			[
+				{
+					"label": "Talento humano a un punto de vacunacion",
+					"event": "asignarTalentoHumanoAUnPuntoDeVacunacion"
+				},
+				{
+					"label": "Ciudadano a punto de Vacunacion",
+					"event": "asignarCiudadanoAPuntoDeVacunacion"
+				},
+				{
+					"label": "Cita de vacunacion a ciudadano",
+					"event": "asignarCitaDeVacunacionACiudadano"
+				}
+			]
+		},
+		{ "menuTitle": "Mostrar",
+		  "options":
+			[
+				{
+					"label": "Ciudadanos atendidos por un punto de vacunacion",
+					"event": "mostrarCiudadanosAtendidosPorUnPuntoDeVacunacion"
+				},
+				{
+					"label": "20 puntos de vacunacion mas efectivos",
+					"event": "mostrar20PuntosDeVacunacionMasEfectivos"
+				},
+				{
+					"label": "Indice de vacunacion para grupo poblacional",
+					"event": "mostrarIndiceDeVacunacionParaGrupoPoblacional"
 				}
 			]
 		},
@@ -30,24 +77,20 @@
 		  "options":
 			[
 				{
-					"label": "Mostrar log Parranderos",
-					"event": "mostrarLogParranderos"
+					"label": "Mostrar log Vacuandes",
+					"event": "mostrarLogVacuandes"
 				},
 				{
 					"label": "Mostrar log datanucleus",
 					"event": "mostrarLogDatanuecleus"
 				},
 				{
-					"label": "Limpiar log de parranderos",
-					"event": "limpiarLogParranderos"
+					"label": "Limpiar log de Vacuandes",
+					"event": "limpiarLogVacuandes"
 				},
 				{
 					"label": "Limpiar log de datanucleus",
 					"event": "limpiarLogDatanucleus"
-				},
-				{
-					"label": "Limpiar Base de Datos",
-					"event": "limpiarBD"
 				}
 			]
 		},		
@@ -69,14 +112,6 @@
 				{
 					"label": "Script creación de la BD",
 					"event": "mostrarScriptBD"
-				},
-				{
-					"label": "Arquitectura de referencia",
-					"event": "mostrarArqRef"
-				},
-				{
-					"label": "Javadoc Parranderos",
-					"event": "mostrarJavadoc"
 				}
 			]
 		},		

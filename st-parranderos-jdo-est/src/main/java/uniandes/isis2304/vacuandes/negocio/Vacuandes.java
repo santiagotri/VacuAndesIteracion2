@@ -93,7 +93,7 @@ public class Vacuandes {
 	
 	
 	/* ****************************************************************
-	 * 			Métodos para manejar TRANAJADOR
+	 * 			Métodos para manejar TRABAJADOR
 	 *****************************************************************/
 	
 	

@@ -1,15 +1,18 @@
 {
-	"title": "Nombres de las tablas de Parranderos Uniandes para la aplicación A",
-	"unidadPersistencia": "Parranderos",
+	"title": "Nombres de las tablas de Vacuandes Uniandes para la aplicación A",
+	"unidadPersistencia": "Vacuandes",
 	"tablas":
 	[
-		"Parranderos_sequence",
-		"A_TIPOBEBIDA",
-		"A_BEBIDA",
-		"A_BAR",
-		"A_BEBEDOR",
-		"A_GUSTAN",
-		"A_SIRVEN",
-		"A_VISITAN"
+		"CITA",
+		"CIUDADANO",
+		"LIST_CONDICIONES_CIUDADANO",
+		"LIST_CONTRAINDICACIONES_CIUDADANO",
+		"MINISTERIO_SALUD",
+		"OFICINA_REGIONAL_EPS",
+		"PLAN_DE_VACUNACION",
+		"PUNTO_VACUNACION",
+		"TRABAJADOR",
+		"USUARIO",
+		"VACUNA"
 	]
 }
