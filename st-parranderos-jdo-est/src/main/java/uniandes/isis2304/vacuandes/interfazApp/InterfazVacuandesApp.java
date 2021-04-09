@@ -48,6 +48,7 @@ import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.parranderos.negocio.Parranderos;
 import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
+import uniandes.isis2304.vacuandes.negocio.Trabajador;
 import uniandes.isis2304.vacuandes.negocio.Usuario;
 import uniandes.isis2304.vacuandes.negocio.Vacuandes;
 
@@ -77,6 +78,11 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	 */
 	private static final String CONFIG_TABLAS = "./src/main/resources/config/TablasBD_A.json"; 
 
+	private static final String ADMINISTRADOR_PLAN_DE_VACUNACION = "Administrador plan de vacunacion";
+	private static final String ADMINISTRADOR_PUNTO_VACUNACION = "Administrador punto vacunacion";
+	private static final String ADMINISTRADOR_OFICINA_PUNTO_REGIONAL_EPS = "Administrador oficina punto regional eps";
+	private static final String OPERADOR_PUNTO_VACUNACION = "Operador punto vacunacion";
+
 	/* ****************************************************************
 	 * 			Atributos
 	 *****************************************************************/
@@ -92,7 +98,8 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 
 	private InterfazLogin interfazLogin;
 	private Usuario usuarioActual;
-	
+	private Trabajador trabajadorActual;
+
 	/* ****************************************************************
 	 * 			Atributos de interfaz
 	 *****************************************************************/
@@ -244,54 +251,166 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	/* ****************************************************************
 	 * 			CRUD de TipoBebida
 	 *****************************************************************/
+	//REQ1
 	public void registrarCondicionesDePriorizacion() {
-	}
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_PLAN_DE_VACUNACION)) VerificadoRegistrarCondicionesDePriorizacion();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
 
+	}
+	private void VerificadoRegistrarCondicionesDePriorizacion() {
+		//JOptionPane.showOptionDialog(this, ADMINISTRADOR_PUNTO_VACUNACION, ADMINISTRADOR_PLAN_DE_VACUNACION, ALLBITS, ABORT, null, getComponentListeners(), ADMINISTRADOR_OFICINA_PUNTO_REGIONAL_EPS)
+	}
+	
+	//REQ2
 	public void registrarSecuenciaDeEstadosValidos() {
-
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_PLAN_DE_VACUNACION)) VerificadoRegistrarSecuenciaDeEstadosValidos();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
 	}
-
+	private void VerificadoRegistrarSecuenciaDeEstadosValidos() {
+		
+	}
+	
+	//REQ3
 	public void registrarOficinaDeEPSRegional() {
-
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_PLAN_DE_VACUNACION)) VerificadoRegistrarOficinaDeEPSRegional();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
 	}
-
+	private void VerificadoRegistrarOficinaDeEPSRegional() {
+		
+	}
+	
+	//REQ4
 	public void registrarUsuarioDeVacuandes() {
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_PLAN_DE_VACUNACION)) VerificadoRegistrarUsuarioDeVacuandes();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private void VerificadoRegistrarUsuarioDeVacuandes() {
 
 	}
-
+	
+	//REQ5
 	public void registrarCiudadanosColombianos() {
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_PLAN_DE_VACUNACION)) VerificadoRegistrarCiudadanosColombianos();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private void VerificadoRegistrarCiudadanosColombianos() {
 
 	}
 
+	//REQ6
 	public void registarPuntoDeVacunacion() {
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_OFICINA_PUNTO_REGIONAL_EPS)) VerificadoRegistarPuntoDeVacunacion();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private void VerificadoRegistarPuntoDeVacunacion () {
 
 	}
 
+	//REQ7
 	public void registrarAvanceEnVacunacionDePersona() {
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(OPERADOR_PUNTO_VACUNACION)) VerificadoRegistrarAvanceEnVacunacionDePersona();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private void VerificadoRegistrarAvanceEnVacunacionDePersona() {
 
 	}
 
+	//REQ8
 	public void asignarTalentoHumanoAUnPuntoDeVacunacion() {
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_OFICINA_PUNTO_REGIONAL_EPS)) VerificadoAsignarTalentoHumanoAUnPuntoDeVacunacion();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private void VerificadoAsignarTalentoHumanoAUnPuntoDeVacunacion() {
 
 	}
 
+	//REQ9
 	public void asignarCiudadanoAPuntoDeVacunacion() {
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_OFICINA_PUNTO_REGIONAL_EPS)) VerificadoAsignarCiudadanoAPuntoDeVacunacion() ;
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private void VerificadoAsignarCiudadanoAPuntoDeVacunacion() {
 
 	}
 
+	//REQ10
 	public void asignarCitaDeVacunacionACiudadano() {
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_PUNTO_VACUNACION)) VerificadoAsignarCitaDeVacunacionACiudadano();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private void VerificadoAsignarCitaDeVacunacionACiudadano() {
 
 	}
 
+	//REQ11
 	public void mostrarCiudadanosAtendidosPorUnPuntoDeVacunacion() {
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_PLAN_DE_VACUNACION)) VerificadoMostrarCiudadanosAtendidosPorUnPuntoDeVacunacion();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
+
+	}
+	private void VerificadoMostrarCiudadanosAtendidosPorUnPuntoDeVacunacion() {
 
 	}
 
+	//REQ12
 	public void mostrar20PuntosDeVacunacionMasEfectivos() {
 
 	}
 
+	//REQ13
 	public void mostrarIndiceDeVacunacionParaGrupoPoblacional() {
+		if (trabajadorActual!=null) {
+			if(trabajadorActual.getTrabajo().equals(ADMINISTRADOR_PLAN_DE_VACUNACION) || trabajadorActual.getTrabajo().equals(ADMINISTRADOR_OFICINA_PUNTO_REGIONAL_EPS) ) VerificadoMostrarIndiceDeVacunacionParaGrupoPoblacional();
+			else {JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);}
+		}else {
+			JOptionPane.showMessageDialog(this, "No tiene permiso para ejecutar esta accion", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private void VerificadoMostrarIndiceDeVacunacionParaGrupoPoblacional() {
 
 	}
 
@@ -529,10 +648,12 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 
 	public void cerrarSesion() {
 		if (usuarioActual==null) {
+			trabajadorActual = null;
 			JOptionPane.showMessageDialog(this, "No hay una sesion para cerrar", "Error cierre de sesion", JOptionPane.ERROR_MESSAGE);
 		}else {
 			JOptionPane.showMessageDialog (this, "Cierre de sesion exitoso", "Se ha cerrado la sesion del usuario "+ usuarioActual.getUsername() +" exitosamente.", JOptionPane.INFORMATION_MESSAGE);
 			usuarioActual =null;
+			trabajadorActual = null;
 		}
 	}
 
@@ -553,16 +674,21 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		Usuario rta = vacuandes.verificarInicioDeSesion(usernameUsuarioActual, contrasenaUsuarioActual);
 		if(rta==null) {
 			JOptionPane.showMessageDialog (this,"El usuario " + usernameUsuarioActual + " no existe.", "Usuario inexistente", JOptionPane.ERROR_MESSAGE);
-			
+			trabajadorActual = null;
 		}
-		if(rta.getContrasena().equals(contrasenaUsuarioActual)) {
+		else if(rta.getContrasena().equals(contrasenaUsuarioActual)) {
 			usuarioActual = rta;
 			JOptionPane.showMessageDialog (this,"Actualmente esta loggeado como "+ usuarioActual.getUsername(), "Informacion sesion actual", JOptionPane.INFORMATION_MESSAGE);
+			trabajadorActual = vacuandes.darTrabajadorPorCedula(usuarioActual.getCiudadano());
 		}else {
 			usuarioActual = null;
+			trabajadorActual = null;
 			JOptionPane.showMessageDialog (this,"Contraseña incorrecta", "Contraseña incorrecta", JOptionPane.ERROR_MESSAGE);
-			
+
 		}
+		System.out.println(trabajadorActual.toString() );
+		System.out.println(usuarioActual.toString());
+
 		interfazLogin.close();
 	}
 

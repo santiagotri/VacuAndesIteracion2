@@ -12,7 +12,7 @@ public interface VOTrabajador {
 	/**
 	 * @return the administradorVacuandes
 	 */
-	public boolean isAdministrador_Vacuandes();
+	public int getAdministrador_Vacuandes();
 	
 	@Override
 	public String toString();

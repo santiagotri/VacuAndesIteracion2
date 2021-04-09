@@ -54,7 +54,7 @@ public class InterfazLogin extends JFrame implements ActionListener {
 	      submit.addActionListener(pInterfaz);
 	      add(panel, BorderLayout.CENTER);
 	      setTitle("Iniciar sesion");
-	      setSize(450,350);
+	      setSize(450,125);
 	      setVisible(true);
 	   }
 	   
