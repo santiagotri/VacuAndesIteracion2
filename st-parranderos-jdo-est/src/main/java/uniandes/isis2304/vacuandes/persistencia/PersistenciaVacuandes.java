@@ -1,3 +1,4 @@
+
 package uniandes.isis2304.vacuandes.persistencia;
 
 import java.util.LinkedList;
@@ -513,14 +514,14 @@ public class PersistenciaVacuandes {
 	}
 
 
-	public Condicion updateCondicionPorCondiciones(String condiciones, int etapa) {
+	public long updateCondicionPorCondiciones(String condiciones, int etapa) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
         	log.info ("Actualizando la condicion llamada: " + condiciones);
             tx.begin();
-            Condicion condicion = sqlCondicion.actualizarCondicionPorCondiciones(pm, condiciones, etapa);
+            long condicion = sqlCondicion.actualizarCondicionPorCondiciones(pm, condiciones, etapa);
             tx.commit();
             log.info ("Se actualizo la condicion " + condiciones + " a etapa " + etapa);
             
@@ -531,7 +532,7 @@ public class PersistenciaVacuandes {
         {
         	e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
+        	return -1;
         }
         finally
         {

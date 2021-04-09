@@ -6,6 +6,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import uniandes.isis2304.vacuandes.negocio.Condicion;
+import uniandes.isis2304.vacuandes.negocio.Usuario;
 
 public class SQLCondicion {
 
@@ -71,7 +72,7 @@ public class SQLCondicion {
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCondicion() + " WHERE condiciones = ?");
 		q.setResultClass(Condicion.class);
 		q.setParameters(condiciones);
-		return (Condicion) q.execute();
+		return (Condicion) q.executeUnique();
 	}
 	
 	public List<Condicion> darListCondiciones(PersistenceManager pm)
@@ -81,10 +82,9 @@ public class SQLCondicion {
 		return (List<Condicion>) q.execute();
 	}
 
-	public Condicion actualizarCondicionPorCondiciones(PersistenceManager pm, String condiciones, int etapa) {
-		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCondicion() + "SET ETAPA= ? WHERE CONDICIONES = ?");
-		q.setResultClass(Condicion.class);
-		q.setParameters(etapa, condiciones);
-		return (Condicion) q.execute();
+	public long actualizarCondicionPorCondiciones(PersistenceManager pm, String condiciones, int etapa) {
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCondicion() + " SET CONDICIONES= ? , ETAPA= ? WHERE CONDICIONES = ?");
+		q.setParameters(condiciones, etapa, condiciones);
+		return (long) q.executeUnique();
 	}
 }

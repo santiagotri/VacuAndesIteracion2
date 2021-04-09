@@ -91,7 +91,6 @@ public class SQLUsuario {
 	
 	public Usuario darUsuario(PersistenceManager pm, String username)
 	{
-		System.out.print(pp.darTablaUsuario());
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaUsuario() + " WHERE USERNAME = ?");
 		q.setResultClass(Usuario.class);
 		q.setParameters(username);

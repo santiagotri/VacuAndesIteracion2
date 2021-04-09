@@ -30,6 +30,7 @@ import java.util.List;
 
 import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -262,9 +263,56 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 
 	}
 	private void VerificadoRegistrarCondicionesDePriorizacion() {
-		//JOptionPane.showOptionDialog(this, ADMINISTRADOR_PUNTO_VACUNACION, ADMINISTRADOR_PLAN_DE_VACUNACION, ALLBITS, ABORT, null, getComponentListeners(), ADMINISTRADOR_OFICINA_PUNTO_REGIONAL_EPS)
+		try {
+			
+			String [] opciones1 = {
+					"Adulto mayor (+80)", 
+					"THS servicio social obligatorio", 
+					"THS contacto directo", 
+					"THS servicios generales", 
+					"Tecnico y epidemiologo", 
+					"Adulto mayor (60-79)", 
+					"THS establecimiento carcelario", 
+					"THS tradicional", 
+					"THS estudiante", 
+					"Condicion vulnerable", 
+					"Agente educativo", 
+					"Funcionario publico", 
+					"THS funerarias", 
+					"Privado de libertad", 
+					"Bombero o socorrista", 
+					"Habitante de calle", 
+					"Trabajador aereo", 
+					"Adulto (50-59)", 
+					"Adulto (16-49)"};
+			JComboBox optionList1 = new JComboBox(opciones1);
+			optionList1.setSelectedIndex(0);
+			JOptionPane.showMessageDialog(this, "Seleccione la condicion que desea priorizar", "Seleccione condicion", JOptionPane.QUESTION_MESSAGE);
+			JOptionPane.showMessageDialog(this, optionList1, "Seleccione condicion", JOptionPane.QUESTION_MESSAGE);
+
+			String [] opciones2 = {"1","2","3","4","5"};
+			JComboBox optionList2 = new JComboBox(opciones2);
+			optionList2.setSelectedIndex(0);
+			JOptionPane.showMessageDialog(this, "Seleccione la etapa de priorizacion", "Seleccione condicion", JOptionPane.QUESTION_MESSAGE);
+			JOptionPane.showMessageDialog(this, optionList2, "Seleccione etapa", JOptionPane.QUESTION_MESSAGE);
+
+			vacuandes.registrarCondicionesDePriorizacion(optionList1.getSelectedItem().toString(), Integer.parseInt(optionList2.getSelectedItem().toString()));
+			//System.out.println(optionList1.getSelectedItem().toString() + Integer.parseInt(optionList2.getSelectedItem().toString()));
+			
+			String resultado = "Condicion escogida : " + optionList1.getSelectedItem();
+    		resultado += "\nEtapa asignada: Etapa " + optionList2.getSelectedItem();
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		}
+		catch(Exception e) {
+
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+
+		}
 	}
-	
+
 	//REQ2
 	public void registrarSecuenciaDeEstadosValidos() {
 		if (trabajadorActual!=null) {
@@ -275,9 +323,9 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoRegistrarSecuenciaDeEstadosValidos() {
-		
+
 	}
-	
+
 	//REQ3
 	public void registrarOficinaDeEPSRegional() {
 		if (trabajadorActual!=null) {
@@ -288,9 +336,9 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoRegistrarOficinaDeEPSRegional() {
-		
+
 	}
-	
+
 	//REQ4
 	public void registrarUsuarioDeVacuandes() {
 		if (trabajadorActual!=null) {
@@ -303,7 +351,7 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	private void VerificadoRegistrarUsuarioDeVacuandes() {
 
 	}
-	
+
 	//REQ5
 	public void registrarCiudadanosColombianos() {
 		if (trabajadorActual!=null) {
@@ -662,7 +710,9 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 			JOptionPane.showMessageDialog (this,"Actualmente no esta loggeado como ningun usuario", "Informacion sesion actual", JOptionPane.ERROR_MESSAGE);
 
 		}else {
-			JOptionPane.showMessageDialog (this,"Actualmente esta loggeado como "+ usuarioActual.getUsername(), "Informacion sesion actual", JOptionPane.INFORMATION_MESSAGE);
+			String rta = "Actualmente esta loggeado como "+ usuarioActual.getUsername();
+			if(trabajadorActual!=null) rta += "(" + trabajadorActual.getTrabajo() + ")";
+			JOptionPane.showMessageDialog (this,rta, "Informacion sesion actual", JOptionPane.INFORMATION_MESSAGE);
 
 		}
 
@@ -678,16 +728,14 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 		else if(rta.getContrasena().equals(contrasenaUsuarioActual)) {
 			usuarioActual = rta;
-			JOptionPane.showMessageDialog (this,"Actualmente esta loggeado como "+ usuarioActual.getUsername(), "Informacion sesion actual", JOptionPane.INFORMATION_MESSAGE);
 			trabajadorActual = vacuandes.darTrabajadorPorCedula(usuarioActual.getCiudadano());
+			infoUsuarioActual();
 		}else {
 			usuarioActual = null;
 			trabajadorActual = null;
 			JOptionPane.showMessageDialog (this,"Contraseña incorrecta", "Contraseña incorrecta", JOptionPane.ERROR_MESSAGE);
 
 		}
-		System.out.println(trabajadorActual.toString() );
-		System.out.println(usuarioActual.toString());
 
 		interfazLogin.close();
 	}

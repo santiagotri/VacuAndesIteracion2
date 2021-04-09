@@ -4,6 +4,7 @@ public class Condicion implements VOCondicion{
 	
 	private String condiciones;
 	private int etapa;
+	
 	public Condicion() {
 		this.condiciones = "";
 		this.etapa = 0;

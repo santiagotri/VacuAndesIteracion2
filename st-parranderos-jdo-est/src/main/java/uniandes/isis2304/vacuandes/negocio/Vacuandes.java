@@ -142,14 +142,15 @@ public class Vacuandes {
 	{
 		log.info ("Buscando una condicion");
 		Condicion rta = pp.getCondicionPorCondiciones(condiciones);
-        log.info ("Se encontró la condición: " + condiciones);
+        if(rta != null)log.info ("Se encontró la condición: " + condiciones);
+        else {log.error("No se ha encontrado la condicion " + condiciones);}
         return rta;
 	}
 	
-	public Condicion updateCondicion(String condiciones, int etapa)
+	public long updateCondicion(String condiciones, int etapa)
 	{
 		log.info ("Actualizando una condicion");
-		Condicion rta = pp.updateCondicionPorCondiciones(condiciones, etapa);
+		long rta = pp.updateCondicionPorCondiciones(condiciones, etapa);
         log.info ("Se actualizo la condicion" + condiciones + " a etapa " + etapa);
         return rta;
 	}
@@ -163,7 +164,7 @@ public class Vacuandes {
 		}
 		else
 		{
-			agregarCondicion(condiciones, etapa); 
+			rta = agregarCondicion(condiciones, etapa); 
 		}
 		
 		return rta;
