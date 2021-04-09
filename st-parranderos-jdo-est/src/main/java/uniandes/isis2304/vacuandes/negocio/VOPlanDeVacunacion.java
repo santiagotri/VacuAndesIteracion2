@@ -15,7 +15,7 @@ public interface VOPlanDeVacunacion {
 	
 	public String getDescripcion(); 
 	
-	public Date getFechaActualizacion(); 
+	public Date getFecha_Actualizacion(); 
 	
 	@Override
 	public String toString(); 

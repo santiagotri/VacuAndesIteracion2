@@ -5,7 +5,7 @@ public interface VOPuntoVacunacion {
 	/**
 	 * @return the idPuntoVacunacion
 	 */
-	public long getIdPuntoVacunacion();
+	public long getId_Punto_Vacunacion();
 	/**
 	 * @return the localizacion
 	 */
@@ -13,28 +13,28 @@ public interface VOPuntoVacunacion {
 	/**
 	 * @return the capacidadAtencionSimultanea
 	 */
-	public int getCapacidadAtencionSimultanea() ;
+	public int getCapacidad_Atencion_Simultanea() ;
 	/**
 	 * @return the capacidadAtencionTotalDiaria
 	 */
-	public int getCapacidadAtencionTotalDiaria() ;
+	public int getCapacidad_Atencion_Total_Diaria() ;
 	/**
 	 * @return the infraestructuraParaDosis
 	 */
-	public String getInfraestructuraParaDosis() ;
+	public String getInfraestructura_Para_Dosis() ;
 	/**
 	 * @return the cantidadVacunasEnviables
 	 */
-	public int getCantidadVacunasEnviables() ;
+	public int getCantidad_Vacunas_Enviables() ;
 	
 	/**
 	 * @return the cantidadVacunasActuales
 	 */
-	public int getCantidadVacunasActuales() ;
+	public int getCantidad_Vacunas_Actuales() ;
 	/**
 	 * @return the tipoPuntoVacunacion
 	 */
-	public String getTipoPuntoVacunacion();
+	public String getTipo_Punto_Vacunacion();
 	/**
 	 * @return the administrador
 	 */

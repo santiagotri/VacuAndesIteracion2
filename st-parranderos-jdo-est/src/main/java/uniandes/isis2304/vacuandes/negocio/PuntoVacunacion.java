@@ -2,50 +2,62 @@ package uniandes.isis2304.vacuandes.negocio;
 
 public class PuntoVacunacion implements VOPuntoVacunacion{
 
-	private long idPuntoVacunacion;
+	private long id_Punto_Vacunacion;
 	private String localizacion;
-	private int capacidadAtencionSimultanea;
-	private int capacidadAtencionTotalDiaria;
-	private String infraestructuraParaDosis;
-	private int cantidadVacunasEnviables;
-	private int cantidadVacunasActuales;
-	private String tipoPuntoVacunacion;
+	private int capacidad_Atencion_Simultanea;
+	private int capacidad_Atencion_Total_Diaria;
+	private String infraestructura_Para_Dosis;
+	private int cantidad_Vacunas_Enviables;
+	private int cantidad_Vacunas_Actuales;
+	private String tipo_Punto_Vacunacion;
 	private String administrador;
 	
 	
+	public PuntoVacunacion() {
+		
+		this.id_Punto_Vacunacion = 0;
+		this.localizacion = "";
+		this.capacidad_Atencion_Simultanea = 0;
+		this.capacidad_Atencion_Total_Diaria = 0;
+		this.infraestructura_Para_Dosis = "";
+		this.cantidad_Vacunas_Enviables = 0;
+		this.cantidad_Vacunas_Actuales = 0;
+		this.tipo_Punto_Vacunacion = "";
+		this.administrador = "";
+	}
 	
 	/**
-	 * @param idPuntoVacunacion
+	 * @param id_Punto_Vacunacion
 	 * @param localizacion
-	 * @param capacidadAtencionSimultanea
-	 * @param capacidadAtencionTotalDiaria
-	 * @param infraestructuraParaDosis
-	 * @param cantidadVacunasEnviables
-	 * @param cantidadVacunasActuales
-	 * @param tipoPuntoVacunacion
+	 * @param capacidad_Atencion_Simultanea
+	 * @param capacidad_Atencion_Total_Diaria
+	 * @param infraestructura_Para_Dosis
+	 * @param cantidad_Vacunas_Enviables
+	 * @param cantidad_Vacunas_Actuales
+	 * @param tipo_Punto_Vacunacion
 	 * @param administrador
 	 */
-	public PuntoVacunacion(long idPuntoVacunacion, String localizacion, int capacidadAtencionSimultanea,
-			int capacidadAtencionTotalDiaria, String infraestructuraParaDosis, int cantidadVacunasEnviables,
-			int cantidadVacunasActuales, String tipoPuntoVacunacion, String administrador) {
+	public PuntoVacunacion(long id_Punto_Vacunacion, String localizacion, int capacidad_Atencion_Simultanea,
+			int capacidad_Atencion_Total_Diaria, String infraestructura_Para_Dosis, int cantidad_Vacunas_Enviables,
+			int cantidad_Vacunas_Actuales, String tipo_Punto_Vacunacion, String administrador) {
 		
-		this.idPuntoVacunacion = idPuntoVacunacion;
+		this.id_Punto_Vacunacion = id_Punto_Vacunacion;
 		this.localizacion = localizacion;
-		this.capacidadAtencionSimultanea = capacidadAtencionSimultanea;
-		this.capacidadAtencionTotalDiaria = capacidadAtencionTotalDiaria;
-		this.infraestructuraParaDosis = infraestructuraParaDosis;
-		this.cantidadVacunasEnviables = cantidadVacunasEnviables;
-		this.cantidadVacunasActuales = cantidadVacunasActuales;
-		this.tipoPuntoVacunacion = tipoPuntoVacunacion;
+		this.capacidad_Atencion_Simultanea = capacidad_Atencion_Simultanea;
+		this.capacidad_Atencion_Total_Diaria = capacidad_Atencion_Total_Diaria;
+		this.infraestructura_Para_Dosis = infraestructura_Para_Dosis;
+		this.cantidad_Vacunas_Enviables = cantidad_Vacunas_Enviables;
+		this.cantidad_Vacunas_Actuales = cantidad_Vacunas_Actuales;
+		this.tipo_Punto_Vacunacion = tipo_Punto_Vacunacion;
 		this.administrador = administrador;
 	}
 	
 	
 	/**
-	 * @return the idPuntoVacunacion
+	 * @return the id_Punto_Vacunacion
 	 */
-	public long getIdPuntoVacunacion() {
-		return idPuntoVacunacion;
+	public long getId_Punto_Vacunacion() {
+		return id_Punto_Vacunacion;
 	}
 	/**
 	 * @return the localizacion
@@ -54,40 +66,40 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 		return localizacion;
 	}
 	/**
-	 * @return the capacidadAtencionSimultanea
+	 * @return the capacidad_Atencion_Simultanea
 	 */
-	public int getCapacidadAtencionSimultanea() {
-		return capacidadAtencionSimultanea;
+	public int getCapacidad_Atencion_Simultanea() {
+		return capacidad_Atencion_Simultanea;
 	}
 	/**
-	 * @return the capacidadAtencionTotalDiaria
+	 * @return the capacidad_Atencion_Total_Diaria
 	 */
-	public int getCapacidadAtencionTotalDiaria() {
-		return capacidadAtencionTotalDiaria;
+	public int getCapacidad_Atencion_Total_Diaria() {
+		return capacidad_Atencion_Total_Diaria;
 	}
 	/**
-	 * @return the infraestructuraParaDosis
+	 * @return the infraestructura_Para_Dosis
 	 */
-	public String getInfraestructuraParaDosis() {
-		return infraestructuraParaDosis;
+	public String getInfraestructura_Para_Dosis() {
+		return infraestructura_Para_Dosis;
 	}
 	/**
-	 * @return the cantidadVacunasEnviables
+	 * @return the cantidad_Vacunas_Enviables
 	 */
-	public int getCantidadVacunasEnviables() {
-		return cantidadVacunasEnviables;
+	public int getCantidad_Vacunas_Enviables() {
+		return cantidad_Vacunas_Enviables;
 	}
 	/**
-	 * @return the cantidadVacunasActuales
+	 * @return the cantidad_Vacunas_Actuales
 	 */
-	public int getCantidadVacunasActuales() {
-		return cantidadVacunasActuales;
+	public int getCantidad_Vacunas_Actuales() {
+		return cantidad_Vacunas_Actuales;
 	}
 	/**
-	 * @return the tipoPuntoVacunacion
+	 * @return the tipo_Punto_Vacunacion
 	 */
-	public String getTipoPuntoVacunacion() {
-		return tipoPuntoVacunacion;
+	public String getTipo_Punto_Vacunacion() {
+		return tipo_Punto_Vacunacion;
 	}
 	/**
 	 * @return the administrador
@@ -96,10 +108,10 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 		return administrador;
 	}
 	/**
-	 * @param idPuntoVacunacion the idPuntoVacunacion to set
+	 * @param id_Punto_Vacunacion the id_Punto_Vacunacion to set
 	 */
-	public void setIdPuntoVacunacion(long idPuntoVacunacion) {
-		this.idPuntoVacunacion = idPuntoVacunacion;
+	public void setId_Punto_Vacunacion(long id_Punto_Vacunacion) {
+		this.id_Punto_Vacunacion = id_Punto_Vacunacion;
 	}
 	/**
 	 * @param localizacion the localizacion to set
@@ -108,40 +120,40 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 		this.localizacion = localizacion;
 	}
 	/**
-	 * @param capacidadAtencionSimultanea the capacidadAtencionSimultanea to set
+	 * @param capacidad_Atencion_Simultanea the capacidad_Atencion_Simultanea to set
 	 */
-	public void setCapacidadAtencionSimultanea(int capacidadAtencionSimultanea) {
-		this.capacidadAtencionSimultanea = capacidadAtencionSimultanea;
+	public void setCapacidad_Atencion_Simultanea(int capacidad_Atencion_Simultanea) {
+		this.capacidad_Atencion_Simultanea = capacidad_Atencion_Simultanea;
 	}
 	/**
-	 * @param capacidadAtencionTotalDiaria the capacidadAtencionTotalDiaria to set
+	 * @param capacidad_Atencion_Total_Diaria the capacidad_Atencion_Total_Diaria to set
 	 */
-	public void setCapacidadAtencionTotalDiaria(int capacidadAtencionTotalDiaria) {
-		this.capacidadAtencionTotalDiaria = capacidadAtencionTotalDiaria;
+	public void setCapacidad_Atencion_Total_Diaria(int capacidad_Atencion_Total_Diaria) {
+		this.capacidad_Atencion_Total_Diaria = capacidad_Atencion_Total_Diaria;
 	}
 	/**
-	 * @param infraestructuraParaDosis the infraestructuraParaDosis to set
+	 * @param infraestructura_Para_Dosis the infraestructura_Para_Dosis to set
 	 */
-	public void setInfraestructuraParaDosis(String infraestructuraParaDosis) {
-		this.infraestructuraParaDosis = infraestructuraParaDosis;
+	public void setInfraestructura_Para_Dosis(String infraestructura_Para_Dosis) {
+		this.infraestructura_Para_Dosis = infraestructura_Para_Dosis;
 	}
 	/**
-	 * @param cantidadVacunasEnviables the cantidadVacunasEnviables to set
+	 * @param cantidad_Vacunas_Enviables the cantidad_Vacunas_Enviables to set
 	 */
-	public void setCantidadVacunasEnviables(int cantidadVacunasEnviables) {
-		this.cantidadVacunasEnviables = cantidadVacunasEnviables;
+	public void setCantidad_Vacunas_Enviables(int cantidad_Vacunas_Enviables) {
+		this.cantidad_Vacunas_Enviables = cantidad_Vacunas_Enviables;
 	}
 	/**
-	 * @param cantidadVacunasActuales the cantidadVacunasActuales to set
+	 * @param cantidad_Vacunas_Actuales the cantidad_Vacunas_Actuales to set
 	 */
-	public void setCantidadVacunasActuales(int cantidadVacunasActuales) {
-		this.cantidadVacunasActuales = cantidadVacunasActuales;
+	public void setCantidad_Vacunas_Actuales(int cantidad_Vacunas_Actuales) {
+		this.cantidad_Vacunas_Actuales = cantidad_Vacunas_Actuales;
 	}
 	/**
-	 * @param tipoPuntoVacunacion the tipoPuntoVacunacion to set
+	 * @param tipo_Punto_Vacunacion the tipo_Punto_Vacunacion to set
 	 */
-	public void setTipoPuntoVacunacion(String tipoPuntoVacunacion) {
-		this.tipoPuntoVacunacion = tipoPuntoVacunacion;
+	public void setTipo_Punto_Vacunacion(String tipo_Punto_Vacunacion) {
+		this.tipo_Punto_Vacunacion = tipo_Punto_Vacunacion;
 	}
 	/**
 	 * @param administrador the administrador to set
@@ -151,11 +163,11 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 	}
 	@Override
 	public String toString() {
-		return "PuntoVacunacion [idPuntoVacunacion=" + idPuntoVacunacion + ", localizacion=" + localizacion
-				+ ", capacidadAtencionSimultanea=" + capacidadAtencionSimultanea + ", capacidadAtencionTotalDiaria="
-				+ capacidadAtencionTotalDiaria + ", infraestructuraParaDosis=" + infraestructuraParaDosis
-				+ ", cantidadVacunasEnviables=" + cantidadVacunasEnviables + ", cantidadVacunasActuales="
-				+ cantidadVacunasActuales + ", tipoPuntoVacunacion=" + tipoPuntoVacunacion + ", administrador="
+		return "PuntoVacunacion [id_Punto_Vacunacion=" + id_Punto_Vacunacion + ", localizacion=" + localizacion
+				+ ", capacidad_Atencion_Simultanea=" + capacidad_Atencion_Simultanea + ", capacidad_Atencion_Total_Diaria="
+				+ capacidad_Atencion_Total_Diaria + ", infraestructura_Para_Dosis=" + infraestructura_Para_Dosis
+				+ ", cantidad_Vacunas_Enviables=" + cantidad_Vacunas_Enviables + ", cantidad_Vacunas_Actuales="
+				+ cantidad_Vacunas_Actuales + ", tipo_Punto_Vacunacion=" + tipo_Punto_Vacunacion + ", administrador="
 				+ administrador + "]";
 	}
 	

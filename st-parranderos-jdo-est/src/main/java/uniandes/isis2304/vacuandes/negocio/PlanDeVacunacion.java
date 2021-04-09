@@ -7,45 +7,45 @@ public class PlanDeVacunacion implements VOPlanDeVacunacion {
 	private long idPlandDeVacunacion; 
 	private String nombre; 
 	private String descripcion; 
-	private Date fechaActualizacion;
+	private Date fecha_Actualizacion;
 	
 	public PlanDeVacunacion() {
 		this.idPlandDeVacunacion = 0;
 		this.nombre = "";
 		this.descripcion = "";
-		this.fechaActualizacion = new Date(0); 
+		this.fecha_Actualizacion = new Date(0); 
 	}
 	
-	public PlanDeVacunacion(long idPlandDeVacunacion, String nombre, String descripcion, Date fechaActualizacion)
+	public PlanDeVacunacion(long idPlandDeVacunacion, String nombre, String descripcion, Date fecha_Actualizacion)
 	{
 		this.idPlandDeVacunacion = idPlandDeVacunacion;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.fechaActualizacion = fechaActualizacion; 
+		this.fecha_Actualizacion = fecha_Actualizacion; 
 	}
 	
 	@Override
 	public long getIdPlanDeVacunacion() {
 		// TODO Auto-generated method stub
-		return 0;
+		return idPlandDeVacunacion;
 	}
 
 	@Override
 	public String getNombre() {
 		// TODO Auto-generated method stub
-		return null;
+		return nombre;
 	}
 
 	@Override
 	public String getDescripcion() {
 		// TODO Auto-generated method stub
-		return null;
+		return descripcion;
 	}
 
 	@Override
-	public Date getFechaActualizacion() {
+	public Date getFecha_Actualizacion() {
 		// TODO Auto-generated method stub
-		return null;
+		return fecha_Actualizacion;
 	}
 	
 	public long getIdPlandDeVacunacion() {
@@ -64,14 +64,14 @@ public class PlanDeVacunacion implements VOPlanDeVacunacion {
 		this.descripcion = descripcion;
 	}
 
-	public void setFechaActualizacion(Date fechaActualizacion) {
-		this.fechaActualizacion = fechaActualizacion;
+	public void setFecha_Actualizacion(Date fecha_Actualizacion) {
+		this.fecha_Actualizacion = fecha_Actualizacion;
 	}
 
 	@Override
 	public String toString() {
 		return "PlanDeVacunacion [idPlandDeVacunacion=" + idPlandDeVacunacion + ", nombre=" + nombre + ", descripcion="
-				+ descripcion + ", fechaActualizacion=" + fechaActualizacion + "]";
+				+ descripcion + ", fecha_Actualizacion=" + fecha_Actualizacion + "]";
 	}
 	
 }
