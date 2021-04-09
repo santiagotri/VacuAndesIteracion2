@@ -4,11 +4,11 @@ public interface VOMinisterioSalud {
 	/**
 	 * @return the idMinisterio
 	 */
-	public long getIdMinisterio();
+	public long getId_Ministerio();
 	/**
 	 * @return the planDeVacunacion
 	 */
-	public long getPlanDeVacunacion();
+	public long getPlan_De_Vacunacion();
 	
 	@Override
 	public String toString();

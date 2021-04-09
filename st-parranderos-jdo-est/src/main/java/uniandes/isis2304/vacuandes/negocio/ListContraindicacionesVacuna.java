@@ -4,6 +4,11 @@ public class ListContraindicacionesVacuna implements VOListContraindicacionesVac
 	private long idVacuna;
 	private String condicion;
 	
+	public ListContraindicacionesVacuna() {
+		this.idVacuna = 0;
+		this.condicion = "";
+	}
+	
 	public ListContraindicacionesVacuna(long idVacuna, String condicion) {
 		this.idVacuna = idVacuna;
 		this.condicion = condicion;

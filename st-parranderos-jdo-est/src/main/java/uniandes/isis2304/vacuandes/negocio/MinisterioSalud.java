@@ -1,43 +1,48 @@
 package uniandes.isis2304.vacuandes.negocio;
 
 public class MinisterioSalud implements VOMinisterioSalud{
-	private long idMinisterio;
-	private long planDeVacunacion;
-	/**
-	 * @param idMinisterio
-	 * @param planDeVacunacion
-	 */
-	public MinisterioSalud(long idMinisterio, long planDeVacunacion) {
-		this.idMinisterio = idMinisterio;
-		this.planDeVacunacion = planDeVacunacion;
+	private long id_Ministerio;
+	private long plan_De_Vacunacion;
+	
+	public MinisterioSalud() {
+		this.id_Ministerio = 0;
+		this.plan_De_Vacunacion = 0;
 	}
 	/**
-	 * @return the idMinisterio
+	 * @param id_Ministerio
+	 * @param plan_De_Vacunacion
 	 */
-	public long getIdMinisterio() {
-		return idMinisterio;
+	public MinisterioSalud(long id_Ministerio, long plan_De_Vacunacion) {
+		this.id_Ministerio = id_Ministerio;
+		this.plan_De_Vacunacion = plan_De_Vacunacion;
 	}
 	/**
-	 * @return the planDeVacunacion
+	 * @return the id_Ministerio
 	 */
-	public long getPlanDeVacunacion() {
-		return planDeVacunacion;
+	public long getId_Ministerio() {
+		return id_Ministerio;
 	}
 	/**
-	 * @param idMinisterio the idMinisterio to set
+	 * @return the plan_De_Vacunacion
 	 */
-	public void setIdMinisterio(long idMinisterio) {
-		this.idMinisterio = idMinisterio;
+	public long getPlan_De_Vacunacion() {
+		return plan_De_Vacunacion;
 	}
 	/**
-	 * @param planDeVacunacion the planDeVacunacion to set
+	 * @param id_Ministerio the id_Ministerio to set
 	 */
-	public void setPlanDeVacunacion(long planDeVacunacion) {
-		this.planDeVacunacion = planDeVacunacion;
+	public void setId_Ministerio(long id_Ministerio) {
+		this.id_Ministerio = id_Ministerio;
+	}
+	/**
+	 * @param plan_De_Vacunacion the plan_De_Vacunacion to set
+	 */
+	public void setPlan_De_Vacunacion(long plan_De_Vacunacion) {
+		this.plan_De_Vacunacion = plan_De_Vacunacion;
 	}
 	@Override
 	public String toString() {
-		return "MinisterioSalud [idMinisterio=" + idMinisterio + ", planDeVacunacion=" + planDeVacunacion + "]";
+		return "MinisterioSalud [id_Ministerio=" + id_Ministerio + ", plan_De_Vacunacion=" + plan_De_Vacunacion + "]";
 	}
 	
 	

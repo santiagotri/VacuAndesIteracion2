@@ -3,6 +3,10 @@ package uniandes.isis2304.vacuandes.negocio;
 public class ListCondicionesCiudadano implements VOListCondicionesCiudadano {
 	public long ciudadano;
 	public String condicion;
+	public ListCondicionesCiudadano() {
+		this.ciudadano = 0;
+		this.condicion = "";
+	}
 	/**
 	 * @param ciudadano
 	 * @param condicion

@@ -4,23 +4,23 @@ public interface VOVacuna {
 	/**
 	 * @return the idVacuna
 	 */
-	public long getIdVacuna() ;
+	public long getId_Vacuna() ;
 	/**
 	 * @return the condicionPreservacion
 	 */
-	public String getCondicionPreservacion() ;
+	public String getCondicion_Preservacion() ;
 	/**
 	 * @return the puntoVacunacion
 	 */
-	public long getPuntoVacunacion();
+	public long getPunto_Vacunacion();
 	/**
 	 * @return the planDeVacunacion
 	 */
-	public long getPlanDeVacunacion();
+	public long getPlan_De_Vacunacion();
 	/**
 	 * @return the oficinaRegional
 	 */
-	public long getOficinaRegional() ;
+	public long getOficina_Regional() ;
 	/**
 	 * @return the utilizada
 	 */

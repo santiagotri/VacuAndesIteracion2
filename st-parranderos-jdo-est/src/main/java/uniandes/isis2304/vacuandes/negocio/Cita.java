@@ -7,21 +7,29 @@ public class Cita implements VOCita {
 	private long idCita;
 	private Date fecha;
 	private long ciudadano;
-	private long puntoVacunacion;
+	private long punto_Vacunacion;
 	private long vacuna;
 
+	public Cita() {
+		this.idCita = 0;
+		this.fecha = new Date(0);
+		this.ciudadano = 0;
+		this.punto_Vacunacion = 0;
+		this.vacuna = 0;
+	}
+	
 	/**
 	 * @param idCita
 	 * @param fecha
 	 * @param ciudadano
-	 * @param puntoVacunacion
+	 * @param punto_Vacunacion
 	 * @param vacuna
 	 */
-	public Cita(long idCita, Date fecha, long ciudadano, long puntoVacunacion, long vacuna) {
+	public Cita(long idCita, Date fecha, long ciudadano, long punto_Vacunacion, long vacuna) {
 		this.idCita = idCita;
 		this.fecha = fecha;
 		this.ciudadano = ciudadano;
-		this.puntoVacunacion = puntoVacunacion;
+		this.punto_Vacunacion = punto_Vacunacion;
 		this.vacuna = vacuna;
 	}
 	
@@ -44,10 +52,10 @@ public class Cita implements VOCita {
 		return ciudadano;
 	}
 	/**
-	 * @return the puntoVacunacion
+	 * @return the punto_Vacunacion
 	 */
-	public long getPuntoVacunacion() {
-		return puntoVacunacion;
+	public long getPunto_Vacunacion() {
+		return punto_Vacunacion;
 	}
 	/**
 	 * @return the vacuna
@@ -74,10 +82,10 @@ public class Cita implements VOCita {
 		this.ciudadano = ciudadano;
 	}
 	/**
-	 * @param puntoVacunacion the puntoVacunacion to set
+	 * @param punto_Vacunacion the punto_Vacunacion to set
 	 */
-	public void setPuntoVacunacion(long puntoVacunacion) {
-		this.puntoVacunacion = puntoVacunacion;
+	public void setPunto_Vacunacion(long punto_Vacunacion) {
+		this.punto_Vacunacion = punto_Vacunacion;
 	}
 	/**
 	 * @param vacuna the vacuna to set
@@ -87,8 +95,8 @@ public class Cita implements VOCita {
 	}
 	@Override
 	public String toString() {
-		return "Cita [idCita=" + idCita + ", fecha=" + fecha + ", ciudadano=" + ciudadano + ", puntoVacunacion="
-				+ puntoVacunacion + ", vacuna=" + vacuna + "]";
+		return "Cita [idCita=" + idCita + ", fecha=" + fecha + ", ciudadano=" + ciudadano + ", punto_Vacunacion="
+				+ punto_Vacunacion + ", vacuna=" + vacuna + "]";
 	}
 	
 	

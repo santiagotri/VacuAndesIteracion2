@@ -17,9 +17,9 @@ public interface VOCita {
 	 */
 	public long getCiudadano() ;
 	/**
-	 * @return the puntoVacunacion
+	 * @return the punto_Vacunacion
 	 */
-	public long getPuntoVacunacion() ;
+	public long getPunto_Vacunacion() ;
 	/**
 	 * @return the vacuna
 	 */
