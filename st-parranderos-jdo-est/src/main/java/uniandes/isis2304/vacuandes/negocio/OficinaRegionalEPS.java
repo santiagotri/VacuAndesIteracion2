@@ -2,7 +2,6 @@ package uniandes.isis2304.vacuandes.negocio;
 
 public class OficinaRegionalEPS implements VOOficinaRegionalEPS{
 	
-	private long idOficina;
 	private String region;
 	private String username;
 	private int cantidadVacunasActuales;
@@ -15,20 +14,12 @@ public class OficinaRegionalEPS implements VOOficinaRegionalEPS{
 	 * @param cantidadVacunasActuales
 	 * @param planDeVacunacion
 	 */
-	public OficinaRegionalEPS(long idOficina, String region, String username, int cantidadVacunasActuales,
+	public OficinaRegionalEPS(String region, String username, int cantidadVacunasActuales,
 			long planDeVacunacion) {
-		this.idOficina = idOficina;
 		this.region = region;
 		this.username = username;
 		this.cantidadVacunasActuales = cantidadVacunasActuales;
 		this.planDeVacunacion = planDeVacunacion;
-	}
-
-	/**
-	 * @return the idOficina
-	 */
-	public long getIdOficina() {
-		return idOficina;
 	}
 
 	/**
@@ -59,12 +50,6 @@ public class OficinaRegionalEPS implements VOOficinaRegionalEPS{
 		return planDeVacunacion;
 	}
 
-	/**
-	 * @param idOficina the idOficina to set
-	 */
-	public void setIdOficina(long idOficina) {
-		this.idOficina = idOficina;
-	}
 
 	/**
 	 * @param region the region to set
@@ -96,10 +81,10 @@ public class OficinaRegionalEPS implements VOOficinaRegionalEPS{
 
 	@Override
 	public String toString() {
-		return "OficinaRegionalEPS [idOficina=" + idOficina + ", region=" + region + ", username=" + username
-				+ ", cantidadVacunasActuales=" + cantidadVacunasActuales + ", planDeVacunacion=" + planDeVacunacion
-				+ "]";
+		return "OficinaRegionalEPS [region=" + region + ", username=" + username + ", cantidadVacunasActuales="
+				+ cantidadVacunasActuales + ", planDeVacunacion=" + planDeVacunacion + "]";
 	}
+	
 	
 	
 	

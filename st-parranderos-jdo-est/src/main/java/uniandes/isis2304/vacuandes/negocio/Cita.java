@@ -4,14 +4,12 @@ import java.sql.Date;
 
 public class Cita implements VOCita {
 	
-	private long idCita;
 	private Date fecha;
 	private long ciudadano;
 	private long punto_Vacunacion;
 	private long vacuna;
 
 	public Cita() {
-		this.idCita = 0;
 		this.fecha = new Date(0);
 		this.ciudadano = 0;
 		this.punto_Vacunacion = 0;
@@ -25,20 +23,13 @@ public class Cita implements VOCita {
 	 * @param punto_Vacunacion
 	 * @param vacuna
 	 */
-	public Cita(long idCita, Date fecha, long ciudadano, long punto_Vacunacion, long vacuna) {
-		this.idCita = idCita;
+	public Cita(Date fecha, long ciudadano, long punto_Vacunacion, long vacuna) {
 		this.fecha = fecha;
 		this.ciudadano = ciudadano;
 		this.punto_Vacunacion = punto_Vacunacion;
 		this.vacuna = vacuna;
 	}
 	
-	/**
-	 * @return the idCita
-	 */
-	public long getIdCita() {
-		return idCita;
-	}
 	/**
 	 * @return the fecha
 	 */
@@ -63,12 +54,7 @@ public class Cita implements VOCita {
 	public long getVacuna() {
 		return vacuna;
 	}
-	/**
-	 * @param idCita the idCita to set
-	 */
-	public void setIdCita(long idCita) {
-		this.idCita = idCita;
-	}
+
 	/**
 	 * @param fecha the fecha to set
 	 */
@@ -93,11 +79,11 @@ public class Cita implements VOCita {
 	public void setVacuna(long vacuna) {
 		this.vacuna = vacuna;
 	}
+
 	@Override
 	public String toString() {
-		return "Cita [idCita=" + idCita + ", fecha=" + fecha + ", ciudadano=" + ciudadano + ", punto_Vacunacion="
-				+ punto_Vacunacion + ", vacuna=" + vacuna + "]";
+		return "Cita [fecha=" + fecha + ", ciudadano=" + ciudadano + ", punto_Vacunacion=" + punto_Vacunacion
+				+ ", vacuna=" + vacuna + "]";
 	}
-	
 	
 }

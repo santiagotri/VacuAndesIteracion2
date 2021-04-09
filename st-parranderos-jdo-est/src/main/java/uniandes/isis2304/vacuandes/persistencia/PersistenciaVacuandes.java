@@ -1,6 +1,7 @@
 
 package uniandes.isis2304.vacuandes.persistencia;
 
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,8 +19,12 @@ import com.google.gson.JsonObject;
 
 import uniandes.isis2304.parranderos.negocio.Bebida;
 import uniandes.isis2304.parranderos.negocio.TipoBebida;
+import uniandes.isis2304.vacuandes.negocio.Cita;
+import uniandes.isis2304.vacuandes.negocio.Ciudadano;
 import uniandes.isis2304.vacuandes.negocio.Condicion;
 import uniandes.isis2304.vacuandes.negocio.ListCondicionesCiudadano;
+import uniandes.isis2304.vacuandes.negocio.OficinaRegionalEPS;
+import uniandes.isis2304.vacuandes.negocio.PuntoVacunacion;
 import uniandes.isis2304.vacuandes.negocio.Trabajador;
 import uniandes.isis2304.vacuandes.negocio.Usuario;
 
@@ -543,6 +548,259 @@ public class PersistenciaVacuandes {
             pm.close();
         }
 	}
-	
+
+
+	public OficinaRegionalEPS adicionarOficinaRegional(String region, String adminstrador,
+		int cantidad_vacunas_actuales, long plan_de_vacunacion) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Agregando oficina regional en la region " + region);
+            tx.begin();
+            long tuplaInsertada = sqlOficinaRegionalEPS.agregarOficinaRegional(pm, region, adminstrador, cantidad_vacunas_actuales, plan_de_vacunacion);
+            tx.commit();
+            log.info ("Inserción de la oficina en la region: " + region + ": " + tuplaInsertada + " tuplas insertadas");
+            
+            return new OficinaRegionalEPS(region, adminstrador, cantidad_vacunas_actuales, plan_de_vacunacion);
+        	
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public Usuario adicionarUsuario(String username, String contrasena, String correo, long plan_de_vacunacion,
+			long ciudadano) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Agregando un nuevo usuario llamado: " + username);
+            tx.begin();
+            long tuplaInsertada = sqlUsuario.adicionarUsuario(pm, username, contrasena, correo, plan_de_vacunacion, ciudadano);
+            tx.commit();
+            log.info ("Inserción del usuario: " + username + ": " + tuplaInsertada + " tuplas insertadas");
+            
+            return new Usuario(username, contrasena, correo, plan_de_vacunacion, ciudadano);
+        	
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public Ciudadano adicionarCiudadano(long cedula, String nombre_completo, String estado_vacunacion, String region,
+			int desea_ser_vacunado, long plan_de_vacunacion, long punto_vacunacion, long oficina_regional_asignada) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Agregando un nuevo ciudadano llamado: " + nombre_completo);
+            tx.begin();
+            long tuplaInsertada = sqlCiudadano.adicionarCiudadano(pm, cedula, nombre_completo, estado_vacunacion, region, desea_ser_vacunado, plan_de_vacunacion, punto_vacunacion, oficina_regional_asignada);
+            tx.commit();
+            log.info ("Inserción del ciudadano de cedula: " + cedula + ": " + tuplaInsertada + " tuplas insertadas");
+            
+            return new Ciudadano(cedula, nombre_completo, estado_vacunacion, region, desea_ser_vacunado, plan_de_vacunacion, punto_vacunacion, oficina_regional_asignada);
+        	
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public PuntoVacunacion adicionarPuntoVacunacion(String localizacion, int capacidad_de_atencion_simultanea,
+			int capacidad_de_atencion_total_diaria, String infraestructura_para_dosis, int cantidad_vacunas_enviables,
+			int cantidad_vacunas_actuales, String tipo_punto_vacunacion, String administrador) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Agregando un nuevo punto de vacuancion en la localizacion: " + localizacion);
+            tx.begin();
+            long tuplaInsertada = sqlPuntoVacunacion.adicionarPuntoVacunacion(pm, localizacion, capacidad_de_atencion_simultanea, capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador);
+            tx.commit();
+            log.info ("Inserción del punto de vacunacion en: " + localizacion + ": " + tuplaInsertada + " tuplas insertadas");
+            
+            return new PuntoVacunacion(tuplaInsertada, localizacion, capacidad_de_atencion_simultanea, capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public Ciudadano buscarCiudadano(long cedula) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando el ciudadano de la cedula " + cedula);
+            tx.begin();
+            Ciudadano ciudadano = sqlCiudadano.darCiudadanoPorCedula(pm, cedula);
+            tx.commit();
+            log.info ("Trabajador buscado por cedula " + cedula);
+            
+            return ciudadano;
+        	
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public long actualizarCiudadanoPuntoVacunacion(long cedula, String nombre_Completo, String estado_vacunacion,
+			String region, int desea_ser_vacunado, long plan_De_Vacunacion, long punto_vacunacion,
+			long oficina_Regional_Asignada){
+	PersistenceManager pm = pmf.getPersistenceManager();
+    Transaction tx=pm.currentTransaction();
+    try
+    {
+    	log.info ("Actualizando el ciudadano de cedula: " + cedula + " con el punto de vacunación: " + punto_vacunacion);
+        tx.begin();
+        long condicion = sqlCiudadano.actualizarCiudadanoPorCedula(pm, cedula, nombre_Completo, estado_vacunacion, region, desea_ser_vacunado, plan_De_Vacunacion, punto_vacunacion, oficina_Regional_Asignada);
+        tx.commit();
+        log.info ("Se actualizo el ciudadano de cedula: " + cedula + " a punto vacunacion: " + punto_vacunacion);
+        
+        return condicion;
+    	
+    }
+    catch (Exception e)
+    {
+    	e.printStackTrace();
+    	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+    	return -1;
+    }
+    finally
+    {
+        if (tx.isActive())
+        {
+            tx.rollback();
+        }
+        pm.close();
+    }
+}
+
+
+	public Cita adicionarCita(Date fecha, long ciudadano, long punto_vacunacion, long vacuna) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Agregando una nueva cita en el punto de vacunación: " + punto_vacunacion);
+            tx.begin();
+            long tuplaInsertada = sqlCita.adicionarCita(pm, fecha, ciudadano, punto_vacunacion, vacuna);
+            tx.commit();
+            log.info ("Inserción de la cita en el punto: " + punto_vacunacion + ": " + tuplaInsertada + " tuplas insertadas");
+            
+            return new Cita(fecha, ciudadano, punto_vacunacion, vacuna);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	/**
+	public Cita buscarCita(Date fecha, long ciudadano) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando la cita del ciudadano con cedula: " + ciudadano);
+            tx.begin();
+            Cita cita = sqlCita.darCitaPorCiudadanoYFecha(pm, fecha, ciudadano);
+            tx.commit();
+            log.info ("Encontrada la cita del ciudadano de cedula: " + ciudadano);
+            
+            return cita;
+        	
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+ */
 
 }

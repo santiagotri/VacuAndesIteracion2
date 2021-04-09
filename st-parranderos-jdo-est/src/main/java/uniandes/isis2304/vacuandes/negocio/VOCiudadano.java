@@ -4,7 +4,9 @@ public interface VOCiudadano {
 	
 	public long getCedula() ;
 	public String getNombre_Completo() ;
-	public String getDesea_Ser_Vacunado();
+	public String getEstado_vacunacion();
+	public String getRegion();
+	public int getDesea_ser_vacunado(); 
 	public long getPlan_De_Vacunacion() ;
 	public long getPunto_Vacunacion() ;
 	public long getOficina_Regional_Asignada() ;

@@ -1,10 +1,6 @@
 package uniandes.isis2304.vacuandes.negocio;
 
 public interface VOOficinaRegionalEPS {
-	/**
-	 * @return the idOficina
-	 */
-	public long getIdOficina() ;
 
 	/**
 	 * @return the region

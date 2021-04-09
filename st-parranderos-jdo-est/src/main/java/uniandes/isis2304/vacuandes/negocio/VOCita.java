@@ -5,10 +5,6 @@ import java.sql.Date;
 public interface VOCita {
 
 	/**
-	 * @return the idCita
-	 */
-	public long getIdCita() ;
-	/**
 	 * @return the fecha
 	 */
 	public Date getFecha();

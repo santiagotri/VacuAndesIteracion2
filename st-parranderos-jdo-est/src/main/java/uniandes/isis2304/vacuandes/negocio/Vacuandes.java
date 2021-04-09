@@ -1,5 +1,7 @@
 package uniandes.isis2304.vacuandes.negocio;
 
+import java.sql.Date;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
@@ -70,10 +72,71 @@ public class Vacuandes {
 	 * 			Métodos para manejar CITA
 	 *****************************************************************/
 	
+	public Cita agregarCita(Date fecha, long ciudadano, long punto_vacunacion, long vacuna) {
+		log.info ("Creando una nueva cita");
+		Cita rta = pp.adicionarCita(fecha, ciudadano,punto_vacunacion, vacuna);
+        log.info ("Se creo el cita en el punto: " + punto_vacunacion +" para el ciudadano de cedula: " + ciudadano);
+        return rta;
+	}
 	
+	/**
+	 * 
+	public Cita darCitaPorPuntoDeVacunacionYFecha(Date fecha, long punto_vacunacion) {
+		log.info ("Buscando cita en la fecha: " + fecha + " del ciudadano con cedula: " + ciudadano);
+		Cita rta = pp.buscarCita(fecha, ciudadano);
+        log.info ("Trabajo verificado");
+        return rta;
+	}
+	 */
+	
+	public long agregarACitaCiudadano(long cedula, long punto_vacunacion) {
+		long rta = 0;
+		log.info ("Actualizando ciudadano de cedula: " + cedula);
+		Ciudadano ciudadano = pp.buscarCiudadano(cedula);
+		if(ciudadano!=null)
+		{
+			rta = pp.actualizarCiudadanoPuntoVacunacion(ciudadano.getCedula(), ciudadano.getNombre_Completo(), ciudadano.getEstado_vacunacion(), ciudadano.getRegion(), ciudadano.getDesea_ser_vacunado(), ciudadano.getPlan_De_Vacunacion(), punto_vacunacion, ciudadano.getOficina_Regional_Asignada()); 
+		}
+		else 
+		{
+			return 0; 
+		}
+        log.info ("Trabajo verificado");
+        return rta;
+	}
 	/* ****************************************************************
 	 * 			Métodos para manejar CIUDADANO
 	 *****************************************************************/
+	
+	public Ciudadano agregarCiudadano(long cedula, String nombre_completo, String estado_vacunacion, String region, int desea_ser_vacunado, long plan_de_vacunacion, long punto_vacunacion, long oficina_regional_asignada) {
+		log.info ("Creando un nuevo ciudadano en VacuAndes de cedula: " + cedula);
+		Ciudadano rta = pp.adicionarCiudadano(cedula, nombre_completo,estado_vacunacion, region, desea_ser_vacunado, plan_de_vacunacion, punto_vacunacion, oficina_regional_asignada);
+        log.info ("Se creo el ciudadano: " + nombre_completo +" de cedula: " + cedula);
+        return rta;
+	}
+	
+	public Ciudadano darCiudadanoPorCedula(long cedula) {
+		log.info ("Buscando trabjador de cedula: " + cedula);
+		Ciudadano rta = pp.buscarCiudadano(cedula);
+        log.info ("Trabajo verificado");
+        return rta;
+	}
+	
+	public long agregarACiudadanoPuntoDeVacunacion(long cedula, long punto_vacunacion) {
+		long rta = 0;
+		log.info ("Actualizando ciudadano de cedula: " + cedula);
+		Ciudadano ciudadano = pp.buscarCiudadano(cedula);
+		if(ciudadano!=null)
+		{
+			rta = pp.actualizarCiudadanoPuntoVacunacion(ciudadano.getCedula(), ciudadano.getNombre_Completo(), ciudadano.getEstado_vacunacion(), ciudadano.getRegion(), ciudadano.getDesea_ser_vacunado(), ciudadano.getPlan_De_Vacunacion(), punto_vacunacion, ciudadano.getOficina_Regional_Asignada()); 
+		}
+		else 
+		{
+			return 0; 
+		}
+        log.info ("Trabajo verificado");
+        return rta;
+	}
 	
 	
 	/* ****************************************************************
@@ -95,6 +158,12 @@ public class Vacuandes {
 	 * 			Métodos para manejar OFICINA_REGIONAL_EPS
 	 *****************************************************************/
 	
+	public OficinaRegionalEPS agregarOficinaRegional(String region, String adminstrador, int cantidad_vacunas_actuales, long plan_de_vacunacion) {
+		log.info ("Registrando una nueva oficina regional");
+		OficinaRegionalEPS rta = pp.adicionarOficinaRegional(region, adminstrador,cantidad_vacunas_actuales, plan_de_vacunacion);
+        log.info ("Se creo la oficina en la region: " + region +" con el administrador: " + adminstrador);
+        return rta;
+	}
 	
 	/* ****************************************************************
 	 * 			Métodos para manejar PLAN_DE_VACUNACION
@@ -104,7 +173,12 @@ public class Vacuandes {
 	/* ****************************************************************
 	 * 			Métodos para manejar PUNTO_VACUNACION
 	 *****************************************************************/
-	
+	public PuntoVacunacion agregarPuntoVacunacion(String localizacion, int capacidad_de_atencion_simultanea, int capacidad_de_atencion_total_diaria, String infraestructura_para_dosis, int cantidad_vacunas_enviables, int cantidad_vacunas_actuales, String tipo_punto_vacunacion, String administrador) {
+		log.info ("Creando un nuevo punto de vacunacion");
+		PuntoVacunacion rta = pp.adicionarPuntoVacunacion(localizacion, capacidad_de_atencion_simultanea,capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables,cantidad_vacunas_actuales,tipo_punto_vacunacion,administrador);
+        log.info ("Se creo el punto de vacunacion en la localizacion: " + localizacion);
+        return rta;
+	}
 	
 	/* ****************************************************************
 	 * 			Métodos para manejar TRABAJADOR
@@ -121,6 +195,12 @@ public class Vacuandes {
 	 * 			Métodos para manejar USUARIO
 	 *****************************************************************/
 	
+	public Usuario agregarUsuarioVacuandes(String username, String contrasena, String correo, long plan_de_vacunacion, long ciudadano) {
+		log.info ("Creando un nuevo usuario en VacuAndes");
+		Usuario rta = pp.adicionarUsuario(username, contrasena,correo, plan_de_vacunacion, ciudadano);
+        log.info ("Se creo el usuario: " + username +" de cedula: " + ciudadano);
+        return rta;
+	}
 	
 	/* ****************************************************************
 	 * 			Métodos para manejar VACUNA

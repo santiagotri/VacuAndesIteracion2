@@ -4,7 +4,9 @@ public class Ciudadano implements VOCiudadano{
 	
 	private long cedula; 
 	private String nombre_Completo;
-	private String desea_Ser_Vacunado;
+	private String estado_vacunacion;
+	private String region; 
+	private int desea_ser_vacunado; 
 	private long plan_De_Vacunacion;
 	private long punto_Vacunacion;
 	private long oficina_Regional_Asignada;
@@ -12,7 +14,9 @@ public class Ciudadano implements VOCiudadano{
 	public Ciudadano() {
 		this.cedula = 0;
 		this.nombre_Completo = "";
-		this.desea_Ser_Vacunado = "";
+		this.estado_vacunacion = "";
+		this.region = ""; 
+		this.desea_ser_vacunado = 0; 
 		this.plan_De_Vacunacion = 0;
 		this.punto_Vacunacion = 0;
 		this.oficina_Regional_Asignada = 0;
@@ -27,11 +31,13 @@ public class Ciudadano implements VOCiudadano{
 	 * @param punto_Vacunacion
 	 * @param oficina_Regional_Asignada
 	 */
-	public Ciudadano(long cedula, String nombre_Completo, String desea_Ser_Vacunado, long plan_De_Vacunacion,
+	public Ciudadano(long cedula, String nombre_Completo, String estado_vacunacion, String region, int desea_ser_vacunado, long plan_De_Vacunacion,
 			long punto_Vacunacion, long oficina_Regional_Asignada) {
 		this.cedula = cedula;
 		this.nombre_Completo = nombre_Completo;
-		this.desea_Ser_Vacunado = desea_Ser_Vacunado;
+		this.estado_vacunacion = estado_vacunacion;
+		this.region = region; 
+		this.desea_ser_vacunado = desea_ser_vacunado; 
 		this.plan_De_Vacunacion = plan_De_Vacunacion;
 		this.punto_Vacunacion = punto_Vacunacion;
 		this.oficina_Regional_Asignada = oficina_Regional_Asignada;
@@ -48,12 +54,21 @@ public class Ciudadano implements VOCiudadano{
 	public String getNombre_Completo() {
 		return nombre_Completo;
 	}
-	/**
-	 * @return the desea_Ser_Vacunado
-	 */
-	public String getDesea_Ser_Vacunado() {
-		return desea_Ser_Vacunado;
+	
+	public String getEstado_vacunacion() {
+		return estado_vacunacion;
 	}
+
+
+	public String getRegion() {
+		return region;
+	}
+
+
+	public int getDesea_ser_vacunado() {
+		return desea_ser_vacunado;
+	}
+
 	/**
 	 * @return the plan_De_Vacunacion
 	 */
@@ -72,11 +87,12 @@ public class Ciudadano implements VOCiudadano{
 	public long getOficina_Regional_Asignada() {
 		return oficina_Regional_Asignada;
 	}
+	
 	/**
 	 * @param cedula the cedula to set
 	 */
 	public void setCedula(long cedula) {
-		cedula = cedula;
+		this.cedula = cedula;
 	}
 	/**
 	 * @param nombre_Completo the nombre_Completo to set
@@ -84,11 +100,19 @@ public class Ciudadano implements VOCiudadano{
 	public void setNombre_Completo(String nombre_Completo) {
 		this.nombre_Completo = nombre_Completo;
 	}
-	/**
-	 * @param desea_Ser_Vacunado the desea_Ser_Vacunado to set
-	 */
-	public void setDesea_Ser_Vacunado(String desea_Ser_Vacunado) {
-		this.desea_Ser_Vacunado = desea_Ser_Vacunado;
+
+	public void setEstado_vacunacion(String estado_vacunacion) {
+		this.estado_vacunacion = estado_vacunacion;
+	}
+
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+
+	public void setDesea_ser_vacunado(int desea_ser_vacunado) {
+		this.desea_ser_vacunado = desea_ser_vacunado;
 	}
 	/**
 	 * @param plan_De_Vacunacion the plan_De_Vacunacion to set
@@ -108,17 +132,15 @@ public class Ciudadano implements VOCiudadano{
 	public void setOficina_Regional_Asignada(long oficina_Regional_Asignada) {
 		this.oficina_Regional_Asignada = oficina_Regional_Asignada;
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
-		return "Ciudadano [Cedula=" + cedula + ", nombre_Completo=" + nombre_Completo + ", desea_Ser_Vacunado="
-				+ desea_Ser_Vacunado + ", plan_De_Vacunacion=" + plan_De_Vacunacion + ", punto_Vacunacion=" + punto_Vacunacion
+		return "Ciudadano [cedula=" + cedula + ", nombre_Completo=" + nombre_Completo + ", estado_vacunacion="
+				+ estado_vacunacion + ", region=" + region + ", desea_ser_vacunado=" + desea_ser_vacunado
+				+ ", plan_De_Vacunacion=" + plan_De_Vacunacion + ", punto_Vacunacion=" + punto_Vacunacion
 				+ ", oficina_Regional_Asignada=" + oficina_Regional_Asignada + "]";
 	}
-	
-	
-	
 	
 	
 }

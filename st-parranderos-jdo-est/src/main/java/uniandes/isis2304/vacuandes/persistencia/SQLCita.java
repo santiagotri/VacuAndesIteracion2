@@ -7,6 +7,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import uniandes.isis2304.vacuandes.negocio.Cita;
+import uniandes.isis2304.vacuandes.negocio.Ciudadano;
 
 public class SQLCita {
 	
@@ -71,6 +72,14 @@ public class SQLCita {
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCita());
 		q.setResultClass(Cita.class);
 		return (List<Cita>) q.execute();
+	}
+	
+	public Cita darCitaPorCiudadanoYFecha(PersistenceManager pm, Date fecha, long ciudadano)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCita() + " WHERE fecha = ? AND ciudadano = ?");
+		q.setResultClass(Cita.class);
+		q.setParameters(fecha, ciudadano);
+		return (Cita) q.executeUnique();
 	}
 
 }
