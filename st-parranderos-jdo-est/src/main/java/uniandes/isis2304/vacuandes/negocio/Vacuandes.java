@@ -127,7 +127,47 @@ public class Vacuandes {
 	 *****************************************************************/
 	
 	
+	/* ****************************************************************
+	 * 			Métodos para manejar CONDICION
+	 *****************************************************************/
 	
+	public Condicion agregarCondicion(String condiciones, int etapa) {
+		log.info ("Creando una nueva condicion");
+		Condicion rta = pp.adicionarCondicion(condiciones, etapa);
+        log.info ("Se creo la condicion: " + condiciones +" de etapa numero:" + etapa);
+        return rta;
+	}
+	
+	public Condicion getCondicion(String condiciones)
+	{
+		log.info ("Buscando una condicion");
+		Condicion rta = pp.getCondicionPorCondiciones(condiciones);
+        log.info ("Se encontró la condición: " + condiciones);
+        return rta;
+	}
+	
+	public Condicion updateCondicion(String condiciones, int etapa)
+	{
+		log.info ("Actualizando una condicion");
+		Condicion rta = pp.updateCondicionPorCondiciones(condiciones, etapa);
+        log.info ("Se actualizo la condicion" + condiciones + " a etapa " + etapa);
+        return rta;
+	}
+	
+	public Condicion registrarCondicionesDePriorizacion(String condiciones, int etapa)
+	{
+		Condicion rta = getCondicion(condiciones);
+		if(rta != null)
+		{
+			updateCondicion(condiciones, etapa); 
+		}
+		else
+		{
+			agregarCondicion(condiciones, etapa); 
+		}
+		
+		return rta;
+	}
 	
 	
 

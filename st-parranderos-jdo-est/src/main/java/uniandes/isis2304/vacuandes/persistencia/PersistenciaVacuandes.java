@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 
 import uniandes.isis2304.parranderos.negocio.Bebida;
 import uniandes.isis2304.parranderos.negocio.TipoBebida;
+import uniandes.isis2304.vacuandes.negocio.Condicion;
 import uniandes.isis2304.vacuandes.negocio.ListCondicionesCiudadano;
 import uniandes.isis2304.vacuandes.negocio.Trabajador;
 import uniandes.isis2304.vacuandes.negocio.Usuario;
@@ -431,6 +432,99 @@ public class PersistenciaVacuandes {
             log.info ("Trabajador buscado por cedula " + cedula);
             
             return trabajador;
+        	
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public Condicion adicionarCondicion(String condiciones, int etapa) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Agregando condicion" + condiciones);
+            tx.begin();
+            long tuplaInsertada = sqlCondicion.adicionarCondicion(pm, condiciones, etapa);
+            tx.commit();
+            log.info ("Inserción de la condicion: " + condiciones + ": " + tuplaInsertada + " tuplas insertadas");
+            
+            return new Condicion(condiciones, etapa);
+        	
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public Condicion getCondicionPorCondiciones(String condiciones) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando la condicion llamada " + condiciones);
+            tx.begin();
+            Condicion condicion = sqlCondicion.darCondicionPorCondiciones(pm, condiciones);
+            tx.commit();
+            log.info ("Se encontró la condicion " + condiciones);
+            
+            return condicion;
+        	
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public Condicion updateCondicionPorCondiciones(String condiciones, int etapa) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Actualizando la condicion llamada: " + condiciones);
+            tx.begin();
+            Condicion condicion = sqlCondicion.actualizarCondicionPorCondiciones(pm, condiciones, etapa);
+            tx.commit();
+            log.info ("Se actualizo la condicion " + condiciones + " a etapa " + etapa);
+            
+            return condicion;
         	
         }
         catch (Exception e)

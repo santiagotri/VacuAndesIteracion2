@@ -52,10 +52,10 @@ public class SQLCondicion {
         return (long) q.executeUnique();
 	}
 	
-	public long eliminarCondicionesPorCondicion(PersistenceManager pm, String condicion) 
+	public long eliminarCondicionesPorCondicion(PersistenceManager pm, String condiciones) 
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCondicion() + " WHERE condicion = ?");
-        q.setParameters(condicion);
+        q.setParameters(condiciones);
         return (long) q.executeUnique();
 	}
 	
@@ -66,10 +66,25 @@ public class SQLCondicion {
         return (long) q.executeUnique();
 	}
 	
+	public Condicion darCondicionPorCondiciones(PersistenceManager pm, String condiciones)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCondicion() + " WHERE condiciones = ?");
+		q.setResultClass(Condicion.class);
+		q.setParameters(condiciones);
+		return (Condicion) q.execute();
+	}
+	
 	public List<Condicion> darListCondiciones(PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCondicion());
 		q.setResultClass(Condicion.class);
 		return (List<Condicion>) q.execute();
+	}
+
+	public Condicion actualizarCondicionPorCondiciones(PersistenceManager pm, String condiciones, int etapa) {
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCondicion() + "SET ETAPA= ? WHERE CONDICIONES = ?");
+		q.setResultClass(Condicion.class);
+		q.setParameters(etapa, condiciones);
+		return (Condicion) q.execute();
 	}
 }
