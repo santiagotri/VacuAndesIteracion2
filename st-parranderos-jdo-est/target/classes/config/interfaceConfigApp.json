@@ -5,6 +5,24 @@
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
+		{ "menuTitle": "Sesion actual",
+		  "options":
+			[
+				{
+					"label": "Iniciar sesion",
+					"event": "iniciarSesion"
+				},
+				{
+					"label": "Ver info. usuario actual",
+					"event": "infoUsuarioActual"
+				},
+				{
+					"label": "Cerrar sesion",
+					"event": "cerrarSesion"
+				}
+				
+			]
+		},
 		{ "menuTitle": "Registrar",
 		  "options":
 			[

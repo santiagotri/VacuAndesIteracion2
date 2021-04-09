@@ -48,6 +48,7 @@ import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.parranderos.negocio.Parranderos;
 import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
+import uniandes.isis2304.vacuandes.negocio.Usuario;
 import uniandes.isis2304.vacuandes.negocio.Vacuandes;
 
 /**
@@ -89,6 +90,9 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	 */
 	private Vacuandes vacuandes;
 
+	private InterfazLogin interfazLogin;
+	private Usuario usuarioActual;
+	
 	/* ****************************************************************
 	 * 			Atributos de interfaz
 	 *****************************************************************/
@@ -241,53 +245,52 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	 * 			CRUD de TipoBebida
 	 *****************************************************************/
 	public void registrarCondicionesDePriorizacion() {
-		System.out.println("hola");
 	}
 
 	public void registrarSecuenciaDeEstadosValidos() {
 
 	}
-	
+
 	public void registrarOficinaDeEPSRegional() {
 
 	}
-	
+
 	public void registrarUsuarioDeVacuandes() {
 
 	}
-	
+
 	public void registrarCiudadanosColombianos() {
 
 	}
-	
+
 	public void registarPuntoDeVacunacion() {
 
 	}
-	
+
 	public void registrarAvanceEnVacunacionDePersona() {
 
 	}
-	
+
 	public void asignarTalentoHumanoAUnPuntoDeVacunacion() {
 
 	}
-	
+
 	public void asignarCiudadanoAPuntoDeVacunacion() {
 
 	}
-	
+
 	public void asignarCitaDeVacunacionACiudadano() {
 
 	}
-	
+
 	public void mostrarCiudadanosAtendidosPorUnPuntoDeVacunacion() {
 
 	}
-	
+
 	public void mostrar20PuntosDeVacunacionMasEfectivos() {
 
 	}
-	
+
 	public void mostrarIndiceDeVacunacionParaGrupoPoblacional() {
 
 	}
@@ -500,7 +503,10 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent pEvento)
 	{
-		String evento = pEvento.getActionCommand( );		
+
+		String evento = pEvento.getActionCommand( );
+		//System.out.println(evento);
+
 		try 
 		{
 			Method req = InterfazVacuandesApp.class.getMethod ( evento );			
@@ -511,6 +517,56 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 			e.printStackTrace();
 		} 
 	}
+
+
+	/* ****************************************************************
+	 * 			Métodos login
+	 *****************************************************************/
+
+	public void iniciarSesion() {
+		interfazLogin = new InterfazLogin(this);
+	}
+
+	public void cerrarSesion() {
+		if (usuarioActual==null) {
+			JOptionPane.showMessageDialog(this, "No hay una sesion para cerrar", "Error cierre de sesion", JOptionPane.ERROR_MESSAGE);
+		}else {
+			JOptionPane.showMessageDialog (this, "Cierre de sesion exitoso", "Se ha cerrado la sesion del usuario "+ usuarioActual.getUsername() +" exitosamente.", JOptionPane.INFORMATION_MESSAGE);
+			usuarioActual =null;
+		}
+	}
+
+	public void infoUsuarioActual() {
+		if(usuarioActual==null) {
+			JOptionPane.showMessageDialog (this,"Actualmente no esta loggeado como ningun usuario", "Informacion sesion actual", JOptionPane.ERROR_MESSAGE);
+
+		}else {
+			JOptionPane.showMessageDialog (this,"Actualmente esta loggeado como "+ usuarioActual.getUsername(), "Informacion sesion actual", JOptionPane.INFORMATION_MESSAGE);
+
+		}
+
+	}
+
+	public void Enviar() {
+		String usernameUsuarioActual = interfazLogin.darUsuarioIngresado();
+		String contrasenaUsuarioActual = interfazLogin.darContrasenaIngresada();
+		Usuario rta = vacuandes.verificarInicioDeSesion(usernameUsuarioActual, contrasenaUsuarioActual);
+		if(rta==null) {
+			JOptionPane.showMessageDialog (this,"El usuario " + usernameUsuarioActual + " no existe.", "Usuario inexistente", JOptionPane.ERROR_MESSAGE);
+			
+		}
+		if(rta.getContrasena().equals(contrasenaUsuarioActual)) {
+			usuarioActual = rta;
+			JOptionPane.showMessageDialog (this,"Actualmente esta loggeado como "+ usuarioActual.getUsername(), "Informacion sesion actual", JOptionPane.INFORMATION_MESSAGE);
+		}else {
+			usuarioActual = null;
+			JOptionPane.showMessageDialog (this,"Contraseña incorrecta", "Contraseña incorrecta", JOptionPane.ERROR_MESSAGE);
+			
+		}
+		interfazLogin.close();
+	}
+
+
 
 	/* ****************************************************************
 	 * 			Programa principal

@@ -1,6 +1,7 @@
 package uniandes.isis2304.vacuandes.interfazApp;
 
 import java.awt.BorderLayout;
+import java.awt.Desktop.Action;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,20 +23,24 @@ public class InterfazLogin extends JFrame implements ActionListener {
 	   private String usuarioIngresado;
 	   private String contrasenaIngresada;
 	   
-	   public InterfazLogin() {
+	   InterfazVacuandesApp interfazVacuandes;
+	   
+	   public InterfazLogin(InterfazVacuandesApp pInterfaz) {
+		   
 	      // Username Label
+		  interfazVacuandes = pInterfaz;
 		  usuarioIngresado = "";
 		  contrasenaIngresada= "";
 		  
 	      user_label = new JLabel();
-	      user_label.setText("User Name :");
+	      user_label.setText("Username:");
 	      userName_text = new JTextField();
 	      // Password Label
 	      password_label = new JLabel();
-	      password_label.setText("Password :");
+	      password_label.setText("Contraseña:");
 	      password_text = new JPasswordField();
 	      // Submit
-	      submit = new JButton("SUBMIT");
+	      submit = new JButton("Enviar");
 	      panel = new JPanel(new GridLayout(3, 1));
 	      panel.add(user_label);
 	      panel.add(userName_text);
@@ -46,9 +51,9 @@ public class InterfazLogin extends JFrame implements ActionListener {
 	      panel.add(submit);
 	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	      // Adding the listeners to components..
-	      submit.addActionListener(this);
+	      submit.addActionListener(pInterfaz);
 	      add(panel, BorderLayout.CENTER);
-	      setTitle("Please Login Here !");
+	      setTitle("Iniciar sesion");
 	      setSize(450,350);
 	      setVisible(true);
 	   }
@@ -57,9 +62,13 @@ public class InterfazLogin extends JFrame implements ActionListener {
 	   public void actionPerformed(ActionEvent ae) {
 		  usuarioIngresado = userName_text.getText();
 		  contrasenaIngresada = password_text.getText();
+		  
 	   }
 	   
-	   public String darUsuarioIngresado () {return usuarioIngresado;}
-	   public String darContrasenaIngresada () {return contrasenaIngresada;}
+	   public void close() { setVisible(false);}
+	   
+	   public String darUsuarioIngresado () {return userName_text.getText();}
+	   public String darContrasenaIngresada () {return password_text.getText();}
+	   
 
 }

@@ -14,9 +14,9 @@ public interface VOUsuario {
 	 */
 	public String getCorreo() ;
 	/**
-	 * @return the planDeVacunacion
+	 * @return the plan_de_vacunacion
 	 */
-	public long getPlanDeVacunacion();
+	public long getPlan_de_vacunacion();
 	/**
 	 * @return the ciudadano
 	 */

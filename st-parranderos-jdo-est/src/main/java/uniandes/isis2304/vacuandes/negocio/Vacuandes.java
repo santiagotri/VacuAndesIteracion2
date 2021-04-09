@@ -1,9 +1,15 @@
 package uniandes.isis2304.vacuandes.negocio;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+import javax.jdo.Transaction;
+
 import org.apache.log4j.Logger;
 
 import com.google.gson.JsonObject;
 
+import uniandes.isis2304.parranderos.negocio.Bebida;
+import uniandes.isis2304.parranderos.negocio.TipoBebida;
 import uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes;
 
 public class Vacuandes {
@@ -50,6 +56,14 @@ public class Vacuandes {
 	public void cerrarUnidadPersistencia ()
 	{
 		pp.cerrarUnidadPersistencia ();
+	}
+
+	public Usuario verificarInicioDeSesion(String username, String contrasena) {
+		//PersistenceManager pm = pmf.getPersistenceManager();
+		log.info ("Iniciando sesion para usuario " + username);
+		Usuario rta = pp.verificarInicioDeSesion (username, contrasena);
+        log.info ("Verificado inicio sesion");
+        return rta;
 	}
 	
 	/* ****************************************************************

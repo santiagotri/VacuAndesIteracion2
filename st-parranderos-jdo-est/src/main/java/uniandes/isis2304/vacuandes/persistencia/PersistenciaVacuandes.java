@@ -16,7 +16,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import uniandes.isis2304.parranderos.negocio.Bebida;
+import uniandes.isis2304.parranderos.negocio.TipoBebida;
 import uniandes.isis2304.vacuandes.negocio.ListCondicionesCiudadano;
+import uniandes.isis2304.vacuandes.negocio.Usuario;
 
 
 public class PersistenciaVacuandes {
@@ -121,7 +123,7 @@ public class PersistenciaVacuandes {
 		tablas.add ("CIUDADANO");
 		tablas.add ("LIST_CONDICIONES_CIUDADANO");
 		tablas.add ("LIST_CONTRAINDICACIONES_VACUNA");
-		tablas.add ("MINISTERIO_SALUD");
+		tablas.add ("MINISTERIO_DE_SALUD");
 		tablas.add ("OFICINA_REGIONAL_EPS");
 		tablas.add ("PLAN_DE_VACUNACION");
 		tablas.add ("PUNTO_VACUNACION");
@@ -352,6 +354,49 @@ public class PersistenciaVacuandes {
             pm.close();
         }
         
+	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar inicio sesion
+	 *****************************************************************/
+	
+
+	public Usuario verificarInicioDeSesion(String username, String contrasena)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando usuario \"" + username + "\" con contrasena \""+ contrasena+ "\"");
+            tx.begin();
+            Usuario usuario = sqlUsuario.darUsuario(pm, username);
+            tx.commit();
+            log.info ("Usuario buscado \"" + usuario.getUsername() + "\" con contrasena \""+ usuario.getContrasena()+ "\"");
+            
+            return usuario;
+        	
+        	
+        	
+//        	tx.begin();
+//        	long rta = sqlMinisterioSalud.agregarMinisterioDeSalud(pm, 1);
+//        	System.out.println(rta);
+//        	tx.commit();
+//        	return null;
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
 	}
 	
 

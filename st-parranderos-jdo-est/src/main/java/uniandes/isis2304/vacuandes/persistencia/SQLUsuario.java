@@ -1,8 +1,14 @@
 package uniandes.isis2304.vacuandes.persistencia;
 
 
+import java.util.List;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+
+import uniandes.isis2304.parranderos.negocio.Bebida;
+import uniandes.isis2304.parranderos.negocio.TipoBebida;
+import uniandes.isis2304.vacuandes.negocio.Usuario;
 
 public class SQLUsuario {
 	
@@ -74,5 +80,21 @@ public class SQLUsuario {
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario() + " WHERE ciudadano = ?");
         q.setParameters(ciudadano);
         return (long) q.executeUnique();
+	}
+	
+	public List<Usuario> darListaUsuarios(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaUsuario());
+		q.setResultClass(Usuario.class);
+		return (List<Usuario>) q.execute();
+	}
+	
+	public Usuario darUsuario(PersistenceManager pm, String username)
+	{
+		System.out.print(pp.darTablaUsuario());
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaUsuario() + " WHERE USERNAME = ?");
+		q.setResultClass(Usuario.class);
+		q.setParameters(username);
+		return (Usuario) q.executeUnique();
 	}
 }
