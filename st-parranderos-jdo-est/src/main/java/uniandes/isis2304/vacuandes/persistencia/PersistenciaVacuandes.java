@@ -68,6 +68,11 @@ public class PersistenciaVacuandes {
 	private SQLCiudadano sqlCiudadano;
 	
 	/**
+	 * Atributo para el acceso a la tabla Ciudadano de la base de datos
+	 */
+	private SQLCondicion sqlCondicion;
+	
+	/**
 	 * Atributo para el acceso a la tabla ListCondicionesCiudadano de la base de datos
 	 */
 	private SQLListCondicionesCiudadano sqlListCondicionesCiudadano;
@@ -122,6 +127,7 @@ public class PersistenciaVacuandes {
 		tablas = new LinkedList<String> ();
 		tablas.add ("CITA");
 		tablas.add ("CIUDADANO");
+		tablas.add ("CONDICION");
 		tablas.add ("LIST_CONDICIONES_CIUDADANO");
 		tablas.add ("LIST_CONTRAINDICACIONES_VACUNA");
 		tablas.add ("MINISTERIO_DE_SALUD");
@@ -209,6 +215,7 @@ public class PersistenciaVacuandes {
 		
 		sqlCita = new SQLCita(this);
 		sqlCiudadano = new SQLCiudadano(this);
+		sqlCondicion = new SQLCondicion(this);
 		sqlListCondicionesCiudadano = new SQLListCondicionesCiudadano(this);
 		sqlListContraindicacionesVacuna = new SQLListContraindicacionesVacuna(this);
 		sqlMinisterioSalud = new SQLMinisterioSalud(this);
@@ -237,11 +244,19 @@ public class PersistenciaVacuandes {
 	}
 	
 	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de Condicion de vacuandes
+	 */
+	public String darTablaCondicion()
+	{
+		return tablas.get (2);
+	}
+	
+	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de ListCondicionesCiudadano de vacuandes
 	 */
 	public String darTablaListCondicionesCiudadano ()
 	{
-		return tablas.get (2);
+		return tablas.get (3);
 	}
 	
 	/**
@@ -249,7 +264,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaListContraindicacionesVacuna ()
 	{
-		return tablas.get (3);
+		return tablas.get (4);
 	}
 	
 	/**
@@ -257,7 +272,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaMinisterioSalud ()
 	{
-		return tablas.get (4);
+		return tablas.get (5);
 	}
 	
 	/**
@@ -265,7 +280,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaOficinaRegionalEPS ()
 	{
-		return tablas.get (5);
+		return tablas.get (6);
 	}
 	
 	/**
@@ -273,7 +288,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaPlanDeVacunacion ()
 	{
-		return tablas.get (6);
+		return tablas.get (7);
 	}
 	
 	/**
@@ -281,7 +296,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaPuntoVacunacion ()
 	{
-		return tablas.get (7);
+		return tablas.get (8);
 	}
 	
 	/**
@@ -289,7 +304,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaTrabajador ()
 	{
-		return tablas.get (8);
+		return tablas.get (9);
 	}
 	
 	/**
@@ -297,7 +312,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaUsuario ()
 	{
-		return tablas.get (9);
+		return tablas.get (10);
 	}
 	
 	/**
@@ -305,7 +320,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaVacuna ()
 	{
-		return tablas.get (10);
+		return tablas.get (11);
 	}
 	
 	

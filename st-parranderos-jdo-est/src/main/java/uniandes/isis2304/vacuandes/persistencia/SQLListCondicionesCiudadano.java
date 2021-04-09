@@ -40,7 +40,7 @@ public class SQLListCondicionesCiudadano {
 	
 	public long adicionarCondicionesCiudadano (PersistenceManager pm, String condicion, long cedula) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaListCondicionesCiudadano () + "(condicion, cedula,) values (?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaListCondicionesCiudadano () + "(condicion, cedula) values (?, ?)");
         q.setParameters(condicion, cedula);
         return (long) q.executeUnique();
 	}
