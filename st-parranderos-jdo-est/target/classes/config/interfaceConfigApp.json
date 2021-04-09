@@ -2,7 +2,7 @@
 	"title": "Aplicación transaccional de Vacuandes Uniandes",
 	"frameH": 600,
 	"frameW": 800,
-	"bannerPath": "./src/main/resources/config/logo.png",
+	"bannerPath": "./src/main/resources/config/vacuna-covid-n.png",
 	"menuBar":
 	[
 		{ "menuTitle": "Sesion actual",

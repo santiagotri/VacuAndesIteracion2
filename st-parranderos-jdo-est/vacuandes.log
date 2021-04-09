@@ -559,3 +559,9 @@ ORA-00971: falta la palabra clave SET
 01:07:47,335 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Agregando condicionAdulto mayor (+80)
 01:07:47,394 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Inserción de la condicion: Adulto mayor (+80): 1 tuplas insertadas
 01:07:47,395 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Se creo la condicion: Adulto mayor (+80) de etapa numero:1
+01:15:45,775 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+01:15:45,777 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+01:15:45,831 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+01:17:44,290 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+01:17:44,291 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+01:17:44,338 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
