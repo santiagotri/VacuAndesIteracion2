@@ -1,5 +1,9 @@
 package uniandes.isis2304.vacuandes.persistencia;
 
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLUsuario {
 	
 	/* ****************************************************************
@@ -30,5 +34,45 @@ public class SQLUsuario {
 	{
 		this.pp = pp;
 	}
-
+	
+	public long adicionarUsuario(PersistenceManager pm, String username, String contrasena, String correo, long plan_de_vacunacion, long ciudadano)
+	{
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaUsuario() + "(username, contrasena, correo, plan_de_vacunacion, ciudadano) values (?, ?, ?, ?, ?)");
+		q.setParameters(username, contrasena, correo, plan_de_vacunacion, ciudadano); 
+		return (long) q.executeUnique();	
+	}
+	
+	public long eliminarTodosLosUsuarios(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario());
+		return (long) q.executeUnique(); 
+	}
+	
+	public long eliminarUsuarioPorUsername(PersistenceManager pm, String username)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario() + " WHERE username = ?");
+        q.setParameters(username);
+        return (long) q.executeUnique();
+	}
+	
+	public long eliminarUsuarioPorCorreo(PersistenceManager pm, String correo)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario() + " WHERE correo = ?");
+        q.setParameters(correo);
+        return (long) q.executeUnique();
+	}
+	
+	public long eliminarUsuarioPorPlanDeVacunacion(PersistenceManager pm, long plan_de_vacunacion)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario() + " WHERE plan_de_vacunacion = ?");
+        q.setParameters(plan_de_vacunacion);
+        return (long) q.executeUnique();
+	}
+	
+	public long eliminarUsuarioPorCiudadano(PersistenceManager pm, long ciudadano)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario() + " WHERE ciudadano = ?");
+        q.setParameters(ciudadano);
+        return (long) q.executeUnique();
+	}
 }

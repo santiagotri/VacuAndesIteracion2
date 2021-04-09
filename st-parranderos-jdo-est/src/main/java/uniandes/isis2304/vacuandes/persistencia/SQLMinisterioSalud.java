@@ -1,5 +1,12 @@
 package uniandes.isis2304.vacuandes.persistencia;
 
+import java.util.List;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
+import uniandes.isis2304.vacuandes.negocio.MinisterioSalud;
+
 public class SQLMinisterioSalud {
 
 	/* ****************************************************************
@@ -29,5 +36,32 @@ public class SQLMinisterioSalud {
 	public SQLMinisterioSalud (PersistenciaVacuandes pp)
 	{
 		this.pp = pp;
+	}
+	
+	public long agregarMinisterioDeSalud(PersistenceManager pm, long plan_de_vacunacion)
+	{
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaMinisterioSalud() + "(plan_de_vacunacion) values (?)");
+		q.setParameters(plan_de_vacunacion); 
+		return (long) q.executeUnique();
+	}
+	
+	public long eliminarTodosLosMinisteriosDeSalud(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMinisterioSalud());
+        return (long) q.executeUnique();
+	}
+	
+	public long eliminarMinisterioPorPlanDeVacunacion(PersistenceManager pm,  long plan_de_vacunacion)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMinisterioSalud() + " WHERE plan_de_vacunacion = ?");
+		q.setParameters(plan_de_vacunacion); 
+        return (long) q.executeUnique();
+	}
+	
+	public List<MinisterioSalud> darListMinisterioDeSalud(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaMinisterioSalud());
+		q.setResultClass(MinisterioSalud.class);
+		return (List<MinisterioSalud>) q.execute();
 	}
 }

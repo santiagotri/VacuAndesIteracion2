@@ -1,5 +1,13 @@
 package uniandes.isis2304.vacuandes.persistencia;
 
+import java.sql.Date;
+import java.util.List;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
+import uniandes.isis2304.vacuandes.negocio.Cita;
+
 public class SQLCita {
 	
 	/* ****************************************************************
@@ -29,6 +37,40 @@ public class SQLCita {
 	public SQLCita (PersistenciaVacuandes pp)
 	{
 		this.pp = pp;
+	}
+	
+	public long adicionarCita(PersistenceManager pm, Date fecha, long ciudadano, long punto_vacunacion, long vacuna)
+	{
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCita() + "(fecha, ciudadano, punto_vacunacion, vacuna) values (?, ?, ?, ?)");
+		q.setParameters(fecha, ciudadano, punto_vacunacion, vacuna); 
+		return (long) q.executeUnique();	
+	}
+	
+	public long eliminarTodasLasCitas(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCita());
+		return (long) q.executeUnique(); 
+	}
+	
+	public long eliminarCitaPorCiudadano(PersistenceManager pm, long ciudadano)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCita() + " WHERE ciudadano = ?");
+        q.setParameters(ciudadano);
+        return (long) q.executeUnique();
+	}
+	
+	public long eliminarCitaPorPuntoVacunacion(PersistenceManager pm, long punto_Vacunacion)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCita() + " WHERE PUNTO_VACUNACION = ?");
+        q.setParameters(punto_Vacunacion);
+        return (long) q.executeUnique();
+	}
+	
+	public List<Cita> darListaCitas(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCita());
+		q.setResultClass(Cita.class);
+		return (List<Cita>) q.execute();
 	}
 
 }

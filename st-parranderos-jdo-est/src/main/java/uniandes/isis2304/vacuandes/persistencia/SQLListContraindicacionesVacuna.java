@@ -1,7 +1,11 @@
 package uniandes.isis2304.vacuandes.persistencia;
 
+import java.util.List;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+
+import uniandes.isis2304.vacuandes.negocio.ListContraindicacionesVacuna;
 
 public class SQLListContraindicacionesVacuna {
 	
@@ -47,10 +51,24 @@ public class SQLListContraindicacionesVacuna {
 		return (long) q.executeUnique();
 	}
 	
-	public long eliminarContraindicacionesVacuna(PersistenceManager pm, long vacuna, String condicion)
+	public long eliminarUnaSolaContraindicacionVacuna(PersistenceManager pm, long vacuna, String condicion)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaListContraindicacionesVacuna() + " WHERE vacuna = ? AND condicion = ?");
         q.setParameters(vacuna, condicion);
         return (long) q.executeUnique();
+	}
+	
+	public long eliminarTodasLasContraindicacionesVacuna(PersistenceManager pm, long vacuna)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaListContraindicacionesVacuna() + " WHERE vacuna = ?");
+        q.setParameters(vacuna);
+        return (long) q.executeUnique();
+	}
+	
+	public List<ListContraindicacionesVacuna> darListContraindicacionesVacuna(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaListContraindicacionesVacuna());
+		q.setResultClass(ListContraindicacionesVacuna.class);
+		return (List<ListContraindicacionesVacuna>) q.execute();
 	}
 }

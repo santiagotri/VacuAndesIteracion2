@@ -1,5 +1,12 @@
 package uniandes.isis2304.vacuandes.persistencia;
 
+import java.util.List;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
+import uniandes.isis2304.vacuandes.negocio.Trabajador;
+
 public class SQLTrabajador {
 	
 	/* ****************************************************************
@@ -30,5 +37,40 @@ public class SQLTrabajador {
 	{
 		this.pp = pp;
 	}
-
+	
+	public long adicionarTrabajador(PersistenceManager pm, long cedula, String trabajo, boolean administrador)
+	{
+		int adminsitrador_vacuandes; 
+		if(administrador) {adminsitrador_vacuandes=1;}else {adminsitrador_vacuandes= 0;}
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTrabajador() + "(cedula, trabajo, adminsitrador_vacuandes) values (?, ?, ?)");
+		q.setParameters(cedula, trabajo, adminsitrador_vacuandes);
+		return (long) q.executeUnique(); 
+	}
+	
+	public long eliminarTodosLosTrabajadores(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTrabajador());
+		return (long) q.executeUnique();
+	}
+	
+	public long eliminarTrabajadorPorCedula(PersistenceManager pm, long cedula)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTrabajador() + " WHERE cedula = ? ");
+        q.setParameters(cedula);
+        return (long) q.executeUnique();
+	}
+	
+	public long eliminarTrabajadorPorTrabajo(PersistenceManager pm, String trabajo)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTrabajador() + " WHERE trabajo = ? ");
+        q.setParameters(trabajo);
+        return (long) q.executeUnique();
+	}
+	
+	public List<Trabajador> darListaTrabajadores(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTrabajador());
+		q.setResultClass(Trabajador.class);
+		return (List<Trabajador>) q.execute();
+	}
 }

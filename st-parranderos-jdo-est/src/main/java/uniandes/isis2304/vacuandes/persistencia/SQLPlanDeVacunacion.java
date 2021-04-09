@@ -1,5 +1,13 @@
 package uniandes.isis2304.vacuandes.persistencia;
 
+import java.sql.Date;
+import java.util.List;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
+import uniandes.isis2304.vacuandes.negocio.PlanDeVacunacion;
+
 public class SQLPlanDeVacunacion {
 	
 	/* ****************************************************************
@@ -30,5 +38,45 @@ public class SQLPlanDeVacunacion {
 	{
 		this.pp = pp;
 	}
-
+	
+	public long adicionarPlanDeVacunacion(PersistenceManager pm, String nombre, String descripcion, Date fecha_actualizacion)
+	{
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaPlanDeVacunacion() + "(nombre, descripcion, fecha_actualizacion) values (?, ?, ?)");
+		q.setParameters(nombre, descripcion, fecha_actualizacion);
+		return (long) q.executeUnique(); 
+	}
+	
+	public long eliminarTodosLosPlanesDeVacunacion(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPlanDeVacunacion());
+		return (long) q.executeUnique();
+	}
+	
+	public long eliminarPlanDeVacunacionPorId(PersistenceManager pm, long id_plan_de_vacunacion)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPlanDeVacunacion() + " WHERE id_plan_de_vacunacion = ?");
+        q.setParameters(id_plan_de_vacunacion);
+        return (long) q.executeUnique();
+	}
+	
+	public long eliminarPlanDeVacunacionPorNombre(PersistenceManager pm, String nombre)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPlanDeVacunacion() + " WHERE nombre = ?");
+        q.setParameters(nombre);
+        return (long) q.executeUnique();
+	}
+	
+	public long eliminarPlanDeVacunacionPorFecha(PersistenceManager pm, Date fecha_de_actualizacion)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPlanDeVacunacion() + " WHERE fecha_de_actualizacion = ?");
+        q.setParameters(fecha_de_actualizacion);
+        return (long) q.executeUnique();
+	}
+	
+	public List<PlanDeVacunacion> darListPlanDeVacunacion(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPlanDeVacunacion());
+		q.setResultClass(PlanDeVacunacion.class);
+		return (List<PlanDeVacunacion>) q.execute();
+	}
 }
