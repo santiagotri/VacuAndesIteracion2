@@ -254,3 +254,10 @@ Conexión cerrada
 21:37:40,962 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasena1"
 21:37:41,022 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
 21:37:41,022 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+22:37:43,461 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+22:37:43,461 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+22:37:43,483 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+22:38:06,645 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario j.ramirezb
+22:38:06,683 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "j.ramirezb" con contrasena "contrasena2"
+22:38:06,887 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "j.ramirezb" con contrasena "contrasena2"
+22:38:06,887 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion

@@ -110,6 +110,12 @@ public class Vacuandes {
 	 * 			Métodos para manejar TRABAJADOR
 	 *****************************************************************/
 	
+	public Trabajador darTrabajadorPorCedula(long cedula) {
+		log.info ("Buscando trabjador de cedula: " + cedula);
+		Trabajador rta = pp.buscarTrabajadorPorCedula(cedula);
+        log.info ("Trabajo verificado");
+        return rta;
+	}
 	
 	/* ****************************************************************
 	 * 			Métodos para manejar USUARIO

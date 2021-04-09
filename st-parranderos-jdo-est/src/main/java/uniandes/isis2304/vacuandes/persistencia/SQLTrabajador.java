@@ -73,4 +73,13 @@ public class SQLTrabajador {
 		q.setResultClass(Trabajador.class);
 		return (List<Trabajador>) q.execute();
 	}
+	
+	public Trabajador darTrabajador(PersistenceManager pm, long cedula)
+	{
+		System.out.print(pp.darTablaTrabajador());
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTrabajador() + " WHERE cedula = ?");
+		q.setResultClass(Trabajador.class);
+		q.setParameters(cedula);
+		return (Trabajador) q.executeUnique();
+	}
 }

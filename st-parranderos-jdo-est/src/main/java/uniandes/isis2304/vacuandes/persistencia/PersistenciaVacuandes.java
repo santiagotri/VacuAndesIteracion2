@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 import uniandes.isis2304.parranderos.negocio.Bebida;
 import uniandes.isis2304.parranderos.negocio.TipoBebida;
 import uniandes.isis2304.vacuandes.negocio.ListCondicionesCiudadano;
+import uniandes.isis2304.vacuandes.negocio.Trabajador;
 import uniandes.isis2304.vacuandes.negocio.Usuario;
 
 
@@ -382,6 +383,40 @@ public class PersistenciaVacuandes {
 //        	System.out.println(rta);
 //        	tx.commit();
 //        	return null;
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar trabajo
+	 *****************************************************************/
+
+	public Trabajador buscarTrabajadorPorCedula(long cedula) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando el trabajo de la cedula " + cedula);
+            tx.begin();
+            Trabajador trabajador = sqlTrabajador.darTrabajador(pm, cedula);
+            tx.commit();
+            log.info ("Trabajador buscado por cedula " + cedula);
+            
+            return trabajador;
+        	
         }
         catch (Exception e)
         {
