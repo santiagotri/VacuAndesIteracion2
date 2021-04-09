@@ -59,7 +59,7 @@ public class SQLListCondicionesCiudadano {
 	 * @param pm - El manejador de persistencia
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarCondicionesCiudadano (PersistenceManager pm, long cedula, String condicion) 
+	public long eliminarCondicionesCiudadano(PersistenceManager pm, long cedula, String condicion) 
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaListCondicionesCiudadano () + " WHERE cedula = ? AND condicion = ?");
         q.setParameters(cedula, condicion);
