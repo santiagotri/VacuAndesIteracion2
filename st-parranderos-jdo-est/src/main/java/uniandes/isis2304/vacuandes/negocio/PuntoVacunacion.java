@@ -11,6 +11,7 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 	private int cantidad_Vacunas_Actuales;
 	private String tipo_Punto_Vacunacion;
 	private String administrador;
+	private long oficina_regional_eps;
 	
 	
 	public PuntoVacunacion() {
@@ -24,6 +25,7 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 		this.cantidad_Vacunas_Actuales = 0;
 		this.tipo_Punto_Vacunacion = "";
 		this.administrador = "";
+		this.oficina_regional_eps = 0;
 	}
 	
 	/**
@@ -39,7 +41,7 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 	 */
 	public PuntoVacunacion(long id_Punto_Vacunacion, String localizacion, int capacidad_Atencion_Simultanea,
 			int capacidad_Atencion_Total_Diaria, String infraestructura_Para_Dosis, int cantidad_Vacunas_Enviables,
-			int cantidad_Vacunas_Actuales, String tipo_Punto_Vacunacion, String administrador) {
+			int cantidad_Vacunas_Actuales, String tipo_Punto_Vacunacion, String administrador, long oficina_regional_eps) {
 		
 		this.id_Punto_Vacunacion = id_Punto_Vacunacion;
 		this.localizacion = localizacion;
@@ -50,9 +52,25 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 		this.cantidad_Vacunas_Actuales = cantidad_Vacunas_Actuales;
 		this.tipo_Punto_Vacunacion = tipo_Punto_Vacunacion;
 		this.administrador = administrador;
+		this.oficina_regional_eps = oficina_regional_eps;
 	}
 	
 	
+	
+	/**
+	 * @return the oficina_regional_eps
+	 */
+	public long getOficina_regional_eps() {
+		return oficina_regional_eps;
+	}
+
+	/**
+	 * @param oficina_regional_eps the oficina_regional_eps to set
+	 */
+	public void setOficina_regional_eps(long oficina_regional_eps) {
+		this.oficina_regional_eps = oficina_regional_eps;
+	}
+
 	/**
 	 * @return the id_Punto_Vacunacion
 	 */
@@ -161,15 +179,19 @@ public class PuntoVacunacion implements VOPuntoVacunacion{
 	public void setAdministrador(String administrador) {
 		this.administrador = administrador;
 	}
+
 	@Override
 	public String toString() {
 		return "PuntoVacunacion [id_Punto_Vacunacion=" + id_Punto_Vacunacion + ", localizacion=" + localizacion
-				+ ", capacidad_Atencion_Simultanea=" + capacidad_Atencion_Simultanea + ", capacidad_Atencion_Total_Diaria="
-				+ capacidad_Atencion_Total_Diaria + ", infraestructura_Para_Dosis=" + infraestructura_Para_Dosis
-				+ ", cantidad_Vacunas_Enviables=" + cantidad_Vacunas_Enviables + ", cantidad_Vacunas_Actuales="
-				+ cantidad_Vacunas_Actuales + ", tipo_Punto_Vacunacion=" + tipo_Punto_Vacunacion + ", administrador="
-				+ administrador + "]";
+				+ ", capacidad_Atencion_Simultanea=" + capacidad_Atencion_Simultanea
+				+ ", capacidad_Atencion_Total_Diaria=" + capacidad_Atencion_Total_Diaria
+				+ ", infraestructura_Para_Dosis=" + infraestructura_Para_Dosis + ", cantidad_Vacunas_Enviables="
+				+ cantidad_Vacunas_Enviables + ", cantidad_Vacunas_Actuales=" + cantidad_Vacunas_Actuales
+				+ ", tipo_Punto_Vacunacion=" + tipo_Punto_Vacunacion + ", administrador=" + administrador
+				+ ", oficina_regional_eps=" + oficina_regional_eps + "]";
 	}
+	
+	
 	
 	
 	

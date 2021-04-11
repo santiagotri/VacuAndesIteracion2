@@ -39,7 +39,7 @@ public class SQLCiudadano {
 		this.pp = pp;
 	}
 
-	public long adicionarCiudadano(PersistenceManager pm, long cedula, String nombre_completo, String estado_vacunacion, String region, int desea_ser_vacunado, long plan_de_vacunacion, long punto_vacunacion, long oficina_regional_asignada)
+	public long adicionarCiudadano(PersistenceManager pm, long cedula, String nombre_completo, String estado_vacunacion, String region, int desea_ser_vacunado, long plan_de_vacunacion, Long punto_vacunacion, Long oficina_regional_asignada)
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCiudadano() + "(cedula, nombre_completo,estado_vacunacion,region,desea_ser_vacunado, plan_de_vacunacion, punto_vacunacion, oficina_regional_asignada) values (?, ? ,? ,? ,? ,? ,? ,?)");
 		q.setParameters(cedula, nombre_completo, estado_vacunacion, region, desea_ser_vacunado, plan_de_vacunacion, punto_vacunacion, oficina_regional_asignada);
@@ -75,7 +75,7 @@ public class SQLCiudadano {
 		return (Ciudadano) q.executeUnique();
 	}
 	
-	public long actualizarCiudadanoPorCedula(PersistenceManager pm, long cedula, String nombre_completo, String estado_vacunacion, String region, int desea_ser_vacunado, long plan_de_vacunacion, long punto_vacunacion, long oficina_regional_asignada) {
+	public long actualizarCiudadanoPorCedula(PersistenceManager pm, long cedula, String nombre_completo, String estado_vacunacion, String region, int desea_ser_vacunado, long plan_de_vacunacion, Long punto_vacunacion, Long oficina_regional_asignada) {
 		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCondicion() + " SET cedula= ? , nombre_completo= ?, estado_vacunacion= ?, region= ?, desea_ser_vacunado= ?, plan_de_vacunacion= ?, punto_vacunacion= ?, oficina_regional_asignada= ? WHERE cedula = ?");
 		q.setParameters(cedula, nombre_completo, estado_vacunacion, region, desea_ser_vacunado, plan_de_vacunacion, punto_vacunacion, oficina_regional_asignada, cedula);
 		return (long) q.executeUnique();

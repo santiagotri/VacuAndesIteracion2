@@ -72,5 +72,13 @@ public class PanelDatos extends JPanel
     {
     	textArea.setText(texto);
     }
+    
+    public void setUsuario (String usuario) {
+    	if (usuario ==null) {
+    		setBorder (new TitledBorder ("Panel de información"));
+    	}else {
+    		setBorder (new TitledBorder ("Panel de información (" + usuario + ")"));
+    	}
+    }
 
 }

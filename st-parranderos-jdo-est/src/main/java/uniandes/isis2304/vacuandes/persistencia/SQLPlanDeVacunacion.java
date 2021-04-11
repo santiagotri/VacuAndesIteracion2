@@ -1,11 +1,15 @@
 package uniandes.isis2304.vacuandes.persistencia;
 
+import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.parranderos.negocio.Visitan;
 import uniandes.isis2304.vacuandes.negocio.PlanDeVacunacion;
 
 public class SQLPlanDeVacunacion {
@@ -75,8 +79,9 @@ public class SQLPlanDeVacunacion {
 	
 	public List<PlanDeVacunacion> darListPlanDeVacunacion(PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPlanDeVacunacion());
+		Query q = pm.newQuery(SQL, "SELECT ID_PLAN_DE_VACUNACION, NOMBRE, DESCRIPCION, FECHA_ACTUALIZACION FROM " + pp.darTablaPlanDeVacunacion());
 		q.setResultClass(PlanDeVacunacion.class);
-		return (List<PlanDeVacunacion>) q.execute();
+		List<PlanDeVacunacion> resp = q.executeList();
+		return resp;
 	}
 }

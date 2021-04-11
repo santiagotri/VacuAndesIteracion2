@@ -1,3 +1,4 @@
+
 package uniandes.isis2304.vacuandes.persistencia;
 
 import java.util.List;
@@ -6,6 +7,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import uniandes.isis2304.vacuandes.negocio.Condicion;
+import uniandes.isis2304.vacuandes.negocio.PlanDeVacunacion;
 import uniandes.isis2304.vacuandes.negocio.Usuario;
 
 public class SQLCondicion {
@@ -77,9 +79,10 @@ public class SQLCondicion {
 	
 	public List<Condicion> darListCondiciones(PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCondicion());
-		q.setResultClass(Condicion.class);
-		return (List<Condicion>) q.execute();
+		Query q = pm.newQuery(SQL, "SELECT CONDICIONES FROM " + pp.darTablaCondicion());
+		q.setResultClass(PlanDeVacunacion.class);
+		List<Condicion> resp = q.executeList();
+		return resp;
 	}
 
 	public long actualizarCondicionPorCondiciones(PersistenceManager pm, String condiciones, int etapa) {

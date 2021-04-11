@@ -26,6 +26,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -49,7 +50,13 @@ import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.parranderos.negocio.Parranderos;
 import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
+import uniandes.isis2304.vacuandes.negocio.PlanDeVacunacion;
+import uniandes.isis2304.vacuandes.negocio.PuntoVacunacion;
 import uniandes.isis2304.vacuandes.negocio.Trabajador;
+import uniandes.isis2304.vacuandes.negocio.Ciudadano;
+import uniandes.isis2304.vacuandes.negocio.Condicion;
+import uniandes.isis2304.vacuandes.negocio.EstadoVacunacion;
+import uniandes.isis2304.vacuandes.negocio.OficinaRegionalEPS;
 import uniandes.isis2304.vacuandes.negocio.Usuario;
 import uniandes.isis2304.vacuandes.negocio.Vacuandes;
 
@@ -83,6 +90,8 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	private static final String ADMINISTRADOR_PUNTO_VACUNACION = "Administrador punto vacunacion";
 	private static final String ADMINISTRADOR_OFICINA_PUNTO_REGIONAL_EPS = "Administrador oficina punto regional eps";
 	private static final String OPERADOR_PUNTO_VACUNACION = "Operador punto vacunacion";
+	private static final String TALENTO_HUMANO_PUNTO_VACUNACION = "Talento humano punto vacunacion";
+	
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -172,7 +181,7 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		} 
 		catch (Exception e)
 		{
-			//			e.printStackTrace ();
+			//			// e.printStackTrace ();
 			log.info ("NO se encontró un archivo de configuración válido");			
 			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de interfaz válido: " + tipo, "Parranderos App", JOptionPane.ERROR_MESSAGE);
 		}	
@@ -264,7 +273,7 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	}
 	private void VerificadoRegistrarCondicionesDePriorizacion() {
 		try {
-			
+
 			String [] opciones1 = {
 					"Adulto mayor (+80)", 
 					"THS servicio social obligatorio", 
@@ -284,7 +293,7 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 					"Habitante de calle", 
 					"Trabajador aereo", 
 					"Adulto (50-59)", 
-					"Adulto (16-49)"};
+			"Adulto (16-49)"};
 			JComboBox optionList1 = new JComboBox(opciones1);
 			optionList1.setSelectedIndex(0);
 			JOptionPane.showMessageDialog(this, "Seleccione la condicion que desea priorizar", "Seleccione condicion", JOptionPane.QUESTION_MESSAGE);
@@ -298,15 +307,15 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 
 			vacuandes.registrarCondicionesDePriorizacion(optionList1.getSelectedItem().toString(), Integer.parseInt(optionList2.getSelectedItem().toString()));
 			//System.out.println(optionList1.getSelectedItem().toString() + Integer.parseInt(optionList2.getSelectedItem().toString()));
-			
+
 			String resultado = "Condicion escogida : " + optionList1.getSelectedItem();
-    		resultado += "\nEtapa asignada: Etapa " + optionList2.getSelectedItem();
+			resultado += "\nEtapa asignada: Etapa " + optionList2.getSelectedItem();
 			resultado += "\n Operación terminada";
 			panelDatos.actualizarInterfaz(resultado);
 		}
 		catch(Exception e) {
 
-//			e.printStackTrace();
+			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 
@@ -323,6 +332,46 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoRegistrarSecuenciaDeEstadosValidos() {
+		try {
+			JOptionPane.showMessageDialog(this, "Ingrese los estados validos dentro del proceso de vacunacion de una persona", "Ingrese estados", JOptionPane.QUESTION_MESSAGE);
+
+			ArrayList<String> estados = new ArrayList<String>();
+			boolean termino = false;
+			while(!termino) {
+				String nombreTipo = JOptionPane.showInputDialog (this, "Nombre del estado a añadir", "Adicionar estado", JOptionPane.QUESTION_MESSAGE);
+				if(nombreTipo.isBlank()) {
+					JOptionPane.showMessageDialog(this, "El estado no puede estar vacío", "Estado vacío", JOptionPane.ERROR_MESSAGE);
+				}else {
+					estados.add(nombreTipo);
+				}
+				int rta = JOptionPane.showConfirmDialog(this, "¿Desea añadir otro estado?", "", JOptionPane.YES_NO_OPTION);
+				if (rta==1) termino=true;
+			}
+
+			if(estados.isEmpty()) {
+				String resultado = "No se han añadido estados para el proceso de vacunacion de un ciudadano";
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else {
+
+				//ACÁ VA LA COMUNICACION CON EL BACKEND
+
+				String resultado = "Secuencia de estados validos añadidos : " + estados.toString();
+				resultado += "\nEn total se han añadido " + estados.size() + " estados para el proceso de vacunacion";
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+
+			}
+		}
+
+		catch(Exception e) {
+
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+
+		}
 
 	}
 
@@ -336,7 +385,25 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoRegistrarOficinaDeEPSRegional() {
+		try {
+			JOptionPane.showMessageDialog(this, "Ingrese los datos de la oficina regional EPS que desea registrar", "Ingrese datos oficina", JOptionPane.QUESTION_MESSAGE);
+			String region = JOptionPane.showInputDialog (this, "Region de la oficina", "Adicionar oficina", JOptionPane.QUESTION_MESSAGE);
+			String usernameAdministrador = JOptionPane.showInputDialog (this, "Username del administrador de la oficina", "Adicionar oficina", JOptionPane.QUESTION_MESSAGE);
+			Long plan_de_vacunacion = escogerPlanDeVacunacion();
+			OficinaRegionalEPS nueva = vacuandes.agregarOficinaRegional(region, usernameAdministrador, 0, plan_de_vacunacion);
 
+			String resultado = "-- Se ha añadido una oficina regional --";
+			resultado += "\n - Region: " + nueva.getRegion();
+			resultado += "\n - Administrador: " + nueva.getAdministrador();
+			resultado += "\n - Id plan de vacunacion: " + nueva.getPlan_De_Vacunacion();
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	//REQ4
@@ -349,7 +416,39 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoRegistrarUsuarioDeVacuandes() {
-
+		try {
+			JOptionPane.showMessageDialog(this, "Ingrese los datos del usuario a registrar", "Ingrese datos usuario", JOptionPane.QUESTION_MESSAGE);
+			String username = JOptionPane.showInputDialog (this, "Ingresa username", "Adicionar usuario", JOptionPane.QUESTION_MESSAGE);
+			String usernameConfirmacion = JOptionPane.showInputDialog (this, "Ingresa confirmacion username", "Adicionar usuario", JOptionPane.QUESTION_MESSAGE);
+			String contrasena = JOptionPane.showInputDialog (this, "Ingresa contraseña para tu usuario", "Adicionar usuario", JOptionPane.QUESTION_MESSAGE);
+			String contrasenaConfirmacion = JOptionPane.showInputDialog (this, "Ingresa confirmacion contraseña", "Adicionar usuario", JOptionPane.QUESTION_MESSAGE);
+			if (!username.equals(usernameConfirmacion) || !contrasena.equals(contrasenaConfirmacion)) {
+				if (!username.equals(usernameConfirmacion))JOptionPane.showMessageDialog(this, "Se ha n ingresado usuarios diferentes, operacion cancelada", "Error de digitacion", JOptionPane.ERROR_MESSAGE);
+				if (!contrasena.equals(contrasenaConfirmacion))JOptionPane.showMessageDialog(this, "Se ha n ingresado contraseñas diferentes, operacion cancelada", "Error de digitacion", JOptionPane.ERROR_MESSAGE);
+				String resultado = "Ha existido un error de digacion";
+				resultado += "\n Operacion cancelada";
+				panelDatos.actualizarInterfaz(resultado);
+			}else {
+				String correo = JOptionPane.showInputDialog (this, "Correo del usuario a añadir", "Adicionar usuario", JOptionPane.QUESTION_MESSAGE);
+				long plan_de_vacunacion = escogerPlanDeVacunacion();
+				Long cedula = Long.parseLong( JOptionPane.showInputDialog (this, "Cedula del ciudadano", "Adicionar usuario", JOptionPane.QUESTION_MESSAGE));
+				Usuario nuevo = vacuandes.agregarUsuarioVacuandes(username, contrasena, correo, plan_de_vacunacion, cedula);
+				
+				String resultado = "-- Se ha añadido un usuario a vacuandes --";
+				resultado += "\n - Username: " + nuevo.getUsername();
+				resultado += "\n - Contrasena: *********";
+				resultado += "\n - Correo: " + nuevo.getCorreo();
+				resultado += "\n - Cedula ciudadano: " + nuevo.getCiudadano();
+				resultado += "\n - Id Plan de vacunacion: " + nuevo.getPlan_de_vacunacion();
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	//REQ5
@@ -362,7 +461,36 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoRegistrarCiudadanosColombianos() {
+		try {
+			JOptionPane.showMessageDialog(this, "Ingrese los datos del ciudadano a registrar", "Ingrese datos ciudadano", JOptionPane.QUESTION_MESSAGE);
+			String nombre = JOptionPane.showInputDialog (this, "Ingresa nombre completo", "Adicionar ciudadano", JOptionPane.QUESTION_MESSAGE);
+			Long cedula = Long.parseLong( JOptionPane.showInputDialog (this, "Ingresa cedula del ciudadano", "Adicionar ciudadano", JOptionPane.QUESTION_MESSAGE));
+			String estado_vacunacion = escogerEstadoVacunacionConNull();
+			String region = escogerRegion();
+			int desea_ser_vacunado = JOptionPane.showConfirmDialog(this, "¿Desea ser vacunado?", "", JOptionPane.YES_NO_OPTION);
+			if(desea_ser_vacunado==1) desea_ser_vacunado = 0;
+			else if(desea_ser_vacunado==0) desea_ser_vacunado = 1;
+			long plan_de_vacunacion = escogerPlanDeVacunacion();
+			long oficina_regional_asignada = asignarPorRegionOficinaRegionalEPS(region);
+			
+			Ciudadano nuevo = vacuandes.agregarCiudadano(plan_de_vacunacion, nombre, estado_vacunacion, region, desea_ser_vacunado, plan_de_vacunacion, cedula, oficina_regional_asignada);
+			
+			String resultado = "Se ha añadido un ciudadano a vacuandes: ";
+			resultado += "\n - Nombre: " + nuevo.getNombre_Completo();
+			resultado += "\n - Cedula: " + nuevo.getCedula();
+			resultado += "\n - estado vacunacion: " + nuevo.getEstado_vacunacion();
+			resultado += "\n - region: " + nuevo.getRegion();
+			resultado += "\n - Desea ser vacunado (1 si, 0 no): " + nuevo.getDesea_ser_vacunado();
+			resultado += "\n - Id plan de vacunacion: "+nuevo.getPlan_De_Vacunacion();
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
 
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	//REQ6
@@ -375,7 +503,53 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoRegistarPuntoDeVacunacion () {
+		try {
+			JOptionPane.showMessageDialog(this, "Ingrese los datos del punto vacunacion a registrar", "Ingrese datos punto vacunacion", JOptionPane.QUESTION_MESSAGE);
+			String localizacion = JOptionPane.showInputDialog (this, "Ingresa localizacion", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE);
+			int capacidad_atencion_simultanea =-1; capacidad_atencion_simultanea = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la capacidad de atencion simultanea (numero)", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
+			int capacidad_atencion_total_diaria=-1; capacidad_atencion_total_diaria = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la capacidad de atencion total diaria (numero)", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
+			while (capacidad_atencion_simultanea >= capacidad_atencion_total_diaria || capacidad_atencion_simultanea==-1) {
+				if(capacidad_atencion_simultanea!=-1 && capacidad_atencion_total_diaria!=-1) JOptionPane.showMessageDialog(this, "La capacidad de atencion total diaria debe ser menor a la capacidad de atencion simultanea", "error logico", JOptionPane.ERROR_MESSAGE);
+				capacidad_atencion_simultanea = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la capacidad de atencion simultanea (numero)", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
+				capacidad_atencion_total_diaria = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la capacidad de atencion total diaria (numero)", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
+				
+			}
+			int cantidad_vacunas_enviables = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la cantidad de vacunas enviables", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
+			String infraestructura_para_dosis = JOptionPane.showInputDialog (this, "Ingresar una descripcion de la infraestructura que tiene para almacenar las dosis", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE);
+			
+			String [] opciones1 = {
+					"Hospital", 
+					"Clinica", 
+					"Centro de salud", 
+					"Otro"};
+			JComboBox optionList1 = new JComboBox(opciones1);
+			optionList1.setSelectedIndex(0);
+			JOptionPane.showMessageDialog(this, "Seleccione el tipo del punto de vacunacion", "Seleccione tipo punto", JOptionPane.QUESTION_MESSAGE);
+			JOptionPane.showMessageDialog(this, optionList1, "Seleccione tipo punto", JOptionPane.QUESTION_MESSAGE);
+			
+			String tipo_punto_vacunacion = opciones1[optionList1.getSelectedIndex()];
+			String administrador = JOptionPane.showInputDialog (this, "Ingresa username administrador", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE);
+			
+			long oficina_regional_eps = asignarPorRegionOficinaRegionalEPS(administrador);
+			PuntoVacunacion nuevo = vacuandes.agregarPuntoVacunacion(localizacion, capacidad_atencion_simultanea, capacidad_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, 0, tipo_punto_vacunacion, administrador, oficina_regional_eps);
+			
+			String resultado = "-- Se ha añadido un punto de vacunacion-- ";
+			resultado += "\n - Tipo punto vacunacion: " + nuevo.getTipo_Punto_Vacunacion();
+			resultado += "\n - Localizacion: " + nuevo.getLocalizacion();
+			resultado += "\n - capacidad de atencion simultanea: " + nuevo.getCapacidad_Atencion_Simultanea();
+			resultado += "\n - capacidad de atencion total diaria: " + nuevo.getCapacidad_Atencion_Total_Diaria();
+			resultado += "\n - cantidad vacunas enviables: " + nuevo.getCantidad_Vacunas_Enviables();
+			resultado += "\n - infraestructura para dosis: " + nuevo.getInfraestructura_Para_Dosis();
+			resultado += "\n - username administrador: "+nuevo.getAdministrador();
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
 
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	//REQ7
@@ -388,7 +562,41 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoRegistrarAvanceEnVacunacionDePersona() {
-
+		try {
+			long cedula = Long.parseLong(JOptionPane.showInputDialog (this, "Ingresa la cedula del ciudadano al que se le desea cambiar la cedula", "Registrar avance", JOptionPane.QUESTION_MESSAGE));
+			Ciudadano act = vacuandes.darCiudadanoPorCedula(cedula);
+			
+			if (act == null) {
+				JOptionPane.showMessageDialog(this, "No existe un ciudadano con la cedula " +cedula, "Ciudadano no existe", JOptionPane.ERROR_MESSAGE);
+				String resultado = "Se ha introducido una cedula inexistente en la BD";
+				resultado += "\n Operación terminada";
+			}
+			else {
+				String estadoAnterior = null;
+				if(act.getEstado_vacunacion()==null) {
+					JOptionPane.showMessageDialog(this, "No se ha decidido anteriormente el estado de vacunacion de este ciudadano, ingrese el nuevo estado de vacunacion", "Nuevo estado vacunacion", JOptionPane.INFORMATION_MESSAGE);
+					
+				}else {
+					estadoAnterior = act.getEstado_vacunacion();
+					JOptionPane.showMessageDialog(this, "Actualmente el ciudadano se encuentra en estado " + act.getEstado_vacunacion() +". Escoja el nuevo estado del paciente.", "Actualizar estado vacunacion", JOptionPane.INFORMATION_MESSAGE);
+				}
+				String estado_vacunacion = escogerEstadoVacunacion();
+				vacuandes.actualizarEstadoVacunacionCiudadano(act.getCedula(),estado_vacunacion);
+				
+				String resultado = "-- Se ha registrado el prograso en el avance de la vacunacion -- ";
+				resultado += "\n - Nombre completo: " + act.getNombre_Completo();
+				resultado += "\n - Cedula: " + act.getCedula();
+				if(estadoAnterior !=null) resultado += "\n - Estado anterior: " + estadoAnterior;
+				resultado += "\n - Nuevo estado: " + estado_vacunacion;
+				resultado += "\n Operación terminada";
+				
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	//REQ8
@@ -401,7 +609,33 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoAsignarTalentoHumanoAUnPuntoDeVacunacion() {
-
+		JOptionPane.showMessageDialog(this, "Ingrese los datos del talento humano a registrar", "Ingrese datos punto vacunacion", JOptionPane.QUESTION_MESSAGE);
+		try {
+			long cedula = Long.parseLong(JOptionPane.showInputDialog (this, "Ingresa la cedula del ciudadano al que se desea inscribir como trabajador del punto de vacunacion", "Registrar TH punto vacunacion", JOptionPane.QUESTION_MESSAGE));
+			Ciudadano act = vacuandes.darCiudadanoPorCedula(cedula);
+			
+			if (act == null) {
+				JOptionPane.showMessageDialog(this, "No existe un ciudadano con la cedula " +cedula, "Ciudadano no existe", JOptionPane.ERROR_MESSAGE);
+				String resultado = "Se ha introducido una cedula inexistente en la BD";
+				resultado += "\n Operación terminada";
+			}
+			else {
+				long punto_vacunacion = escogerPuntoVacunacion();
+				Trabajador agregado = vacuandes.agregarTrabajador(cedula, TALENTO_HUMANO_PUNTO_VACUNACION, 0, punto_vacunacion);
+				String resultado = "-- Se ha registrado un nuevo trabajador en el punto de vacunacion-- ";
+				resultado += "\n - Nombre completo: " + act.getNombre_Completo();
+				resultado += "\n - Cedula: " + act.getCedula();
+				resultado += "\n - Id punto vacunacion agregado: " + punto_vacunacion;
+				resultado += "\n Operación terminada";
+				
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+		
 	}
 
 	//REQ9
@@ -414,7 +648,44 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoAsignarCiudadanoAPuntoDeVacunacion() {
-
+		try {
+			long cedula = Long.parseLong(JOptionPane.showInputDialog (this, "Ingresa la cedula del ciudadano al que se le desea cambiar la cedula", "Asignar ciudadano punto vacunacion", JOptionPane.QUESTION_MESSAGE));
+			Ciudadano act = vacuandes.darCiudadanoPorCedula(cedula);
+			
+			if (act == null) {
+				JOptionPane.showMessageDialog(this, "No existe un ciudadano con la cedula " +cedula, "Ciudadano no existe", JOptionPane.ERROR_MESSAGE);
+				String resultado = "Se ha introducido una cedula inexistente en la BD";
+				resultado += "\n Operación terminada";
+			}
+			else {
+				Long IdpuntoVacunacionAnterior = null;
+				PuntoVacunacion puntoVacunacionAnterior =null;
+				if(act.getPunto_Vacunacion()==null) {
+					JOptionPane.showMessageDialog(this, "No se ha decidido anteriormente el punto de vacunacion de este ciudadano, ingrese el punto de vacunacion deñ vacunacion", "Nuevo punto vacunacion", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					IdpuntoVacunacionAnterior = act.getPunto_Vacunacion();
+					puntoVacunacionAnterior = vacuandes.darPuntoVacunacionPorId(puntoVacunacionAnterior);
+					JOptionPane.showMessageDialog(this, "Actualmente el ciudadano se encuentra en el punto de vacunacion localizado en " + puntoVacunacionAnterior.getLocalizacion() +". Escoja el nuevo punto de vacunacion", "Nuevo punto vacunacion", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				long punto_vacunacion = escogerPuntoVacunacionPorRegion(act.getRegion());
+				
+				long id = vacuandes.agregarACiudadanoPuntoDeVacunacion(cedula, punto_vacunacion);
+				
+				String resultado = "-- Se ha asignado el ciudadano al punto de vacunacion -- ";
+				resultado += "\n - Nombre completo: " + act.getNombre_Completo();
+				resultado += "\n - Cedula: " + act.getCedula();
+				if(puntoVacunacionAnterior !=null) resultado += "\n - Id punto anterior: " + IdpuntoVacunacionAnterior;
+				resultado += "\n - Id nuevo punto vacunacion: " + punto_vacunacion;
+				resultado += "\n Operación terminada";
+				
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	//REQ10
@@ -427,7 +698,8 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoAsignarCitaDeVacunacionACiudadano() {
-
+		InterfazDate interfazDate = new InterfazDate(this);
+		System.out.println(interfazDate.getDate());
 	}
 
 	//REQ11
@@ -575,21 +847,7 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	/* ****************************************************************
 	 * 			Métodos privados para la presentación de resultados y otras operaciones
 	 *****************************************************************/
-	/**
-	 * Genera una cadena de caracteres con la lista de los tipos de bebida recibida: una línea por cada tipo de bebida
-	 * @param lista - La lista con los tipos de bebida
-	 * @return La cadena con una líea para cada tipo de bebida recibido
-	 */
-	private String listarTiposBebida(List<VOTipoBebida> lista) 
-	{
-		String resp = "Los tipos de bebida existentes son:\n";
-		int i = 1;
-		for (VOTipoBebida tb : lista)
-		{
-			resp += i++ + ". " + tb.toString() + "\n";
-		}
-		return resp;
-	}
+	
 
 	/**
 	 * Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
@@ -637,7 +895,7 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		} 
 		catch (IOException e) 
 		{
-			//			e.printStackTrace();
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -658,6 +916,166 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 			e.printStackTrace();
 		}
 	}
+	
+	/* ****************************************************************
+	 * 			Métodos para la creacion de dialogos genericos
+	 *****************************************************************/
+
+	private Long escogerPlanDeVacunacion() {
+		List <PlanDeVacunacion> planes = vacuandes.darTodosLosPlanesDeVacunacion();
+		String [] nombresDePlanes = new String [planes.size()];
+		for (int i = 0; i<planes.size(); i++) {
+			nombresDePlanes[i] = planes.get(i).getNombre();
+		}
+		JComboBox optionList1 = new JComboBox(nombresDePlanes);
+		optionList1.setSelectedIndex(0);
+		JOptionPane.showMessageDialog(this, "Seleccione el plan de vacunacion asociado", "Seleccione plan de vacunacion", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this, optionList1, "Seleccione plan", JOptionPane.QUESTION_MESSAGE);
+
+		return planes.get(optionList1.getSelectedIndex()).getId_plan_de_vacunacion();
+	}
+	
+	private Long escogerPlanDeVacunacionConNull() {
+		List <PlanDeVacunacion> puntos = vacuandes.darTodosLosPlanesDeVacunacion();
+		String [] nombresDePuntos = new String [puntos.size()+1];
+		nombresDePuntos[0] = "NO ESCOGER AUN";
+		for (int i = 0; i<puntos.size(); i++) {
+			nombresDePuntos[i+1] = puntos.get(i).getNombre();
+		}
+		JComboBox optionList1 = new JComboBox(nombresDePuntos);
+		optionList1.setSelectedIndex(0);
+		JOptionPane.showMessageDialog(this, "Seleccione el plan de vacunacion asociado", "Seleccione plan de vacunacion", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this, optionList1, "Seleccione plan", JOptionPane.QUESTION_MESSAGE);
+
+		if(optionList1.getSelectedIndex()==0) return null;
+		return puntos.get(optionList1.getSelectedIndex()-1).getId_plan_de_vacunacion();
+	}
+	
+	private Long escogerPuntoVacunacionPorRegion(String region) {
+		List <PuntoVacunacion> planes = vacuandes.darTodosLosPuntosVacunacionDeLaRegion(region);
+		String [] nombresDePlanes = new String [planes.size()];
+		for (int i = 0; i<planes.size(); i++) {
+			nombresDePlanes[i] = planes.get(i).getLocalizacion();
+		}
+		JComboBox optionList1 = new JComboBox(nombresDePlanes);
+		optionList1.setSelectedIndex(0);
+		JOptionPane.showMessageDialog(this, "Seleccione el punto de vacunacion asociado (mostrando solamente puntos de vacunacion en la region "+ region + ")", "Seleccione punto vacunacion", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this, optionList1, "Seleccione punto", JOptionPane.QUESTION_MESSAGE);
+
+		return planes.get(optionList1.getSelectedIndex()).getId_Punto_Vacunacion();
+	}
+	
+	private Long escogerPuntoVacunacion() {
+		List <PuntoVacunacion> planes = vacuandes.darTodosLosPuntosVacunacion();
+		String [] nombresDePlanes = new String [planes.size()];
+		for (int i = 0; i<planes.size(); i++) {
+			nombresDePlanes[i] = planes.get(i).getLocalizacion();
+		}
+		JComboBox optionList1 = new JComboBox(nombresDePlanes);
+		optionList1.setSelectedIndex(0);
+		JOptionPane.showMessageDialog(this, "Seleccione el punto de vacunacion asociado", "Seleccione punto vacunacion", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this, optionList1, "Seleccione punto", JOptionPane.QUESTION_MESSAGE);
+		
+		return planes.get(optionList1.getSelectedIndex()).getId_Punto_Vacunacion();
+	}
+	
+	private Long escogerPuntoVacunacionConNull() {
+		List <PuntoVacunacion> puntos = vacuandes.darTodosLosPuntosVacunacion();
+		String [] nombresDePuntos = new String [puntos.size()+1];
+		nombresDePuntos[0] = "NO ESCOGER AUN";
+		for (int i = 0; i<puntos.size(); i++) {
+			nombresDePuntos[i+1] = puntos.get(i).getLocalizacion();
+		}
+		JComboBox optionList1 = new JComboBox(nombresDePuntos);
+		optionList1.setSelectedIndex(0);
+		JOptionPane.showMessageDialog(this, "Seleccione el punto de vacunacion asociado", "Seleccione punto vacunacion", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this, optionList1, "Seleccione punto", JOptionPane.QUESTION_MESSAGE);
+		if(optionList1.getSelectedIndex()==0) return null;
+		return puntos.get(optionList1.getSelectedIndex()-1).getId_Punto_Vacunacion();
+	}
+	
+	private Long escogerOficinaRegionalEPS() {
+		List <OficinaRegionalEPS> planes = vacuandes.darTodasLasOficinasRegionalEPS();
+		String [] nombresDePlanes = new String [planes.size()];
+		for (int i = 0; i<planes.size(); i++) {
+			nombresDePlanes[i] = planes.get(i).getRegion();
+		}
+		JComboBox optionList1 = new JComboBox(nombresDePlanes);
+		optionList1.setSelectedIndex(0);
+		JOptionPane.showMessageDialog(this, "Seleccione la oficina regional asociada", "Seleccione oficina", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this, optionList1, "Seleccione oficina", JOptionPane.QUESTION_MESSAGE);
+
+		return planes.get(optionList1.getSelectedIndex()).getId_oficina();
+	}
+	
+	private Long escogerOficinaRegionalEPSConNull() {
+		List <OficinaRegionalEPS> puntos = vacuandes.darTodasLasOficinasRegionalEPS();
+		String [] nombresDePuntos = new String [puntos.size()+1];
+		nombresDePuntos[0] = "NO ESCOGER AUN";
+		for (int i = 0; i<puntos.size(); i++) {
+			nombresDePuntos[i+1] = puntos.get(i).getRegion();
+		}
+		JComboBox optionList1 = new JComboBox(nombresDePuntos);
+		optionList1.setSelectedIndex(0);
+		JOptionPane.showMessageDialog(this, "Seleccione la oficina regional asociada", "Seleccione oficina", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this, optionList1, "Seleccione etapa", JOptionPane.QUESTION_MESSAGE);
+		if(optionList1.getSelectedIndex()==0) return null;
+		return puntos.get(optionList1.getSelectedIndex()-1).getId_oficina();
+	}
+	
+	private Long asignarPorRegionOficinaRegionalEPS(String region) {
+		List <OficinaRegionalEPS> planes = vacuandes.darTodasLasOficinasRegionalEPS();
+		for (int i = 0; i<planes.size(); i++) {
+			if(region.equals(planes.get(i).getRegion())) return planes.get(i).getId_oficina();
+		}
+		return null;
+	}
+	
+	private String escogerRegion() {
+		List <OficinaRegionalEPS> planes = vacuandes.darTodasLasOficinasRegionalEPS();
+		String [] nombresDePlanes = new String [planes.size()];
+		for (int i = 0; i<planes.size(); i++) {
+			nombresDePlanes[i] = planes.get(i).getRegion();
+		}
+		JComboBox optionList1 = new JComboBox(nombresDePlanes);
+		optionList1.setSelectedIndex(0);
+		JOptionPane.showMessageDialog(this, "Seleccione la region", "Seleccione region", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this, optionList1, "Seleccione region", JOptionPane.QUESTION_MESSAGE);
+
+		return planes.get(optionList1.getSelectedIndex()).getRegion();
+	}
+	
+	private String escogerEstadoVacunacion() {
+		List <EstadoVacunacion> planes = vacuandes.darTodosLosEstadosVacunacion();
+		String [] nombresDePlanes = new String [planes.size()];
+		for (int i = 0; i<planes.size(); i++) {
+			nombresDePlanes[i] = planes.get(i).getEstado();
+		}
+		JComboBox optionList1 = new JComboBox(nombresDePlanes);
+		optionList1.setSelectedIndex(0);
+		JOptionPane.showMessageDialog(this, "Seleccione el estado de vacunacion", "Seleccione estado", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this, optionList1, "Seleccione etapa", JOptionPane.QUESTION_MESSAGE);
+
+		return planes.get(optionList1.getSelectedIndex()).getEstado();
+	}
+	
+	private String escogerEstadoVacunacionConNull() {
+		List <EstadoVacunacion> puntos = vacuandes.darTodosLosEstadosVacunacion();
+		String [] nombresDePuntos = new String [puntos.size()+1];
+		nombresDePuntos[0] = "NO ESCOGER AUN";
+		for (int i = 0; i<puntos.size(); i++) {
+			nombresDePuntos[i+1] = puntos.get(i).getEstado();
+		}
+		JComboBox optionList1 = new JComboBox(nombresDePuntos);
+		optionList1.setSelectedIndex(0);
+		JOptionPane.showMessageDialog(this, "Seleccione el estado de vacunacion", "Seleccione estado", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this, optionList1, "Seleccione etapa", JOptionPane.QUESTION_MESSAGE);
+		if(optionList1.getSelectedIndex()==0) return null;
+		return puntos.get(optionList1.getSelectedIndex()-1).getEstado();
+	}
+	
+	
+	
 
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
@@ -695,14 +1113,15 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	}
 
 	public void cerrarSesion() {
+		
 		if (usuarioActual==null) {
-			trabajadorActual = null;
 			JOptionPane.showMessageDialog(this, "No hay una sesion para cerrar", "Error cierre de sesion", JOptionPane.ERROR_MESSAGE);
 		}else {
 			JOptionPane.showMessageDialog (this, "Cierre de sesion exitoso", "Se ha cerrado la sesion del usuario "+ usuarioActual.getUsername() +" exitosamente.", JOptionPane.INFORMATION_MESSAGE);
-			usuarioActual =null;
-			trabajadorActual = null;
 		}
+		usuarioActual =null;
+		panelDatos.setUsuario(null);
+		trabajadorActual = null;
 	}
 
 	public void infoUsuarioActual() {
@@ -711,9 +1130,8 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 
 		}else {
 			String rta = "Actualmente esta loggeado como "+ usuarioActual.getUsername();
-			if(trabajadorActual!=null) rta += "(" + trabajadorActual.getTrabajo() + ")";
+			if(trabajadorActual!=null) rta += " (" + trabajadorActual.getTrabajo() + ")";
 			JOptionPane.showMessageDialog (this,rta, "Informacion sesion actual", JOptionPane.INFORMATION_MESSAGE);
-
 		}
 
 	}
@@ -725,15 +1143,19 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		if(rta==null) {
 			JOptionPane.showMessageDialog (this,"El usuario " + usernameUsuarioActual + " no existe.", "Usuario inexistente", JOptionPane.ERROR_MESSAGE);
 			trabajadorActual = null;
+			panelDatos.setUsuario(null);
 		}
 		else if(rta.getContrasena().equals(contrasenaUsuarioActual)) {
 			usuarioActual = rta;
 			trabajadorActual = vacuandes.darTrabajadorPorCedula(usuarioActual.getCiudadano());
+			panelDatos.setUsuario(rta.getUsername());
 			infoUsuarioActual();
 		}else {
 			usuarioActual = null;
 			trabajadorActual = null;
+			panelDatos.setUsuario(null);
 			JOptionPane.showMessageDialog (this,"Contraseña incorrecta", "Contraseña incorrecta", JOptionPane.ERROR_MESSAGE);
+			
 
 		}
 

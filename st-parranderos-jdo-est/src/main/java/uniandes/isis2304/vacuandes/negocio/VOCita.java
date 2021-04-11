@@ -1,6 +1,6 @@
 package uniandes.isis2304.vacuandes.negocio;
 
-import java.sql.Date;
+import java.util.Date;
 
 public interface VOCita {
 

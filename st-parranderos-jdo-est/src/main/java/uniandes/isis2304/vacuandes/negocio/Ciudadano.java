@@ -8,8 +8,8 @@ public class Ciudadano implements VOCiudadano{
 	private String region; 
 	private int desea_ser_vacunado; 
 	private long plan_De_Vacunacion;
-	private long punto_Vacunacion;
-	private long oficina_Regional_Asignada;
+	private Long punto_Vacunacion;
+	private Long oficina_Regional_Asignada;
 	
 	public Ciudadano() {
 		this.cedula = 0;
@@ -18,8 +18,8 @@ public class Ciudadano implements VOCiudadano{
 		this.region = ""; 
 		this.desea_ser_vacunado = 0; 
 		this.plan_De_Vacunacion = 0;
-		this.punto_Vacunacion = 0;
-		this.oficina_Regional_Asignada = 0;
+		this.punto_Vacunacion = Long.parseLong("0");
+		this.oficina_Regional_Asignada = Long.parseLong("0");
 	}
 	
 	
@@ -32,7 +32,7 @@ public class Ciudadano implements VOCiudadano{
 	 * @param oficina_Regional_Asignada
 	 */
 	public Ciudadano(long cedula, String nombre_Completo, String estado_vacunacion, String region, int desea_ser_vacunado, long plan_De_Vacunacion,
-			long punto_Vacunacion, long oficina_Regional_Asignada) {
+			Long punto_Vacunacion, Long oficina_Regional_Asignada) {
 		this.cedula = cedula;
 		this.nombre_Completo = nombre_Completo;
 		this.estado_vacunacion = estado_vacunacion;
@@ -78,13 +78,13 @@ public class Ciudadano implements VOCiudadano{
 	/**
 	 * @return the punto_Vacunacion
 	 */
-	public long getPunto_Vacunacion() {
+	public Long getPunto_Vacunacion() {
 		return punto_Vacunacion;
 	}
 	/**
 	 * @return the oficina_Regional_Asignada
 	 */
-	public long getOficina_Regional_Asignada() {
+	public Long getOficina_Regional_Asignada() {
 		return oficina_Regional_Asignada;
 	}
 	
@@ -123,13 +123,13 @@ public class Ciudadano implements VOCiudadano{
 	/**
 	 * @param punto_Vacunacion the punto_Vacunacion to set
 	 */
-	public void setPunto_Vacunacion(long punto_Vacunacion) {
+	public void setPunto_Vacunacion(Long punto_Vacunacion) {
 		this.punto_Vacunacion = punto_Vacunacion;
 	}
 	/**
 	 * @param oficina_Regional_Asignada the oficina_Regional_Asignada to set
 	 */
-	public void setOficina_Regional_Asignada(long oficina_Regional_Asignada) {
+	public void setOficina_Regional_Asignada(Long oficina_Regional_Asignada) {
 		this.oficina_Regional_Asignada = oficina_Regional_Asignada;
 	}
 

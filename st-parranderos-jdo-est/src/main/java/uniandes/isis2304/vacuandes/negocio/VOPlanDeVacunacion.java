@@ -1,6 +1,6 @@
 package uniandes.isis2304.vacuandes.negocio;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Intrefaz para los metodos de Plan de vacunación
@@ -9,7 +9,7 @@ import java.sql.Date;
  */
 public interface VOPlanDeVacunacion {
 
-	public long getIdPlanDeVacunacion();
+	public long getId_plan_de_vacunacion();
 	
 	public String getNombre(); 
 	

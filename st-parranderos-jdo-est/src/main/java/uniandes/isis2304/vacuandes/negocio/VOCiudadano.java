@@ -8,8 +8,8 @@ public interface VOCiudadano {
 	public String getRegion();
 	public int getDesea_ser_vacunado(); 
 	public long getPlan_De_Vacunacion() ;
-	public long getPunto_Vacunacion() ;
-	public long getOficina_Regional_Asignada() ;
+	public Long getPunto_Vacunacion() ;
+	public Long getOficina_Regional_Asignada() ;
 	@Override
 	public String toString();
 	

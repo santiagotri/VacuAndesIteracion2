@@ -1,6 +1,7 @@
 package uniandes.isis2304.vacuandes.negocio;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -108,7 +109,7 @@ public class Vacuandes {
 	 * 			Métodos para manejar CIUDADANO
 	 *****************************************************************/
 	
-	public Ciudadano agregarCiudadano(long cedula, String nombre_completo, String estado_vacunacion, String region, int desea_ser_vacunado, long plan_de_vacunacion, long punto_vacunacion, long oficina_regional_asignada) {
+	public Ciudadano agregarCiudadano(long cedula, String nombre_completo, String estado_vacunacion, String region, int desea_ser_vacunado, long plan_de_vacunacion, Long punto_vacunacion, Long oficina_regional_asignada) {
 		log.info ("Creando un nuevo ciudadano en VacuAndes de cedula: " + cedula);
 		Ciudadano rta = pp.adicionarCiudadano(cedula, nombre_completo,estado_vacunacion, region, desea_ser_vacunado, plan_de_vacunacion, punto_vacunacion, oficina_regional_asignada);
         log.info ("Se creo el ciudadano: " + nombre_completo +" de cedula: " + cedula);
@@ -165,18 +166,48 @@ public class Vacuandes {
         return rta;
 	}
 	
+	public List<OficinaRegionalEPS> darTodasLasOficinasRegionalEPS() {
+		log.info ("Buscando oficinas regionales existentes");
+		List<OficinaRegionalEPS> rta = pp.darTodasLasOficinasRegionalEPS();
+        log.info ("Se han encontrado: " + rta.size() +" oficinas regionales");
+        return rta;
+	}
+	
 	/* ****************************************************************
 	 * 			Métodos para manejar PLAN_DE_VACUNACION
 	 *****************************************************************/
 	
 	
+	public List<PlanDeVacunacion> darTodosLosPlanesDeVacunacion() {
+		log.info ("Buscando planes de vacunacion existentes");
+		List<PlanDeVacunacion> rta = pp.darTodosLosPlanesDeVacunacion();
+        log.info ("Se han encontrado: " + rta.size() +" planes de vacunacion");
+        return rta;
+	}
+	
+	
 	/* ****************************************************************
 	 * 			Métodos para manejar PUNTO_VACUNACION
 	 *****************************************************************/
-	public PuntoVacunacion agregarPuntoVacunacion(String localizacion, int capacidad_de_atencion_simultanea, int capacidad_de_atencion_total_diaria, String infraestructura_para_dosis, int cantidad_vacunas_enviables, int cantidad_vacunas_actuales, String tipo_punto_vacunacion, String administrador) {
+	
+	public PuntoVacunacion agregarPuntoVacunacion(String localizacion, int capacidad_de_atencion_simultanea, int capacidad_de_atencion_total_diaria, String infraestructura_para_dosis, int cantidad_vacunas_enviables, int cantidad_vacunas_actuales, String tipo_punto_vacunacion, String administrador, long oficina_regional_eps) {
 		log.info ("Creando un nuevo punto de vacunacion");
-		PuntoVacunacion rta = pp.adicionarPuntoVacunacion(localizacion, capacidad_de_atencion_simultanea,capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables,cantidad_vacunas_actuales,tipo_punto_vacunacion,administrador);
+		PuntoVacunacion rta = pp.adicionarPuntoVacunacion(localizacion, capacidad_de_atencion_simultanea,capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables,cantidad_vacunas_actuales,tipo_punto_vacunacion,administrador, oficina_regional_eps);
         log.info ("Se creo el punto de vacunacion en la localizacion: " + localizacion);
+        return rta;
+	}
+
+	public List<PuntoVacunacion> darTodosLosPuntosVacunacion() {
+		log.info ("Buscando puntos de vacunacion existentes");
+		List<PuntoVacunacion> rta = pp.darTodosLosPuntosVacunacion();
+        log.info ("Se han encontrado: " + rta.size() +" puntos vacunacion");
+        return rta;
+	}
+	
+	public List<PuntoVacunacion> darTodosLosPuntosVacunacionDeLaRegion(String region) {
+		log.info ("Buscando puntos de vacunacion con la region "+ region);
+		List<PuntoVacunacion> rta = pp.darTodosLosPuntosVacunacionDeLaRegion(region);
+        log.info ("Se han encontrado: " + rta.size() +" puntos vacunacion de la region" + region);
         return rta;
 	}
 	
@@ -249,6 +280,20 @@ public class Vacuandes {
 		
 		return rta;
 	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar ESTADO_VACUNACION
+	 *****************************************************************/
+	
+	public List<EstadoVacunacion> darTodosLosEstadosVacunacion() {
+		log.info ("Buscando estados de vacunacion existentes");
+		List<EstadoVacunacion> rta = pp.darTodosLosEstadosVacunacion();
+        log.info ("Se han encontrado: " + rta.size() +" estado(s) de vacunacion");
+        return rta;
+	}
+
+	
+
 	
 	
 

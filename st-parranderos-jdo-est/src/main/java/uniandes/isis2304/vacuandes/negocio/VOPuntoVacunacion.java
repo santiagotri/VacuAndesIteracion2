@@ -40,6 +40,11 @@ public interface VOPuntoVacunacion {
 	 */
 	public String getAdministrador();
 	
+	/**
+	 * @return the oficina_regional_eps
+	 */
+	public long getOficina_regional_eps();
+	
 	@Override
 	public String toString();
 }

@@ -6,6 +6,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import uniandes.isis2304.vacuandes.negocio.OficinaRegionalEPS;
+import uniandes.isis2304.vacuandes.negocio.PlanDeVacunacion;
 
 public class SQLOficinaRegionalEPS {
 	
@@ -40,9 +41,9 @@ public class SQLOficinaRegionalEPS {
 
 	public long agregarOficinaRegional(PersistenceManager pm, String region, String administrador, int cantidad_vacunas_actuales, long plan_de_vacunacion)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOficinaRegionalEPS() + "(regio, administrador, cantidad_vacunas_actuales, plan_de_vacunacion) values (?, ?, ?, ?)" ); 
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOficinaRegionalEPS() + "(region, administrador, cantidad_vacunas_actuales, plan_de_vacunacion) values (?, ?, ?, ?)" ); 
 		q.setParameters(region, administrador, cantidad_vacunas_actuales, plan_de_vacunacion); 
-		return 0;
+		return (long) q.executeUnique();
 	}
 	
 	public long eliminarTodasLasOficinasRegionales(PersistenceManager pm)
@@ -67,8 +68,9 @@ public class SQLOficinaRegionalEPS {
 	
 	public List<OficinaRegionalEPS> darListOficinaRegional(PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOficinaRegionalEPS());
+		Query q = pm.newQuery(SQL, "SELECT ID_OFICINA, REGION, ADMINISTRADOR, CANTIDAD_VACUNAS_ACTUALES, PLAN_DE_VACUNACION FROM " + pp.darTablaOficinaRegionalEPS());
 		q.setResultClass(OficinaRegionalEPS.class);
-		return (List<OficinaRegionalEPS>) q.execute();
+		List<OficinaRegionalEPS> resp = q.executeList();
+		return resp;
 	}
 }

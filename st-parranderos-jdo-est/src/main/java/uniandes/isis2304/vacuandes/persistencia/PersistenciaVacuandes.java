@@ -22,8 +22,10 @@ import uniandes.isis2304.parranderos.negocio.TipoBebida;
 import uniandes.isis2304.vacuandes.negocio.Cita;
 import uniandes.isis2304.vacuandes.negocio.Ciudadano;
 import uniandes.isis2304.vacuandes.negocio.Condicion;
+import uniandes.isis2304.vacuandes.negocio.EstadoVacunacion;
 import uniandes.isis2304.vacuandes.negocio.ListCondicionesCiudadano;
 import uniandes.isis2304.vacuandes.negocio.OficinaRegionalEPS;
+import uniandes.isis2304.vacuandes.negocio.PlanDeVacunacion;
 import uniandes.isis2304.vacuandes.negocio.PuntoVacunacion;
 import uniandes.isis2304.vacuandes.negocio.Trabajador;
 import uniandes.isis2304.vacuandes.negocio.Usuario;
@@ -77,7 +79,12 @@ public class PersistenciaVacuandes {
 	/**
 	 * Atributo para el acceso a la tabla Ciudadano de la base de datos
 	 */
-	private SQLCondicion sqlCondicion;
+	private SQLCondicion sqlCondicion;	
+	
+	/**
+	 * Atributo para el acceso a la tabla Ciudadano de la base de datos
+	 */
+	private SQLEstadoVacunacion sqlEstadoVacunacion;
 	
 	/**
 	 * Atributo para el acceso a la tabla ListCondicionesCiudadano de la base de datos
@@ -223,6 +230,7 @@ public class PersistenciaVacuandes {
 		sqlCita = new SQLCita(this);
 		sqlCiudadano = new SQLCiudadano(this);
 		sqlCondicion = new SQLCondicion(this);
+		sqlEstadoVacunacion = new SQLEstadoVacunacion(this);
 		sqlListCondicionesCiudadano = new SQLListCondicionesCiudadano(this);
 		sqlListContraindicacionesVacuna = new SQLListContraindicacionesVacuna(this);
 		sqlMinisterioSalud = new SQLMinisterioSalud(this);
@@ -259,11 +267,19 @@ public class PersistenciaVacuandes {
 	}
 	
 	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de Condicion de vacuandes
+	 */
+	public String darTablaEstadoVacunacion()
+	{
+		return tablas.get (3);
+	}
+	
+	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de ListCondicionesCiudadano de vacuandes
 	 */
 	public String darTablaListCondicionesCiudadano ()
 	{
-		return tablas.get (3);
+		return tablas.get (4);
 	}
 	
 	/**
@@ -271,7 +287,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaListContraindicacionesVacuna ()
 	{
-		return tablas.get (4);
+		return tablas.get (5);
 	}
 	
 	/**
@@ -279,7 +295,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaMinisterioSalud ()
 	{
-		return tablas.get (5);
+		return tablas.get (6);
 	}
 	
 	/**
@@ -287,7 +303,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaOficinaRegionalEPS ()
 	{
-		return tablas.get (6);
+		return tablas.get (7);
 	}
 	
 	/**
@@ -295,7 +311,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaPlanDeVacunacion ()
 	{
-		return tablas.get (7);
+		return tablas.get (8);
 	}
 	
 	/**
@@ -303,7 +319,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaPuntoVacunacion ()
 	{
-		return tablas.get (8);
+		return tablas.get (9);
 	}
 	
 	/**
@@ -311,7 +327,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaTrabajador ()
 	{
-		return tablas.get (9);
+		return tablas.get (10);
 	}
 	
 	/**
@@ -319,7 +335,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaUsuario ()
 	{
-		return tablas.get (10);
+		return tablas.get (11);
 	}
 	
 	/**
@@ -327,7 +343,7 @@ public class PersistenciaVacuandes {
 	 */
 	public String darTablaVacuna ()
 	{
-		return tablas.get (11);
+		return tablas.get (12);
 	}
 	
 	
@@ -364,7 +380,7 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-//        	e.printStackTrace();
+//        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
@@ -408,7 +424,7 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
@@ -442,7 +458,7 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
@@ -473,9 +489,9 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
+        	throw e;
         }
         finally
         {
@@ -504,7 +520,7 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
@@ -535,9 +551,9 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return -1;
+        	throw e;
         }
         finally
         {
@@ -550,7 +566,7 @@ public class PersistenciaVacuandes {
 	}
 
 
-	public OficinaRegionalEPS adicionarOficinaRegional(String region, String adminstrador,
+	public OficinaRegionalEPS adicionarOficinaRegional(String region, String administrador,
 		int cantidad_vacunas_actuales, long plan_de_vacunacion) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -558,18 +574,19 @@ public class PersistenciaVacuandes {
         {
         	log.info ("Agregando oficina regional en la region " + region);
             tx.begin();
-            long tuplaInsertada = sqlOficinaRegionalEPS.agregarOficinaRegional(pm, region, adminstrador, cantidad_vacunas_actuales, plan_de_vacunacion);
+            long tuplaInsertada = sqlOficinaRegionalEPS.agregarOficinaRegional(pm, region, administrador, cantidad_vacunas_actuales, plan_de_vacunacion);
             tx.commit();
             log.info ("Inserción de la oficina en la region: " + region + ": " + tuplaInsertada + " tuplas insertadas");
             
-            return new OficinaRegionalEPS(region, adminstrador, cantidad_vacunas_actuales, plan_de_vacunacion);
+            return new OficinaRegionalEPS(tuplaInsertada,region,administrador, 0 ,plan_de_vacunacion);
         	
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
+        	
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
+        	throw e;
         }
         finally
         {
@@ -599,9 +616,9 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
+        	throw e;
         }
         finally
         {
@@ -615,7 +632,7 @@ public class PersistenciaVacuandes {
 
 
 	public Ciudadano adicionarCiudadano(long cedula, String nombre_completo, String estado_vacunacion, String region,
-			int desea_ser_vacunado, long plan_de_vacunacion, long punto_vacunacion, long oficina_regional_asignada) {
+			int desea_ser_vacunado, long plan_de_vacunacion, Long punto_vacunacion, Long oficina_regional_asignada) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
@@ -631,9 +648,9 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
+        	throw e;
         }
         finally
         {
@@ -648,24 +665,24 @@ public class PersistenciaVacuandes {
 
 	public PuntoVacunacion adicionarPuntoVacunacion(String localizacion, int capacidad_de_atencion_simultanea,
 			int capacidad_de_atencion_total_diaria, String infraestructura_para_dosis, int cantidad_vacunas_enviables,
-			int cantidad_vacunas_actuales, String tipo_punto_vacunacion, String administrador) {
+			int cantidad_vacunas_actuales, String tipo_punto_vacunacion, String administrador, long oficina_regional_eps) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
         	log.info ("Agregando un nuevo punto de vacuancion en la localizacion: " + localizacion);
             tx.begin();
-            long tuplaInsertada = sqlPuntoVacunacion.adicionarPuntoVacunacion(pm, localizacion, capacidad_de_atencion_simultanea, capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador);
+            long tuplaInsertada = sqlPuntoVacunacion.adicionarPuntoVacunacion(pm, localizacion, capacidad_de_atencion_simultanea, capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador, oficina_regional_eps);
             tx.commit();
             log.info ("Inserción del punto de vacunacion en: " + localizacion + ": " + tuplaInsertada + " tuplas insertadas");
             
-            return new PuntoVacunacion(tuplaInsertada, localizacion, capacidad_de_atencion_simultanea, capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador);
+            return new PuntoVacunacion(tuplaInsertada, localizacion, capacidad_de_atencion_simultanea, capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador, oficina_regional_eps);
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
+        	throw e;
         }
         finally
         {
@@ -694,7 +711,7 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
@@ -727,9 +744,9 @@ public class PersistenciaVacuandes {
     }
     catch (Exception e)
     {
-    	e.printStackTrace();
+    	// e.printStackTrace();
     	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-    	return -1;
+    	throw e;
     }
     finally
     {
@@ -757,7 +774,153 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	throw e;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	
+	public List<PlanDeVacunacion> darTodosLosPlanesDeVacunacion() {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando planesDeVacunacion en BD");
+            tx.begin();
+            List<PlanDeVacunacion> lista = sqlPlanDeVacunacion.darListPlanDeVacunacion(pm);
+            tx.commit();
+            
+            return lista;
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public List<PuntoVacunacion> darTodosLosPuntosVacunacion() {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando PuntosVacunacion en BD");
+            tx.begin();
+            List<PuntoVacunacion> lista = sqlPuntoVacunacion.darListPuntoVacunacion(pm);
+            tx.commit();
+            
+            return lista;
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public List<OficinaRegionalEPS> darTodasLasOficinasRegionalEPS() {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando todas las OficinaRegionalEPS en BD");
+            tx.begin();
+            List<OficinaRegionalEPS> lista = sqlOficinaRegionalEPS.darListOficinaRegional(pm);
+            tx.commit();
+            
+            return lista;
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public List<EstadoVacunacion> darTodosLosEstadosVacunacion() {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando todas las condiciones en BD");
+            tx.begin();
+            List<EstadoVacunacion> lista = sqlEstadoVacunacion.darListEstadoVacunacion(pm);
+            tx.commit();
+            
+            return lista;
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public List<PuntoVacunacion> darTodosLosPuntosVacunacionDeLaRegion(String region) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando PuntosVacunacion de la region " +  region +" en BD");
+            tx.begin();
+            List<PuntoVacunacion> lista = sqlPuntoVacunacion.darListPuntoVacunacionDeLaRegion(pm, region);
+            tx.commit();
+            
+            return lista;
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
@@ -788,7 +951,7 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-        	e.printStackTrace();
+        	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
