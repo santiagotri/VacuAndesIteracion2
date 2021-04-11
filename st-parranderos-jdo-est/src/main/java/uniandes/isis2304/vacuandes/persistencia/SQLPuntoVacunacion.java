@@ -1,5 +1,6 @@
 package uniandes.isis2304.vacuandes.persistencia;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -91,4 +92,11 @@ public class SQLPuntoVacunacion {
 		q.setParameters(id_punto_vacunacion); 
 		return (PuntoVacunacion) q.executeUnique();
 	}
+
+	public long disminuirVacunasDisponibles(PersistenceManager pm, long id_punto_vacunacion) {
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaPuntoVacunacion() + " SET CANTIDAD_VACUNAS_ACTUALES= CANTIDAD_VACUNAS_ACTUALES-1 WHERE id_punto_vacunacion = ?");
+		q.setParameters(id_punto_vacunacion);
+		return (long) q.executeUnique();
+	}
+	
 }

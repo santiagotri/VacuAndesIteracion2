@@ -27,6 +27,7 @@ import uniandes.isis2304.vacuandes.negocio.PlanDeVacunacion;
 import uniandes.isis2304.vacuandes.negocio.PuntoVacunacion;
 import uniandes.isis2304.vacuandes.negocio.Trabajador;
 import uniandes.isis2304.vacuandes.negocio.Usuario;
+import uniandes.isis2304.vacuandes.negocio.Vacuna;
 
 
 public class PersistenciaVacuandes {
@@ -378,7 +379,7 @@ public class PersistenciaVacuandes {
         }
         catch (Exception e)
         {
-//        	// e.printStackTrace();
+        	e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
@@ -757,18 +758,22 @@ public class PersistenciaVacuandes {
 }
 
 
-	public Cita adicionarCita(Date fecha, long ciudadano, long punto_vacunacion, long vacuna, int hora_cita) {
+	public Cita adicionarCita(Date fecha, long ciudadano, long punto_vacunacion, int hora_cita) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
+        	Vacuna vacuna = sqlVacuna.darPrimeraVacunaPorPuntoDeVacunacion(pm, punto_vacunacion); 
         	log.info ("Agregando una nueva cita en el punto de vacunación: " + punto_vacunacion);
             tx.begin();
-            long tuplaInsertada = sqlCita.adicionarCita(pm, fecha, ciudadano, punto_vacunacion, vacuna, hora_cita);
+            long tuplaInsertada = sqlCita.adicionarCita(pm, fecha, ciudadano, punto_vacunacion, vacuna.getId_Vacuna(), hora_cita);
+            PuntoVacunacion punto = sqlPuntoVacunacion.darPuntoPorId(pm, punto_vacunacion); 
+            sqlPuntoVacunacion.disminuirVacunasDisponibles(pm, punto_vacunacion);
+            sqlOficinaRegionalEPS.disminuirVacunasDisponibles(pm, punto.getOficina_regional_eps());
             tx.commit();
             log.info ("Inserción de la cita en el punto: " + punto_vacunacion + ": " + tuplaInsertada + " tuplas insertadas");
             
-            return new Cita(fecha, ciudadano, punto_vacunacion, vacuna, hora_cita);
+            return new Cita(fecha, ciudadano, punto_vacunacion, vacuna.getId_Vacuna(), hora_cita);
         }
         catch (Exception e)
         {
@@ -1024,6 +1029,81 @@ public class PersistenciaVacuandes {
             pm.close();
         }
 	}
+
+
+	public boolean verificarHorario(Date fecha, int hora_cita, long punto_vacunacion) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Verificando horario para la cita en el punto " + punto_vacunacion);
+            tx.begin();
+            boolean cantidadDisponible = true; 
+            int cantidadCitasEnFechaYHora = sqlCita.darCantidadCitas(pm, fecha, hora_cita, punto_vacunacion);
+            int cantidadCitasAlMismoTiempo = sqlPuntoVacunacion.darPuntoPorId(pm, punto_vacunacion).getCapacidad_Atencion_Simultanea();
+            if(cantidadCitasEnFechaYHora+1 > cantidadCitasAlMismoTiempo)
+            {
+            	cantidadDisponible =false; 
+            }
+            List<Vacuna> vacunas = sqlVacuna.darVacunasDisponiblesPorPuntoDeVacunacion(pm, punto_vacunacion);
+            int cantidadVacunasDisponibles = vacunas.size();
+            boolean hayVacunas = (cantidadVacunasDisponibles>0)?true: false; 
+            boolean rta = cantidadDisponible && hayVacunas; 
+            
+            tx.commit();
+            log.info ("El punto de vacunacion tiene disponible horario y vacunas? " + rta);
+            return rta;
+        	
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return false;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public void adicionarCondicionesCiudadano(long cedula, List<String> condiciones) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            log.trace ("Insertando las condiciones a ciudadano");
+            long tuplasInsertadas = 0; 
+            for (int i = 0; i < condiciones.size(); i++) 
+            {
+            String condicion = condiciones.get(i); 
+            tuplasInsertadas += sqlListCondicionesCiudadano.adicionarCondicionesCiudadano(pm, condicion, cedula);	
+			}
+            tx.commit();
+            log.trace ("Inserción condicionCiudadano: " + cedula + ": " + tuplasInsertadas + " tuplas insertadas");
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+        
+	}
+
 
 	/**
 	public Cita buscarCita(Date fecha, long ciudadano) {

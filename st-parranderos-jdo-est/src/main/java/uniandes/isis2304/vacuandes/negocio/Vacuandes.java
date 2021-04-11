@@ -1,6 +1,7 @@
 package uniandes.isis2304.vacuandes.negocio;
 
 import java.sql.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -67,12 +68,23 @@ public class Vacuandes {
 	 * 			Métodos para manejar CITA
 	 *****************************************************************/
 	
-	public Cita agregarCita(Date fecha, long ciudadano, long punto_vacunacion, long vacuna, int hora_cita) {
+	public Cita agregarCita(Date fecha, long ciudadano, long punto_vacunacion, int hora_cita) {
 		log.info ("Creando una nueva cita");
-		Cita rta = pp.adicionarCita(fecha, ciudadano,punto_vacunacion, vacuna, hora_cita);
+		//Crea una nueva cita, retorna el id de la primera vacuna disponible, asigna ciudadano, pone vacuna usada en true, disminuye en 1 la cantidad de vacunas del punto vacunacion, disminuye la cantidad de vacunas en oficina regional en 1
+		Cita rta = pp.adicionarCita(fecha, ciudadano,punto_vacunacion, hora_cita);
         log.info ("Se creo el cita en el punto: " + punto_vacunacion +" para el ciudadano de cedula: " + ciudadano);
         return rta;
 	}
+	
+	public boolean verificarHoraNoLlena(Date fecha, int hora_cita, long punto_vacunacion)
+	{
+		//Traer todas las citas que tengan esa fecha y esa hora, verificar capacidad del punto de vacunacion, contra cuantas citas hay y comparar y si es mayor lanzar un error
+		log.info ("Verificando si el horario está disponible para esa cita");
+		boolean rta = pp.verificarHorario(fecha,hora_cita ,punto_vacunacion);
+        log.info ("Ese horario está disponible para el punto de vacunacion? " + rta);
+        return rta; 
+	}
+	
 	
 	/**
 	 * 
@@ -84,21 +96,6 @@ public class Vacuandes {
 	}
 	 */
 	
-	public long agregarACitaCiudadano(long cedula, long punto_vacunacion) {
-		long rta = 0;
-		log.info ("Actualizando ciudadano de cedula: " + cedula);
-		Ciudadano ciudadano = pp.buscarCiudadano(cedula);
-		if(ciudadano!=null)
-		{
-			rta = pp.actualizarCiudadano(ciudadano.getCedula(), ciudadano.getNombre_Completo(), ciudadano.getEstado_vacunacion(), ciudadano.getRegion(), ciudadano.getDesea_ser_vacunado(), ciudadano.getPlan_De_Vacunacion(), punto_vacunacion, ciudadano.getOficina_Regional_Asignada()); 
-		}
-		else 
-		{
-			return 0; 
-		}
-        log.info ("Trabajo verificado");
-        return rta;
-	}
 	/* ****************************************************************
 	 * 			Métodos para manejar CIUDADANO
 	 *****************************************************************/
@@ -164,7 +161,12 @@ public class Vacuandes {
 	/* ****************************************************************
 	 * 			Métodos para manejar LIST_CONTRAINDICACIONES_CIUDADANO
 	 *****************************************************************/
-	
+	public void agregarCondicionesCiudadano(long cedula, List<String> condiciones)
+	{
+		log.info ("Insertando condiciones para el ciudadano de cedula: " + cedula);
+		pp.adicionarCondicionesCiudadano(cedula, condiciones);
+        log.info ("Se adicionaron las condiciones al ciudadano de cedula: " + cedula);
+	}
 	
 	/* ****************************************************************
 	 * 			Métodos para manejar MINISTERIO_SALUD
@@ -311,6 +313,7 @@ public class Vacuandes {
 		
 		return rta;
 	}
+	
 
 	/* ****************************************************************
 	 * 			Métodos para manejar ESTADO_VACUNACION

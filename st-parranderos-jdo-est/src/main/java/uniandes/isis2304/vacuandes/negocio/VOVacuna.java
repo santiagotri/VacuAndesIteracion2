@@ -24,7 +24,7 @@ public interface VOVacuna {
 	/**
 	 * @return the utilizada
 	 */
-	public boolean isUtilizada() ;
+	public int getUtilizada() ;
 	
 	@Override
 	public String toString();

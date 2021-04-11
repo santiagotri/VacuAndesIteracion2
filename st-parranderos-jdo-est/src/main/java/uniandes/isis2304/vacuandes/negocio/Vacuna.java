@@ -7,7 +7,7 @@ public class Vacuna implements VOVacuna {
 	private long punto_Vacunacion;
 	private long plan_De_Vacunacion;
 	private long oficina_Regional;
-	private boolean utilizada;
+	private int utilizada;
 	
 	/**
 	 * @param id_Vacuna
@@ -24,11 +24,11 @@ public class Vacuna implements VOVacuna {
 		this.punto_Vacunacion = 0;
 		this.plan_De_Vacunacion = 0;
 		this.oficina_Regional = 0;
-		this.utilizada = false;
+		this.utilizada = 0;
 	}
 	
 	public Vacuna(long id_Vacuna, String condicion_Preservacion, long punto_Vacunacion, long plan_De_Vacunacion,
-			long oficina_Regional, boolean utilizada) {
+			long oficina_Regional, int utilizada) {
 		this.id_Vacuna = id_Vacuna;
 		this.condicion_Preservacion = condicion_Preservacion;
 		this.punto_Vacunacion = punto_Vacunacion;
@@ -66,12 +66,11 @@ public class Vacuna implements VOVacuna {
 	public long getOficina_Regional() {
 		return oficina_Regional;
 	}
-	/**
-	 * @return the utilizada
-	 */
-	public boolean isUtilizada() {
+	
+	public int getUtilizada() {
 		return utilizada;
 	}
+
 	/**
 	 * @param id_Vacuna the id_Vacuna to set
 	 */
@@ -105,15 +104,17 @@ public class Vacuna implements VOVacuna {
 	/**
 	 * @param utilizada the utilizada to set
 	 */
-	public void setUtilizada(boolean utilizada) {
+	public void setUtilizada(int utilizada) {
 		this.utilizada = utilizada;
 	}
+
 	@Override
 	public String toString() {
 		return "Vacuna [id_Vacuna=" + id_Vacuna + ", condicion_Preservacion=" + condicion_Preservacion
 				+ ", punto_Vacunacion=" + punto_Vacunacion + ", plan_De_Vacunacion=" + plan_De_Vacunacion
 				+ ", oficina_Regional=" + oficina_Regional + ", utilizada=" + utilizada + "]";
 	}
+	
 	
 	
 }

@@ -72,6 +72,14 @@ public class SQLCita {
 		q.setResultClass(Cita.class);
 		return (List<Cita>) q.execute();
 	}
+
+	public int darCantidadCitas(PersistenceManager pm, Date fecha, int hora_cita, long punto_vacunacion) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCita() + " WHERE FECHA = ? AND HORA_CITA = ? AND PUNTO_VACUNACION = ?");
+		q.setResultClass(Cita.class);
+		q.setParameters(fecha, hora_cita, punto_vacunacion);
+		List<Cita> lista = (List<Cita>) q.execute(); 
+		return lista.size();
+	}
 	
 
 }

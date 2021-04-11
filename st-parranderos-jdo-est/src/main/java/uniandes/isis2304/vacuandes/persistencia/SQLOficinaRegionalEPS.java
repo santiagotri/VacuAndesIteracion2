@@ -7,6 +7,7 @@ import javax.jdo.Query;
 
 import uniandes.isis2304.vacuandes.negocio.OficinaRegionalEPS;
 import uniandes.isis2304.vacuandes.negocio.PlanDeVacunacion;
+import uniandes.isis2304.vacuandes.negocio.PuntoVacunacion;
 
 public class SQLOficinaRegionalEPS {
 	
@@ -73,4 +74,20 @@ public class SQLOficinaRegionalEPS {
 		List<OficinaRegionalEPS> resp = q.executeList();
 		return resp;
 	}
+	
+	private OficinaRegionalEPS darOficinaPorId(PersistenceManager pm, long id_oficina) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOficinaRegionalEPS() + " WHERE id_oficina = ?");
+		q.setResultClass(OficinaRegionalEPS.class);
+		q.setParameters(id_oficina);
+        return (OficinaRegionalEPS) q.executeUnique();
+	}
+	
+	public long disminuirVacunasDisponibles(PersistenceManager pm, long id_oficina) {
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaOficinaRegionalEPS() + " SET CANTIDAD_VACUNAS_ACTUALES= CANTIDAD_VACUNAS_ACTUALES-1 WHERE id_oficina = ?");
+		q.setParameters(id_oficina);
+		return (long) q.executeUnique();
+	}
+
+	
 }

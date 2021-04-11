@@ -60,10 +60,40 @@ public class SQLVacuna {
         return (long) q.executeUnique();
 	}
 	
-	public List<Vacuna> darListaCitas(PersistenceManager pm)
+	public Vacuna darVacunaPorId(PersistenceManager pm, long id_vacuna)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaVacuna() + " WHERE id_vacuna = ?");
+		q.setResultClass(Vacuna.class);
+		q.setParameters(id_vacuna);
+        return (Vacuna) q.executeUnique();
+	}
+	
+	public List<Vacuna> darListaVacunas(PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaVacuna());
 		q.setResultClass(Vacuna.class);
 		return (List<Vacuna>) q.execute();
+	}
+	
+	public List<Vacuna> darVacunasDisponiblesPorPuntoDeVacunacion(PersistenceManager pm, long punto_vacunacion)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaVacuna() + " WHERE punto_vacunacion = ? AND utilizada = 0");
+		q.setResultClass(Vacuna.class);
+		q.setParameters(punto_vacunacion);
+		return (List<Vacuna>) q.executeUnique();
+	}
+	
+	public long actualizarEstadoAUsada(PersistenceManager pm, long id_vacuna)
+	{
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaVacuna() + " SET utilizada = 1 WHERE id_vacuna = ?");
+		q.setParameters(id_vacuna);
+		return (long) q.executeUnique();
+	}
+	
+	public Vacuna darPrimeraVacunaPorPuntoDeVacunacion(PersistenceManager pm, long punto_vacunacion)
+	{
+		Vacuna vacuna = darVacunasDisponiblesPorPuntoDeVacunacion(pm, punto_vacunacion).get(0); 
+		actualizarEstadoAUsada(pm, vacuna.getId_Vacuna());
+		return vacuna;
 	}
 }
