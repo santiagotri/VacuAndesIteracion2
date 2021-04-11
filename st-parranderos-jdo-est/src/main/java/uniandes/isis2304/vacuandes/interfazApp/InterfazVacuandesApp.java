@@ -507,14 +507,7 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		try {
 			JOptionPane.showMessageDialog(this, "Ingrese los datos del punto vacunacion a registrar", "Ingrese datos punto vacunacion", JOptionPane.QUESTION_MESSAGE);
 			String localizacion = JOptionPane.showInputDialog (this, "Ingresa localizacion", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE);
-			int capacidad_atencion_simultanea =-1; capacidad_atencion_simultanea = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la capacidad de atencion simultanea (numero)", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
-			int capacidad_atencion_total_diaria=-1; capacidad_atencion_total_diaria = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la capacidad de atencion total diaria (numero)", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
-			while (capacidad_atencion_simultanea >= capacidad_atencion_total_diaria || capacidad_atencion_simultanea==-1) {
-				if(capacidad_atencion_simultanea!=-1 && capacidad_atencion_total_diaria!=-1) JOptionPane.showMessageDialog(this, "La capacidad de atencion total diaria debe ser menor a la capacidad de atencion simultanea", "error logico", JOptionPane.ERROR_MESSAGE);
-				capacidad_atencion_simultanea = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la capacidad de atencion simultanea (numero)", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
-				capacidad_atencion_total_diaria = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la capacidad de atencion total diaria (numero)", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
-				
-			}
+			int capacidad_atencion_simultanea = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la capacidad de atencion simultanea (numero de personas atendidas cada 30 minutos en 21 citas diarias)", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
 			int cantidad_vacunas_enviables = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingresar la cantidad de vacunas enviables", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE));
 			String infraestructura_para_dosis = JOptionPane.showInputDialog (this, "Ingresar una descripcion de la infraestructura que tiene para almacenar las dosis", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE);
 			
@@ -532,7 +525,7 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 			String administrador = JOptionPane.showInputDialog (this, "Ingresa username administrador", "Adicionar punto vacunacion", JOptionPane.QUESTION_MESSAGE);
 			
 			long oficina_regional_eps = asignarPorRegionOficinaRegionalEPS(administrador);
-			PuntoVacunacion nuevo = vacuandes.agregarPuntoVacunacion(localizacion, capacidad_atencion_simultanea, capacidad_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, 0, tipo_punto_vacunacion, administrador, oficina_regional_eps);
+			PuntoVacunacion nuevo = vacuandes.agregarPuntoVacunacion(localizacion, capacidad_atencion_simultanea, infraestructura_para_dosis, cantidad_vacunas_enviables, 0, tipo_punto_vacunacion, administrador, oficina_regional_eps);
 			
 			String resultado = "-- Se ha añadido un punto de vacunacion-- ";
 			resultado += "\n - Tipo punto vacunacion: " + nuevo.getTipo_Punto_Vacunacion();

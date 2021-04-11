@@ -62,7 +62,6 @@ public class InterfazLogin extends JFrame implements ActionListener {
 	   public void actionPerformed(ActionEvent ae) {
 		  usuarioIngresado = userName_text.getText();
 		  contrasenaIngresada = password_text.getText();
-		  
 	   }
 	   
 	   public void close() { setVisible(false);}

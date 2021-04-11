@@ -18,13 +18,13 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 public class InterfazDate extends JFrame {
-	JPanel panel;
-	DateTextField dateTextField;
+	private JPanel panel;
+	private DateTextField dateTextField;
 	
-	JLabel labelFecha;
-	JLabel labelHora;
+	private JLabel labelFecha;
+	private JLabel labelHora;
 	
-	JButton submit;
+	private JButton submit;
 
 	private String usuarioIngresado;
 	private String contrasenaIngresada;
@@ -35,32 +35,32 @@ public class InterfazDate extends JFrame {
 
 		labelFecha = new JLabel ("Fecha de la cita");
 		labelHora = new JLabel ("Hora de la cita");
-		DateTextField dateTextField= new DateTextField("dd/MM/yyyy", new Date());
+		dateTextField= new DateTextField();
 		panel = new JPanel(new GridLayout(2, 2));
 		 submit = new JButton("Verificar_disponibilidad");
 		
 		String [] opciones1 = {
-				"7:00", 
-				"7:30", 
-				"8:00", 
-				"8:30", 
-				"9:00",
-				"9:30", 
-				"10:00", 
-				"10:30", 
-				"11:00", 
-				"11:30",
-				"12:00", 
-				"12:30", 
-				"13:00", 
-				"13:30", 
-				"14:00", 
-				"14:30", 
-				"15:00", 
-				"15:30",
-				"16:00", 
-				"16:30", 
-				"17:00"};
+				"7:00", //1 
+				"7:30", //2
+				"8:00", //3
+				"8:30", //4
+				"9:00", //5
+				"9:30", //6
+				"10:00", //7
+				"10:30", //8
+				"11:00", //9
+				"11:30",//10
+				"12:00", //11
+				"12:30", //12
+				"13:00", //13
+				"13:30", //14
+				"14:00", //15
+				"14:30", //16
+				"15:00", //17
+				"15:30",//18
+				"16:00", //19
+				"16:30", //20
+				"17:00"};//21
 		JComboBox optionList1 = new JComboBox(opciones1);
 		optionList1.setSelectedIndex(0);
 		
