@@ -1748,3 +1748,107 @@ ORA-01400: no se puede realizar una inserción NULL en ("ISIS2304D10202110"."PUN
 14:34:10,463 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168162
 14:34:10,525 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168162
 14:34:10,525 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+16:55:17,719 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+16:55:17,721 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+16:55:17,800 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+16:55:39,248 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario a.trianaa
+16:55:39,290 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasena1"
+16:55:39,752 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
+16:55:39,753 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+16:55:39,753 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168160
+16:55:39,754 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168160
+16:55:39,814 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168160
+16:55:39,814 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+17:11:27,394 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:11:27,396 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+17:11:27,593 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:11:41,326 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario a.trianaa
+17:11:41,394 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasena1"
+17:11:41,774 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
+17:11:41,775 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+17:11:41,775 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168160
+17:11:41,776 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168160
+17:11:41,833 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168160
+17:11:41,834 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+17:19:30,543 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:19:30,545 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+17:19:30,594 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:20:31,054 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario a.trianaa
+17:20:31,079 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasena1"
+17:20:31,507 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
+17:20:31,508 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+17:20:31,509 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168160
+17:20:31,509 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168160
+17:20:31,566 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168160
+17:20:31,566 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+17:24:11,947 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:24:11,950 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+17:24:12,071 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:25:10,740 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario a.trianaa
+17:25:10,765 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasena1"
+17:25:11,122 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
+17:25:11,123 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+17:25:11,124 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168160
+17:25:11,124 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168160
+17:25:11,191 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168160
+17:25:11,192 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+17:26:34,087 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:26:34,089 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+17:26:34,145 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:26:44,970 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario a.trianaa
+17:26:44,992 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasena1"
+17:26:45,431 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
+17:26:45,432 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+17:26:45,432 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168160
+17:26:45,433 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168160
+17:26:45,511 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168160
+17:26:45,511 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+17:42:36,887 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:42:36,889 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+17:42:37,006 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:42:58,049 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario a.trianaa
+17:42:58,073 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasena1"
+17:42:58,371 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
+17:42:58,373 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+17:42:58,373 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168160
+17:42:58,374 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168160
+17:42:58,417 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168160
+17:42:58,417 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+17:45:54,380 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:45:54,381 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+17:45:54,448 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:46:09,489 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario a.trianaa
+17:46:09,528 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasen1"
+17:46:09,905 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
+17:46:09,908 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+17:46:16,367 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario a.trianaa
+17:46:16,368 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasena1"
+17:46:16,433 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
+17:46:16,434 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+17:46:16,434 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168160
+17:46:16,435 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168160
+17:46:16,486 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168160
+17:46:16,487 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+18:42:20,798 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:42:20,800 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:42:21,061 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:42:56,761 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario a.trianaa
+18:42:56,809 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasena"
+18:42:57,235 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
+18:42:57,239 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+18:43:06,151 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario a.trianaa
+18:43:06,152 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "a.trianaa" con contrasena "contrasena1"
+18:43:06,214 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "a.trianaa" con contrasena "contrasena1"
+18:43:06,214 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+18:43:06,214 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168160
+18:43:06,215 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168160
+18:43:06,282 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168160
+18:43:06,282 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+18:43:26,781 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario j.ramirezb
+18:43:26,794 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "j.ramirezb" con contrasena "contrasena2"
+18:43:26,857 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "j.ramirezb" con contrasena "contrasena2"
+18:43:26,857 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+18:43:26,857 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168161
+18:43:26,858 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168161
+18:43:26,919 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168161
+18:43:26,919 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado

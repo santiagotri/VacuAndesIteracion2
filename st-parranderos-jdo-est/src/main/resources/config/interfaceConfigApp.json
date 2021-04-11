@@ -53,6 +53,10 @@
 				{
 					"label": "Avance en vacunacion de persona",
 					"event": "registrarAvanceEnVacunacionDePersona"
+				},
+				{
+					"label": "Cambio de opinion vacunacion de un ciudadano",
+					"event": "cambiarOpinionVacunacionCiudadano"
 				}
 				
 			]

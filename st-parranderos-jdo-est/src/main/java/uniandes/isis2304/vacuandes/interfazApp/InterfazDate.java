@@ -21,50 +21,59 @@ public class InterfazDate extends JFrame {
 	private JPanel panel;
 	private DateTextField dateTextField;
 	
+	private JLabel labelCedula;
 	private JLabel labelFecha;
 	private JLabel labelHora;
 	
 	private JButton submit;
+	
+	private JTextField fieldCedula;
 
 	private String usuarioIngresado;
 	private String contrasenaIngresada;
 
-	InterfazVacuandesApp interfazVacuandes;
+	private InterfazVacuandesApp interfazVacuandes;
+	
+	private JComboBox optionList1;
+	
+	private String [] opciones1 = {
+			"7:00", //1 
+			"7:30", //2
+			"8:00", //3
+			"8:30", //4
+			"9:00", //5
+			"9:30", //6
+			"10:00", //7
+			"10:30", //8
+			"11:00", //9
+			"11:30",//10
+			"12:00", //11
+			"12:30", //12
+			"13:00", //13
+			"13:30", //14
+			"14:00", //15
+			"14:30", //16
+			"15:00", //17
+			"15:30",//18
+			"16:00", //19
+			"16:30", //20
+			"17:00"};//21
 
 	public InterfazDate(InterfazVacuandesApp pInterfaz) {
-
+		labelCedula = new JLabel ("Cedula ciudadano");
+		fieldCedula = new JTextField();
 		labelFecha = new JLabel ("Fecha de la cita");
 		labelHora = new JLabel ("Hora de la cita");
 		dateTextField= new DateTextField();
-		panel = new JPanel(new GridLayout(2, 2));
+		panel = new JPanel(new GridLayout(3, 2));
 		 submit = new JButton("Verificar_disponibilidad");
+		 
 		
-		String [] opciones1 = {
-				"7:00", //1 
-				"7:30", //2
-				"8:00", //3
-				"8:30", //4
-				"9:00", //5
-				"9:30", //6
-				"10:00", //7
-				"10:30", //8
-				"11:00", //9
-				"11:30",//10
-				"12:00", //11
-				"12:30", //12
-				"13:00", //13
-				"13:30", //14
-				"14:00", //15
-				"14:30", //16
-				"15:00", //17
-				"15:30",//18
-				"16:00", //19
-				"16:30", //20
-				"17:00"};//21
-		JComboBox optionList1 = new JComboBox(opciones1);
+		 optionList1 = new JComboBox(opciones1);
 		optionList1.setSelectedIndex(0);
 		
-		
+		panel.add(labelCedula);
+		panel.add(fieldCedula);
 		panel.add(labelFecha);
 		panel.add(dateTextField);
 		panel.add(labelHora);
@@ -82,5 +91,21 @@ public class InterfazDate extends JFrame {
 	
 	public Date getDate () {
 		return dateTextField.getDate();
+	}
+	
+	public Long getCedula() {
+		try {
+			return Long.parseLong(fieldCedula.getText());
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(this, "Error en formato cedula", "Error en fecha", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+		
+	}
+	
+	public int getHora() {
+		String textoSinFormato = opciones1[optionList1.getSelectedIndex()];
+		String[] numeros = textoSinFormato.split(":");
+		return Integer.parseInt(numeros[0]+numeros[1]);
 	}
 }
