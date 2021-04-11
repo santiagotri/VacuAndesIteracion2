@@ -726,7 +726,7 @@ public class PersistenciaVacuandes {
 	}
 
 
-	public long actualizarCiudadanoPuntoVacunacion(long cedula, String nombre_Completo, String estado_vacunacion,
+	public long actualizarCiudadano(long cedula, String nombre_Completo, String estado_vacunacion,
 			String region, int desea_ser_vacunado, long plan_De_Vacunacion, long punto_vacunacion,
 			long oficina_Regional_Asignada){
 	PersistenceManager pm = pmf.getPersistenceManager();
@@ -923,6 +923,70 @@ public class PersistenciaVacuandes {
         	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public PuntoVacunacion darPuntoVacunacionPorId(long id_punto_vacunacion) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando el punto de vacunacion de id " + id_punto_vacunacion);
+            tx.begin();
+            PuntoVacunacion punto_vacunacion = sqlPuntoVacunacion.darPuntoPorId(pm, id_punto_vacunacion);
+            tx.commit();
+            log.info ("Se encontro el punto de vacunacion por el id" + id_punto_vacunacion);
+            
+            return punto_vacunacion;
+        	
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public Trabajador adicionarTrabajador(long cedula, String trabajo, int administrador_vacuandes,
+			long punto_vacunacion)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Agregando un nuevo trabajador con cedula: " + cedula);
+            tx.begin();
+            long tuplaInsertada = sqlTrabajador.adicionarTrabajador(pm, cedula, trabajo, administrador_vacuandes, punto_vacunacion);
+            tx.commit();
+            log.info ("Inserción del trabajador de cedula: " + cedula + ": " + tuplaInsertada + " tuplas insertadas");
+            
+            return new Trabajador(cedula, trabajo, administrador_vacuandes, punto_vacunacion);
+        	
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	throw e;
         }
         finally
         {

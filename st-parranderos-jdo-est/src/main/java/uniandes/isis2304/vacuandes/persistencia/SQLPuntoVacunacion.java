@@ -84,4 +84,11 @@ public class SQLPuntoVacunacion {
 		List<PuntoVacunacion> resp = q.executeList();
 		return resp;
 	}
+
+	public PuntoVacunacion darPuntoPorId(PersistenceManager pm, long id_punto_vacunacion) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPuntoVacunacion() + " WHERE id_punto_vacunacion = ?");
+		q.setResultClass(PuntoVacunacion.class);
+		q.setParameters(id_punto_vacunacion); 
+		return (PuntoVacunacion) q.executeUnique();
+	}
 }

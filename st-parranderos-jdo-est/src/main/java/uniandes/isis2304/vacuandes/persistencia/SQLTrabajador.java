@@ -38,12 +38,10 @@ public class SQLTrabajador {
 		this.pp = pp;
 	}
 	
-	public long adicionarTrabajador(PersistenceManager pm, long cedula, String trabajo, boolean administrador)
+	public long adicionarTrabajador(PersistenceManager pm, long cedula, String trabajo, int administrador_vacuandes, long punto_vacunacion)
 	{
-		int adminsitrador_vacuandes; 
-		if(administrador) {adminsitrador_vacuandes=1;}else {adminsitrador_vacuandes= 0;}
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTrabajador() + "(cedula, trabajo, adminsitrador_vacuandes) values (?, ?, ?)");
-		q.setParameters(cedula, trabajo, adminsitrador_vacuandes);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTrabajador() + "(cedula, trabajo, adminsitrador_vacuandes, punto_vacunacion) values (?, ?, ?, ?)");
+		q.setParameters(cedula, trabajo, administrador_vacuandes, punto_vacunacion);
 		return (long) q.executeUnique(); 
 	}
 	

@@ -96,7 +96,7 @@ public class Vacuandes {
 		Ciudadano ciudadano = pp.buscarCiudadano(cedula);
 		if(ciudadano!=null)
 		{
-			rta = pp.actualizarCiudadanoPuntoVacunacion(ciudadano.getCedula(), ciudadano.getNombre_Completo(), ciudadano.getEstado_vacunacion(), ciudadano.getRegion(), ciudadano.getDesea_ser_vacunado(), ciudadano.getPlan_De_Vacunacion(), punto_vacunacion, ciudadano.getOficina_Regional_Asignada()); 
+			rta = pp.actualizarCiudadano(ciudadano.getCedula(), ciudadano.getNombre_Completo(), ciudadano.getEstado_vacunacion(), ciudadano.getRegion(), ciudadano.getDesea_ser_vacunado(), ciudadano.getPlan_De_Vacunacion(), punto_vacunacion, ciudadano.getOficina_Regional_Asignada()); 
 		}
 		else 
 		{
@@ -129,7 +129,23 @@ public class Vacuandes {
 		Ciudadano ciudadano = pp.buscarCiudadano(cedula);
 		if(ciudadano!=null)
 		{
-			rta = pp.actualizarCiudadanoPuntoVacunacion(ciudadano.getCedula(), ciudadano.getNombre_Completo(), ciudadano.getEstado_vacunacion(), ciudadano.getRegion(), ciudadano.getDesea_ser_vacunado(), ciudadano.getPlan_De_Vacunacion(), punto_vacunacion, ciudadano.getOficina_Regional_Asignada()); 
+			rta = pp.actualizarCiudadano(ciudadano.getCedula(), ciudadano.getNombre_Completo(), ciudadano.getEstado_vacunacion(), ciudadano.getRegion(), ciudadano.getDesea_ser_vacunado(), ciudadano.getPlan_De_Vacunacion(), punto_vacunacion, ciudadano.getOficina_Regional_Asignada()); 
+		}
+		else 
+		{
+			return 0; 
+		}
+        log.info ("Trabajo verificado");
+        return rta;
+	}
+	
+	public long actualizarEstadoVacunacionCiudadano(long cedula, String estado_vacunacion) {
+		long rta = 0;
+		log.info ("Actualizando ciudadano de cedula: " + cedula);
+		Ciudadano ciudadano = pp.buscarCiudadano(cedula);
+		if(ciudadano!=null)
+		{
+			rta = pp.actualizarCiudadano(ciudadano.getCedula(), ciudadano.getNombre_Completo(), estado_vacunacion, ciudadano.getRegion(), ciudadano.getDesea_ser_vacunado(), ciudadano.getPlan_De_Vacunacion(), ciudadano.getPunto_Vacunacion(), ciudadano.getOficina_Regional_Asignada()); 
 		}
 		else 
 		{
@@ -211,6 +227,14 @@ public class Vacuandes {
         return rta;
 	}
 	
+	public PuntoVacunacion darPuntoVacunacionPorId(long id_punto_vacunacion)
+	{
+		log.info ("Buscando punto de vacunacion de id"+ id_punto_vacunacion);
+		PuntoVacunacion rta = pp.darPuntoVacunacionPorId(id_punto_vacunacion);
+        log.info ("Se encontró el punto " + rta +" con el id " + id_punto_vacunacion);
+        return rta;
+	}
+	
 	/* ****************************************************************
 	 * 			Métodos para manejar TRABAJADOR
 	 *****************************************************************/
@@ -219,6 +243,13 @@ public class Vacuandes {
 		log.info ("Buscando trabjador de cedula: " + cedula);
 		Trabajador rta = pp.buscarTrabajadorPorCedula(cedula);
         log.info ("Trabajo verificado");
+        return rta;
+	}
+	
+	public Trabajador agregarTrabajador(long cedula, String trabajo, int administrador_vacuandes, long punto_vacunacion) {
+		log.info ("Creando un nuevo trabajador");
+		Trabajador rta = pp.adicionarTrabajador(cedula, trabajo, administrador_vacuandes, punto_vacunacion);
+        log.info ("Se creo el trabajador con cedula: " + cedula);
         return rta;
 	}
 	
