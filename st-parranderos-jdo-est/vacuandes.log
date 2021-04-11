@@ -1608,3 +1608,83 @@ ORA-01400: no se puede realizar una inserción NULL en ("ISIS2304D10202110"."PUN
 22:30:16,731 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168161
 22:30:16,800 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168161
 22:30:16,800 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+22:40:09,720 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+22:40:09,722 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+22:40:09,763 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:19:50,459 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:19:50,461 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+13:19:50,511 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:41:44,689 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:41:44,693 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+13:41:44,749 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:42:00,057 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario j.ramirezb
+13:42:00,093 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "j.ramirezb" con contrasena "contrasena2"
+13:42:00,581 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "j.ramirezb" con contrasena "contrasena2"
+13:42:00,582 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+13:42:00,582 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168161
+13:42:00,583 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168161
+13:42:00,649 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168161
+13:42:00,650 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+13:43:29,890 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:43:29,892 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+13:43:29,953 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:43:46,515 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario j.ramirezb
+13:43:46,561 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "j.ramirezb" con contrasena "contrasena2"
+13:43:47,046 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "j.ramirezb" con contrasena "contrasena2"
+13:43:47,047 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+13:43:47,047 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168161
+13:43:47,048 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168161
+13:43:47,120 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168161
+13:43:47,120 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+13:51:33,181 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:51:33,183 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+13:51:33,267 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:52:04,517 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario j.ramirezb
+13:52:04,596 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "j.ramirezb" con contrasena "contrasena2"
+13:52:05,270 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "j.ramirezb" con contrasena "contrasena2"
+13:52:05,271 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+13:52:05,271 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168161
+13:52:05,272 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168161
+13:52:05,334 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168161
+13:52:05,334 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+13:54:14,707 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:54:14,708 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+13:54:14,888 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:54:36,435 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario j.ramirezb
+13:54:36,478 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "j.ramirezb" con contrasena "contrasena2"
+13:54:36,934 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "j.ramirezb" con contrasena "contrasena2"
+13:54:36,937 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+13:54:36,937 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168161
+13:54:36,944 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168161
+13:54:37,046 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168161
+13:54:37,047 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+13:55:01,923 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario j.ramirezb
+13:55:01,924 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "j.ramirezb" con contrasena "contrasena2"
+13:55:01,993 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "j.ramirezb" con contrasena "contrasena2"
+13:55:01,993 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+13:55:01,994 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168161
+13:55:01,994 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168161
+13:55:02,043 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168161
+13:55:02,043 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+14:07:27,504 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+14:07:27,515 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+14:07:27,782 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+14:07:45,109 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario j.ramirezb
+14:07:45,163 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "j.ramirezb" con contrasena "contrasena2"
+14:07:45,754 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "j.ramirezb" con contrasena "contrasena2"
+14:07:45,755 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+14:07:45,755 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168161
+14:07:45,757 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168161
+14:07:45,825 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168161
+14:07:45,825 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado
+14:13:31,359 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Interfaz
+14:13:31,360 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se aplica configuración indicada en el archivo de configuración
+14:13:31,416 (main) INFO  [uniandes.isis2304.vacuandes.interfazApp.InterfazVacuandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+14:13:48,941 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Iniciando sesion para usuario j.ramirezb
+14:13:48,991 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando usuario "j.ramirezb" con contrasena "contrasena2"
+14:13:49,396 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Usuario buscado "j.ramirezb" con contrasena "contrasena2"
+14:13:49,396 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Verificado inicio sesion
+14:13:49,397 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Buscando trabjador de cedula: 1001168161
+14:13:49,397 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Buscando el trabajo de la cedula 1001168161
+14:13:49,463 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes] - Trabajador buscado por cedula 1001168161
+14:13:49,463 (AWT-EventQueue-0) INFO  [uniandes.isis2304.vacuandes.negocio.Vacuandes] - Trabajo verificado

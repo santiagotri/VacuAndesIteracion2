@@ -106,6 +106,7 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 	 */
 	private Vacuandes vacuandes;
 
+	private InterfazDate interfazDate;
 	private InterfazLogin interfazLogin;
 	private Usuario usuarioActual;
 	private Trabajador trabajadorActual;
@@ -664,7 +665,7 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 					JOptionPane.showMessageDialog(this, "No se ha decidido anteriormente el punto de vacunacion de este ciudadano, ingrese el punto de vacunacion deñ vacunacion", "Nuevo punto vacunacion", JOptionPane.INFORMATION_MESSAGE);
 				}else {
 					IdpuntoVacunacionAnterior = act.getPunto_Vacunacion();
-					puntoVacunacionAnterior = vacuandes.darPuntoVacunacionPorId(puntoVacunacionAnterior);
+					puntoVacunacionAnterior = vacuandes.darPuntoVacunacionPorId(IdpuntoVacunacionAnterior);
 					JOptionPane.showMessageDialog(this, "Actualmente el ciudadano se encuentra en el punto de vacunacion localizado en " + puntoVacunacionAnterior.getLocalizacion() +". Escoja el nuevo punto de vacunacion", "Nuevo punto vacunacion", JOptionPane.INFORMATION_MESSAGE);
 				}
 				
@@ -698,7 +699,10 @@ public class InterfazVacuandesApp extends JFrame implements ActionListener
 		}
 	}
 	private void VerificadoAsignarCitaDeVacunacionACiudadano() {
-		InterfazDate interfazDate = new InterfazDate(this);
+		interfazDate = new InterfazDate(this);
+	}
+	
+	public void Verificar_disponibilidad() {
 		System.out.println(interfazDate.getDate());
 	}
 
