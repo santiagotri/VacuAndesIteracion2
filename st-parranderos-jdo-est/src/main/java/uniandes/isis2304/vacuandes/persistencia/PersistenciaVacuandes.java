@@ -670,11 +670,11 @@ public class PersistenciaVacuandes {
         {
         	log.info ("Agregando un nuevo punto de vacuancion en la localizacion: " + localizacion);
             tx.begin();
-            long tuplaInsertada = sqlPuntoVacunacion.adicionarPuntoVacunacion(pm, localizacion, capacidad_de_atencion_simultanea, capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador, oficina_regional_eps);
+            long tuplaInsertada = sqlPuntoVacunacion.adicionarPuntoVacunacion(pm, localizacion, capacidad_de_atencion_simultanea, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador, oficina_regional_eps);
             tx.commit();
             log.info ("Inserción del punto de vacunacion en: " + localizacion + ": " + tuplaInsertada + " tuplas insertadas");
             
-            return new PuntoVacunacion(tuplaInsertada, localizacion, capacidad_de_atencion_simultanea, capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador, oficina_regional_eps);
+            return new PuntoVacunacion(tuplaInsertada, localizacion, capacidad_de_atencion_simultanea, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador, oficina_regional_eps);
         }
         catch (Exception e)
         {
@@ -985,6 +985,35 @@ public class PersistenciaVacuandes {
         	// e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	throw e;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public List<Ciudadano> darCiudadanosPuntoVacunacion(long punto_vacunacion) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	log.info ("Buscando ciudadanos " +  punto_vacunacion );
+            tx.begin();
+            List<Ciudadano> lista = sqlCiudadano.darCiudadanosPuntoVacunacion(pm, punto_vacunacion);
+            tx.commit();
+            
+            return lista;
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
         }
         finally
         {

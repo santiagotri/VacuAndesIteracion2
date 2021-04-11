@@ -149,6 +149,12 @@ public class Vacuandes {
         return rta;
 	}
 	
+	public List<Ciudadano> darCiudadanosPuntoVacunacion(long punto_vacunacion) {
+		log.info ("Buscando los ciudadanos en el punto de vacunacion: " );
+		List<Ciudadano> rta = pp.darCiudadanosPuntoVacunacion(punto_vacunacion);
+        log.info ("Se encontraron: " + rta.size() +" ciudadanos");
+        return rta;
+	}
 	
 	/* ****************************************************************
 	 * 			Métodos para manejar LIST_CONDICIONES_CIUDADANO
