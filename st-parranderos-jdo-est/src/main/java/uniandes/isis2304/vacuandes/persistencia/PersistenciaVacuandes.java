@@ -17,8 +17,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import uniandes.isis2304.parranderos.negocio.Bebida;
-import uniandes.isis2304.parranderos.negocio.TipoBebida;
 import uniandes.isis2304.vacuandes.negocio.Cita;
 import uniandes.isis2304.vacuandes.negocio.Ciudadano;
 import uniandes.isis2304.vacuandes.negocio.Condicion;
@@ -759,18 +757,18 @@ public class PersistenciaVacuandes {
 }
 
 
-	public Cita adicionarCita(Date fecha, long ciudadano, long punto_vacunacion, long vacuna) {
+	public Cita adicionarCita(Date fecha, long ciudadano, long punto_vacunacion, long vacuna, int hora_cita) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
         	log.info ("Agregando una nueva cita en el punto de vacunación: " + punto_vacunacion);
             tx.begin();
-            long tuplaInsertada = sqlCita.adicionarCita(pm, fecha, ciudadano, punto_vacunacion, vacuna);
+            long tuplaInsertada = sqlCita.adicionarCita(pm, fecha, ciudadano, punto_vacunacion, vacuna, hora_cita);
             tx.commit();
             log.info ("Inserción de la cita en el punto: " + punto_vacunacion + ": " + tuplaInsertada + " tuplas insertadas");
             
-            return new Cita(fecha, ciudadano, punto_vacunacion, vacuna);
+            return new Cita(fecha, ciudadano, punto_vacunacion, vacuna, hora_cita);
         }
         catch (Exception e)
         {

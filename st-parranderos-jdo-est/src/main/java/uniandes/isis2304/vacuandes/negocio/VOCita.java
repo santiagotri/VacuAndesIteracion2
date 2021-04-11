@@ -21,6 +21,11 @@ public interface VOCita {
 	 */
 	public long getVacuna() ;
 	
+	/**
+	 * @return the hora_cita
+	 */
+	public int getHora_cita() ;
+	
 	@Override
 	public String toString();
 }

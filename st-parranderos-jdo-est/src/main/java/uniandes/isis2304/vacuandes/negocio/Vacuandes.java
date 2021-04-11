@@ -3,16 +3,10 @@ package uniandes.isis2304.vacuandes.negocio;
 import java.sql.Date;
 import java.util.List;
 
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
-import javax.jdo.Transaction;
-
 import org.apache.log4j.Logger;
 
 import com.google.gson.JsonObject;
 
-import uniandes.isis2304.parranderos.negocio.Bebida;
-import uniandes.isis2304.parranderos.negocio.TipoBebida;
 import uniandes.isis2304.vacuandes.persistencia.PersistenciaVacuandes;
 
 public class Vacuandes {
@@ -73,9 +67,9 @@ public class Vacuandes {
 	 * 			Métodos para manejar CITA
 	 *****************************************************************/
 	
-	public Cita agregarCita(Date fecha, long ciudadano, long punto_vacunacion, long vacuna) {
+	public Cita agregarCita(Date fecha, long ciudadano, long punto_vacunacion, long vacuna, int hora_cita) {
 		log.info ("Creando una nueva cita");
-		Cita rta = pp.adicionarCita(fecha, ciudadano,punto_vacunacion, vacuna);
+		Cita rta = pp.adicionarCita(fecha, ciudadano,punto_vacunacion, vacuna, hora_cita);
         log.info ("Se creo el cita en el punto: " + punto_vacunacion +" para el ciudadano de cedula: " + ciudadano);
         return rta;
 	}

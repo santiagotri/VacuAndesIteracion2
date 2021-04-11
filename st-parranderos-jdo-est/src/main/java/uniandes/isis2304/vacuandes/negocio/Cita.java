@@ -8,12 +8,14 @@ public class Cita implements VOCita {
 	private long ciudadano;
 	private long punto_Vacunacion;
 	private long vacuna;
+	private int hora_cita;
 
 	public Cita() {
 		this.fecha = new Date(0);
 		this.ciudadano = 0;
 		this.punto_Vacunacion = 0;
 		this.vacuna = 0;
+		this.hora_cita = 0; 
 	}
 	
 	/**
@@ -23,13 +25,14 @@ public class Cita implements VOCita {
 	 * @param punto_Vacunacion
 	 * @param vacuna
 	 */
-	public Cita(Date fecha, long ciudadano, long punto_Vacunacion, long vacuna) {
+	public Cita(Date fecha, long ciudadano, long punto_Vacunacion, long vacuna, int hora_cita) {
 		this.fecha = fecha;
 		this.ciudadano = ciudadano;
 		this.punto_Vacunacion = punto_Vacunacion;
 		this.vacuna = vacuna;
+		this.hora_cita = hora_cita; 
 	}
-	
+
 	/**
 	 * @return the fecha
 	 */
@@ -56,6 +59,13 @@ public class Cita implements VOCita {
 	}
 
 	/**
+	 * @return the hora_cita
+	 */
+	public int getHora_cita() {
+		return hora_cita;
+	}
+
+	/**
 	 * @param fecha the fecha to set
 	 */
 	public void setFecha(Date fecha) {
@@ -79,11 +89,16 @@ public class Cita implements VOCita {
 	public void setVacuna(long vacuna) {
 		this.vacuna = vacuna;
 	}
+	
+	public void setHora_cita(int hora_cita) {
+		this.hora_cita = hora_cita;
+	}
 
 	@Override
 	public String toString() {
 		return "Cita [fecha=" + fecha + ", ciudadano=" + ciudadano + ", punto_Vacunacion=" + punto_Vacunacion
-				+ ", vacuna=" + vacuna + "]";
+				+ ", vacuna=" + vacuna + ", hora_cita=" + hora_cita + "]";
 	}
+
 	
 }
