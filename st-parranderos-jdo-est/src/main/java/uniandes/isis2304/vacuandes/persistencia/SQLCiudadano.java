@@ -68,7 +68,6 @@ public class SQLCiudadano {
 	
 	public Ciudadano darCiudadanoPorCedula(PersistenceManager pm, long cedula)
 	{
-		System.out.print(pp.darTablaTrabajador());
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCiudadano() + " WHERE cedula = ?");
 		q.setResultClass(Ciudadano.class);
 		q.setParameters(cedula);
@@ -79,5 +78,13 @@ public class SQLCiudadano {
 		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCondicion() + " SET cedula= ? , nombre_completo= ?, estado_vacunacion= ?, region= ?, desea_ser_vacunado= ?, plan_de_vacunacion= ?, punto_vacunacion= ?, oficina_regional_asignada= ? WHERE cedula = ?");
 		q.setParameters(cedula, nombre_completo, estado_vacunacion, region, desea_ser_vacunado, plan_de_vacunacion, punto_vacunacion, oficina_regional_asignada, cedula);
 		return (long) q.executeUnique();
+	}
+	
+	public List<Ciudadano> darCiudadanosPuntoVacunacion(PersistenceManager pm, long punto_vacunacion)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCiudadano() + " WHERE punto_vacunacion = ?");
+		q.setResultClass(Ciudadano.class);
+		q.setParameters(punto_vacunacion);
+		return (List<Ciudadano>) q.executeUnique();
 	}
 }

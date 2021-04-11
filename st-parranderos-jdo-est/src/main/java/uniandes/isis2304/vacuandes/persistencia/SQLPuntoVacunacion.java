@@ -38,10 +38,10 @@ public class SQLPuntoVacunacion {
 		this.pp = pp;
 	}
 	
-	public long adicionarPuntoVacunacion(PersistenceManager pm, String localizacion, int capacidad_de_atencion_simultanea, int capacidad_de_atencion_total_diaria, String infraestructura_para_dosis, int cantidad_de_vacunas_enviables, int cantidad_de_vacunas_actuales, String tipo_punto_vacunacion, String administrador, long oficina_regional_eps)
+	public long adicionarPuntoVacunacion(PersistenceManager pm, String localizacion, int capacidad_de_atencion_simultanea, String infraestructura_para_dosis, int cantidad_de_vacunas_enviables, int cantidad_de_vacunas_actuales, String tipo_punto_vacunacion, String administrador, long oficina_regional_eps)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaPuntoVacunacion() + "(localizacion, capacidad_de_atencion_simultanea, capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador, oficina_regional_eps) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		q.setParameters(localizacion, capacidad_de_atencion_simultanea, capacidad_de_atencion_total_diaria, infraestructura_para_dosis, cantidad_de_vacunas_enviables, cantidad_de_vacunas_actuales, tipo_punto_vacunacion, administrador, oficina_regional_eps);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaPuntoVacunacion() + "(localizacion, capacidad_de_atencion_simultanea, infraestructura_para_dosis, cantidad_vacunas_enviables, cantidad_vacunas_actuales, tipo_punto_vacunacion, administrador, oficina_regional_eps) values (?, ?, ?, ?, ?, ?, ?, ?)");
+		q.setParameters(localizacion, capacidad_de_atencion_simultanea, infraestructura_para_dosis, cantidad_de_vacunas_enviables, cantidad_de_vacunas_actuales, tipo_punto_vacunacion, administrador, oficina_regional_eps);
 		return (long) q.executeUnique(); 
 	}
 
@@ -75,7 +75,7 @@ public class SQLPuntoVacunacion {
 
 	public List<PuntoVacunacion> darListPuntoVacunacionDeLaRegion(PersistenceManager pm, String region) {
 		Query q = pm.newQuery(SQL, "\n"
-				+ "SELECT ID_PUNTO_VACUNACION, LOCALIZACION, CAPACIDAD_DE_ATENCION_SIMULTANEA, CAPACIDAD_DE_ATENCION_TOTAL_DIARIA,\n"
+				+ "SELECT ID_PUNTO_VACUNACION, LOCALIZACION, CAPACIDAD_DE_ATENCION_SIMULTANEA, \n"
 				+ "INFRAESTRUCTURA_PARA_DOSIS, CANTIDAD_VACUNAS_ENVIABLES, punto.CANTIDAD_VACUNAS_ACTUALES, punto.TIPO_PUNTO_VACUNACION, punto.ADMINISTRADOR, OFICINA_REGIONAL_EPS\n"
 				+ "FROM PUNTO_VACUNACION punto INNER JOIN OFICINA_REGIONAL_EPS oficina ON punto.oficina_regional_eps = oficina.id_oficina\n"
 				+ "WHERE oficina.region = ?");
