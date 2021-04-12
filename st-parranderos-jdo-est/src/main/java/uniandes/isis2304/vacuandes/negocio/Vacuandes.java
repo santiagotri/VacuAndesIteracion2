@@ -113,6 +113,13 @@ public class Vacuandes {
         return rta;
 	}
 	
+	public String Mostrar20PuntosDeVacunacionMasEfectivos() {
+		log.info ("Buscando los puntos de vacunacion más efectivos");
+		String rta = pp.darPuntosVacunacionMasEfectivos();
+        log.info ("Se retornaron los 20 puntos");
+        return rta;
+	}
+	
 	/**
 	 * 
 	public Cita darCitaPorPuntoDeVacunacionYFecha(Date fecha, long punto_vacunacion) {

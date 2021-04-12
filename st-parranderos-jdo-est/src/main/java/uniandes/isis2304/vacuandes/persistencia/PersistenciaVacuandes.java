@@ -1,6 +1,7 @@
 
 package uniandes.isis2304.vacuandes.persistencia;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,6 +19,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import uniandes.isis2304.parranderos.negocio.Bebedor;
 import uniandes.isis2304.vacuandes.negocio.Cita;
 import uniandes.isis2304.vacuandes.negocio.Ciudadano;
 import uniandes.isis2304.vacuandes.negocio.Condicion;
@@ -1241,9 +1243,9 @@ public class PersistenciaVacuandes {
         try
         {
         	String rta = ""; 
-        	log.info ("Buscando ciudadanos en el rango de horas en el punto: " +  punto_vacunacion );
+        	log.info ("Buscando ciudadanos en el punto: " +  punto_vacunacion );
             tx.begin();
-            List<Cita> lista = sqlCita.darCiudadanosPuntoVacunacionYRangoHoras(pm, punto_vacunacion, primera_hora, segunda_hora);
+            List<Cita> lista = sqlCita.darCiudadanosPuntoVacunacion(pm, punto_vacunacion);
             for(int i =0; i < lista.size(); i++)
             {
             	Cita act = lista.get(i);
@@ -1269,7 +1271,23 @@ public class PersistenciaVacuandes {
             pm.close();
         }
 	}
+
 	
+	public String darPuntosMasEfectivos()
+	{
+		String rta = ""; 
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		List<Object> tuplas = sqlCita.darPuntosMasEfectivos(pmf.getPersistenceManager());
+        for ( Object tupla : tuplas)
+        {
+			Object [] datos = (Object []) tupla;
+			long idPuntoVacunacion = ((BigDecimal) datos [0]).longValue ();
+			int cantidad = (int) datos [1];
+			rta += "\n-" + "Punto Vacunacion: " + idPuntoVacunacion + " Cantidad atendidos: " + cantidad; 
+        }
+
+		return rta;
+	}
 	
 	/**
 	public Cita buscarCita(Date fecha, long ciudadano) {
