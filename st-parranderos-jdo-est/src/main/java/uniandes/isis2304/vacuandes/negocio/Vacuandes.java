@@ -68,7 +68,7 @@ public class Vacuandes {
 	 * 			Métodos para manejar CITA
 	 *****************************************************************/
 	
-	public Cita agregarCita(Date fecha, long ciudadano, long punto_vacunacion, int hora_cita) {
+	public Cita agregarCita(Date fecha, Long ciudadano, Long punto_vacunacion, int hora_cita) {
 		log.info ("Creando una nueva cita");
 		//Crea una nueva cita, retorna el id de la primera vacuna disponible, asigna ciudadano, pone vacuna usada en true, disminuye en 1 la cantidad de vacunas del punto vacunacion, disminuye la cantidad de vacunas en oficina regional en 1
 		Cita rta = pp.adicionarCita(fecha, ciudadano,punto_vacunacion, hora_cita);
@@ -76,7 +76,7 @@ public class Vacuandes {
         return rta;
 	}
 	
-	public boolean verificarHoraNoLlena(Date fecha, int hora_cita, long punto_vacunacion)
+	public boolean verificarHoraNoLlena(Date fecha, int hora_cita, Long punto_vacunacion)
 	{
 		//Traer todas las citas que tengan esa fecha y esa hora, verificar capacidad del punto de vacunacion, contra cuantas citas hay y comparar y si es mayor lanzar un error
 		log.info ("Verificando si el horario está disponible para esa cita");
@@ -85,6 +85,33 @@ public class Vacuandes {
         return rta; 
 	}
 	
+	public String mostrarCiudadanosAtendidosPorUnPuntoDeVacunacionFechaEspecifica(long punto_vacunacion, Date fecha_especifica) {
+		log.info ("Buscando los ciudadanos en el punto de vacunacion: " + punto_vacunacion + " en la fecha " + fecha_especifica.toString());
+		String rta = pp.darCiudadanosPuntoVacunacionPorFechaEspecifica(punto_vacunacion, fecha_especifica);
+        log.info ("Se retornaron todos los ciudadanos encontrados");
+        return rta;
+	}
+	
+	public String mostrarCiudadanosAtendidosPorUnPuntoDeVacunacionRangoFechas (long punto_vacunacion, Date primera_fecha, Date segunda_fecha) {
+		log.info ("Buscando los ciudadanos en el punto de vacunacion: " + punto_vacunacion + " en la fechas indicadas ");
+		String rta = pp.darCiudadanosPuntoVacunacionPorRangoFechas(punto_vacunacion, primera_fecha, segunda_fecha);
+        log.info ("Se retornaron todos los ciudadanos encontrados");
+        return rta;
+	}
+	
+	public String mostrarCiudadanosAtendidosPorUnPuntoDeVacunacionRangoHora(long punto_vacunacion, int primera_hora, int segunda_hora) {
+		log.info ("Buscando los ciudadanos en el punto de vacunacion: " + punto_vacunacion + " en la horas indicadas ");
+		String rta = pp.darCiudadanosPuntoVacunacionPorRangoHoras(punto_vacunacion, primera_hora, segunda_hora);
+        log.info ("Se retornaron todos los ciudadanos encontrados");
+        return rta;
+	}
+	
+	public String mostrarCiudadanosAtendidosPorUnPuntoDeVacunacion(long punto_vacunacion) {
+		log.info ("Buscando los ciudadanos en el punto de vacunacion: " + punto_vacunacion );
+		String rta = pp.darCiudadanosPuntoVacunacion(punto_vacunacion);
+        log.info ("Se retornaron todos los ciudadanos encontrados");
+        return rta;
+	}
 	
 	/**
 	 * 
@@ -145,21 +172,6 @@ public class Vacuandes {
         log.info ("Trabajo verificado");
         return rta;
 	}
-	
-	public String mostrarCiudadanosAtendidosPorUnPuntoDeVacunacionFechaEspecifica(long punto_vacunacion, Date fecha_especifica) {
-		log.info ("Buscando los ciudadanos en el punto de vacunacion: " + punto_vacunacion + " en la fecha " + fecha_especifica.toString());
-		String rta = pp.darCiudadanosPuntoVacunacionPorFechaEspecifica(punto_vacunacion, fecha_especifica);
-        log.info ("Se retornaron todos los ciudadanos encontrados");
-        return rta;
-	}
-	
-	public String mostrarCiudadanosAtendidosPorUnPuntoDeVacunacionRangoFechas (long punto_vacunacion, Date primera_fecha, Date segunda_fecha) {
-		log.info ("Buscando los ciudadanos en el punto de vacunacion: " + punto_vacunacion + " en la fechas indicadas ");
-		String rta = pp.darCiudadanosPuntoVacunacionPorRangoFechas(punto_vacunacion, primera_fecha, segunda_fecha);
-        log.info ("Se retornaron todos los ciudadanos encontrados");
-        return rta;
-	}
-	
 	
 	public void actualizarOpinionVacunacionCiudadano(long cedula, int desea_ser_vacunado) throws Exception
 	{

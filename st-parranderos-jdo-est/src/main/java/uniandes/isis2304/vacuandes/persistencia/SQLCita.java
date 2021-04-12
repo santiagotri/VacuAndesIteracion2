@@ -99,4 +99,12 @@ public class SQLCita {
 		return (List<Cita>) q.executeUnique();
 	}
 
+	public List<Cita> darCiudadanosPuntoVacunacionYRangoHoras(PersistenceManager pm, long punto_vacunacion,
+			int primera_hora, int segunda_hora) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCita() + " WHERE punto_vacunacion = ? AND hora_cita>= ? AND hora_cita<= ?");
+		q.setResultClass(Cita.class);
+		q.setParameters(punto_vacunacion, primera_hora, segunda_hora);
+		return (List<Cita>) q.executeUnique();
+	}
+
 }
