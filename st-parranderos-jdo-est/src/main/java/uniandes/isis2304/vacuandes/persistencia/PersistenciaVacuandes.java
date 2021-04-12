@@ -1,7 +1,7 @@
 
 package uniandes.isis2304.vacuandes.persistencia;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -1200,6 +1200,42 @@ public class PersistenciaVacuandes {
 
 
 	public String darCiudadanosPuntoVacunacionPorRangoHoras(long punto_vacunacion, int primera_hora, int segunda_hora) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	String rta = ""; 
+        	log.info ("Buscando ciudadanos en el rango de horas en el punto: " +  punto_vacunacion );
+            tx.begin();
+            List<Cita> lista = sqlCita.darCiudadanosPuntoVacunacionYRangoHoras(pm, punto_vacunacion, primera_hora, segunda_hora);
+            for(int i =0; i < lista.size(); i++)
+            {
+            	Cita act = lista.get(i);
+            	Ciudadano ciudadano = sqlCiudadano.darCiudadanoPorCedula(pm, act.getCiudadano());
+            	rta += "\n-" + ciudadano.toString(); 
+            }
+            tx.commit();
+            
+            return rta;
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	public String darCiudadanosPuntoVacunacion(long punto_vacunacion) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try

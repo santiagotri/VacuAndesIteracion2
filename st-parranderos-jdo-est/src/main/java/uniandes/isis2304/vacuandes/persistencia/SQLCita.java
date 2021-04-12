@@ -1,13 +1,13 @@
 package uniandes.isis2304.vacuandes.persistencia;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import uniandes.isis2304.vacuandes.negocio.Cita;
-import uniandes.isis2304.vacuandes.negocio.Ciudadano;
 
 public class SQLCita {
 	
