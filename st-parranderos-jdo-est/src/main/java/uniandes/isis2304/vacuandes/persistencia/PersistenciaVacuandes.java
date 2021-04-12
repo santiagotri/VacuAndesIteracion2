@@ -1050,7 +1050,7 @@ public class PersistenciaVacuandes {
             tx.begin();
             boolean cantidadDisponible = true; 
             int cantidadCitasEnFechaYHora = sqlCita.darCantidadCitas(pm, fecha, hora_cita, punto_vacunacion);
-            int cantidadCitasAlMismoTiempo = sqlPuntoVacunacion.darPuntoPorId(pm, punto_vacunacion).getCapacidad_Atencion_Simultanea();
+            int cantidadCitasAlMismoTiempo = sqlPuntoVacunacion.darPuntoPorId(pm, punto_vacunacion).getCapacidad_de_Atencion_Simultanea();
             if(cantidadCitasEnFechaYHora+1 > cantidadCitasAlMismoTiempo)
             {
             	cantidadDisponible =false; 

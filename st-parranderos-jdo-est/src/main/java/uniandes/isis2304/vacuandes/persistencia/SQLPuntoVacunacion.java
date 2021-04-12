@@ -6,6 +6,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.vacuandes.negocio.PlanDeVacunacion;
 import uniandes.isis2304.vacuandes.negocio.PuntoVacunacion;
 
 public class SQLPuntoVacunacion {
@@ -68,7 +69,7 @@ public class SQLPuntoVacunacion {
 	
 	public List<PuntoVacunacion> darListPuntoVacunacion(PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPuntoVacunacion());
+		Query q = pm.newQuery(SQL, "SELECT id_Punto_Vacunacion,LOCALIZACION,CAPACIDAD_DE_ATENCION_SIMULTANEA,INFRAESTRUCTURA_PARA_DOSIS,CANTIDAD_VACUNAS_ENVIABLES,CANTIDAD_VACUNAS_ACTUALES,TIPO_PUNTO_VACUNACION,ADMINISTRADOR,OFICINA_REGIONAL_EPS FROM " + pp.darTablaPuntoVacunacion());
 		q.setResultClass(PuntoVacunacion.class);
 		List<PuntoVacunacion> resp = q.executeList();
 		return resp;
@@ -77,8 +78,8 @@ public class SQLPuntoVacunacion {
 	public List<PuntoVacunacion> darListPuntoVacunacionDeLaRegion(PersistenceManager pm, String region) {
 		Query q = pm.newQuery(SQL, "\n"
 				+ "SELECT ID_PUNTO_VACUNACION, LOCALIZACION, CAPACIDAD_DE_ATENCION_SIMULTANEA, \n"
-				+ "INFRAESTRUCTURA_PARA_DOSIS, CANTIDAD_VACUNAS_ENVIABLES, punto.CANTIDAD_VACUNAS_ACTUALES, punto.TIPO_PUNTO_VACUNACION, punto.ADMINISTRADOR, OFICINA_REGIONAL_EPS\n"
-				+ "FROM PUNTO_VACUNACION punto INNER JOIN OFICINA_REGIONAL_EPS oficina ON punto.oficina_regional_eps = oficina.id_oficina\n"
+				+ "INFRAESTRUCTURA_PARA_DOSIS, CANTIDAD_VACUNAS_ENVIABLES, punto.CANTIDAD_VACUNAS_ACTUALES, punto.TIPO_PUNTO_VACUNACION, punto.ADMINISTRADOR, OFICINA_REGIONAL_EPS \n"
+				+ "FROM PUNTO_VACUNACION punto INNER JOIN OFICINA_REGIONAL_EPS oficina ON punto.oficina_regional_eps = oficina.id_oficina \n"
 				+ "WHERE oficina.region = ?");
 		q.setParameters(region);
 		q.setResultClass(PuntoVacunacion.class);

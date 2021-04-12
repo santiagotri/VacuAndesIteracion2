@@ -1,6 +1,6 @@
 package uniandes.isis2304.vacuandes.negocio;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -113,12 +113,12 @@ public class Vacuandes {
         return rta;
 	}
 	
-	public String Mostrar20PuntosDeVacunacionMasEfectivos() {
-		log.info ("Buscando los puntos de vacunacion más efectivos");
-		String rta = pp.darPuntosVacunacionMasEfectivos();
-        log.info ("Se retornaron los 20 puntos");
-        return rta;
-	}
+//	public String Mostrar20PuntosDeVacunacionMasEfectivos() {
+//		log.info ("Buscando los puntos de vacunacion más efectivos");
+//		String rta = pp.darPuntosVacunacionMasEfectivos();
+//        log.info ("Se retornaron los 20 puntos");
+//        return rta;
+//	}
 	
 	/**
 	 * 
@@ -142,9 +142,9 @@ public class Vacuandes {
 	}
 	
 	public Ciudadano darCiudadanoPorCedula(long cedula) {
-		log.info ("Buscando trabjador de cedula: " + cedula);
+		log.info ("Buscando ciudadano por cedula: " + cedula);
 		Ciudadano rta = pp.buscarCiudadano(cedula);
-        log.info ("Trabajo verificado");
+        if(rta!=null) log.info ("ciudadano encontrado");
         return rta;
 	}
 	

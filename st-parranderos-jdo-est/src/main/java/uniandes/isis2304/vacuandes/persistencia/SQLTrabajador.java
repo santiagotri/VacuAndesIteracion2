@@ -40,7 +40,7 @@ public class SQLTrabajador {
 	
 	public long adicionarTrabajador(PersistenceManager pm, long cedula, String trabajo, int administrador_vacuandes, long punto_vacunacion)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTrabajador() + "(cedula, trabajo, adminsitrador_vacuandes, punto_vacunacion) values (?, ?, ?, ?)");
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTrabajador() + "(cedula, trabajo, administrador_vacuandes, punto_vacunacion) values (?, ?, ?, ?)");
 		q.setParameters(cedula, trabajo, administrador_vacuandes, punto_vacunacion);
 		return (long) q.executeUnique(); 
 	}

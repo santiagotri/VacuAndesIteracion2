@@ -13,7 +13,7 @@ public interface VOPuntoVacunacion {
 	/**
 	 * @return the capacidadAtencionSimultanea
 	 */
-	public int getCapacidad_Atencion_Simultanea();
+	public int getCapacidad_de_Atencion_Simultanea();
 	
 	/**
 	 * @return the infraestructuraParaDosis

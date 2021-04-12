@@ -68,14 +68,14 @@ public class SQLCiudadano {
 	
 	public Ciudadano darCiudadanoPorCedula(PersistenceManager pm, long cedula)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCiudadano() + " WHERE cedula = ?");
+		Query q = pm.newQuery(SQL, "SELECT CEDULA, NOMBRE_COMPLETO, ESTADO_VACUNACION, REGION, DESEA_SER_VACUNADO, PLAN_DE_VACUNACION, PUNTO_VACUNACION, OFICINA_REGIONAL_ASIGNADA FROM " + pp.darTablaCiudadano() + " WHERE cedula = ?");
 		q.setResultClass(Ciudadano.class);
 		q.setParameters(cedula);
 		return (Ciudadano) q.executeUnique();
 	}
 	
 	public long actualizarCiudadanoPorCedula(PersistenceManager pm, long cedula, String nombre_completo, String estado_vacunacion, String region, int desea_ser_vacunado, long plan_de_vacunacion, Long punto_vacunacion, Long oficina_regional_asignada) {
-		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCondicion() + " SET cedula= ? , nombre_completo= ?, estado_vacunacion= ?, region= ?, desea_ser_vacunado= ?, plan_de_vacunacion= ?, punto_vacunacion= ?, oficina_regional_asignada= ? WHERE cedula = ?");
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCiudadano() + " SET cedula= ? , nombre_completo= ?, estado_vacunacion= ?, region= ?, desea_ser_vacunado= ?, plan_de_vacunacion= ?, punto_vacunacion= ?, oficina_regional_asignada= ? WHERE cedula = ?");
 		q.setParameters(cedula, nombre_completo, estado_vacunacion, region, desea_ser_vacunado, plan_de_vacunacion, punto_vacunacion, oficina_regional_asignada, cedula);
 		return (long) q.executeUnique();
 	}
