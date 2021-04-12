@@ -146,11 +146,34 @@ public class Vacuandes {
         return rta;
 	}
 	
-	public List<Ciudadano> darCiudadanosPuntoVacunacion(long punto_vacunacion) {
-		log.info ("Buscando los ciudadanos en el punto de vacunacion: " );
-		List<Ciudadano> rta = pp.darCiudadanosPuntoVacunacion(punto_vacunacion);
-        log.info ("Se encontraron: " + rta.size() +" ciudadanos");
+	public String mostrarCiudadanosAtendidosPorUnPuntoDeVacunacionFechaEspecifica(long punto_vacunacion, Date fecha_especifica) {
+		log.info ("Buscando los ciudadanos en el punto de vacunacion: " + punto_vacunacion + " en la fecha " + fecha_especifica.toString());
+		String rta = pp.darCiudadanosPuntoVacunacionPorFechaEspecifica(punto_vacunacion, fecha_especifica);
+        log.info ("Se retornaron todos los ciudadanos encontrados");
         return rta;
+	}
+	
+	public String mostrarCiudadanosAtendidosPorUnPuntoDeVacunacionRangoFechas (long punto_vacunacion, Date primera_fecha, Date segunda_fecha) {
+		log.info ("Buscando los ciudadanos en el punto de vacunacion: " + punto_vacunacion + " en la fechas indicadas ");
+		String rta = pp.darCiudadanosPuntoVacunacionPorRangoFechas(punto_vacunacion, primera_fecha, segunda_fecha);
+        log.info ("Se retornaron todos los ciudadanos encontrados");
+        return rta;
+	}
+	
+	
+	public void actualizarOpinionVacunacionCiudadano(long cedula, int desea_ser_vacunado) throws Exception
+	{
+		log.info ("Actualizando ciudadano de cedula: " + cedula);
+		Ciudadano ciudadano = pp.buscarCiudadano(cedula);
+		if(ciudadano!=null)
+		{
+			pp.actualizarCiudadano(ciudadano.getCedula(), ciudadano.getNombre_Completo(), ciudadano.getEstado_vacunacion(), ciudadano.getRegion(), desea_ser_vacunado, ciudadano.getPlan_De_Vacunacion(), ciudadano.getPunto_Vacunacion(), ciudadano.getOficina_Regional_Asignada()); 
+		}
+		else 
+		{
+			throw new Exception("El ciudadano no existe"); 
+		}
+        log.info ("Se actualizó la opinión del ciudadano");
 	}
 	
 	/* ****************************************************************
@@ -328,7 +351,18 @@ public class Vacuandes {
 
 	
 
-	
+	/**
+	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos
+	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
+	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
+	 */
+	public long [] limpiarVacuandes()
+	{
+        log.info ("Limpiando la BD de Parranderos");
+        long [] borrrados = pp.limpiarParranderos();	
+        log.info ("Limpiando la BD de Parranderos: Listo!");
+        return borrrados;
+	}
 	
 
 }

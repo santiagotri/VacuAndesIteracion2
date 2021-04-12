@@ -87,4 +87,5 @@ public class SQLCiudadano {
 		q.setParameters(punto_vacunacion);
 		return (List<Ciudadano>) q.executeUnique();
 	}
+	
 }

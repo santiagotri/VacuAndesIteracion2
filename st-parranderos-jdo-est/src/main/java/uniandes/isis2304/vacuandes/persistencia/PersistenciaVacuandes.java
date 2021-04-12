@@ -9,6 +9,7 @@ import javax.jdo.JDODataStoreException;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import org.apache.log4j.Logger;
@@ -1002,17 +1003,24 @@ public class PersistenciaVacuandes {
 	}
 
 
-	public List<Ciudadano> darCiudadanosPuntoVacunacion(long punto_vacunacion) {
+	public String darCiudadanosPuntoVacunacionPorFechaEspecifica(long punto_vacunacion, Date fecha_especifica) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
+        	String rta = ""; 
         	log.info ("Buscando ciudadanos " +  punto_vacunacion );
             tx.begin();
-            List<Ciudadano> lista = sqlCiudadano.darCiudadanosPuntoVacunacion(pm, punto_vacunacion);
+            List<Cita> lista = sqlCita.darCiudadanosPuntoVacunacionYFecha(pm, punto_vacunacion, fecha_especifica);
+            for(int i =0; i < lista.size(); i++)
+            {
+            	Cita act = lista.get(i);
+            	Ciudadano ciudadano = sqlCiudadano.darCiudadanoPorCedula(pm, act.getCiudadano());
+            	rta += "\n-" + ciudadano.toString(); 
+            }
             tx.commit();
             
-            return lista;
+            return rta;
         }
         catch (Exception e)
         {
@@ -1105,6 +1113,92 @@ public class PersistenciaVacuandes {
 	}
 
 
+	public String darCiudadanosPuntoVacunacionPorRangoFechas(long punto_vacunacion, Date primera_fecha,
+			Date segunda_fecha) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	String rta = ""; 
+        	log.info ("Buscando ciudadanos en el rango de fechas en el punto: " +  punto_vacunacion );
+            tx.begin();
+            List<Cita> lista = sqlCita.darCiudadanosPuntoVacunacionYRangoFechas(pm, punto_vacunacion, primera_fecha, segunda_fecha);
+            for(int i =0; i < lista.size(); i++)
+            {
+            	Cita act = lista.get(i);
+            	Ciudadano ciudadano = sqlCiudadano.darCiudadanoPorCedula(pm, act.getCiudadano());
+            	rta += "\n-" + ciudadano.toString(); 
+            }
+            tx.commit();
+            
+            return rta;
+        }
+        catch (Exception e)
+        {
+        	// e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+
+	/**
+	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos
+	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 
+	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
+	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
+	 */
+	public void limpiarParranderos ()
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			Query BORRAR = pm.newQuery(SQL, "drop table CIUDADANO CASCADE CONSTRAINTS;"
+					+ "drop table USUARIO CASCADE CONSTRAINTS;"
+					+ "drop table PLAN_DE_VACUNACION CASCADE CONSTRAINTS;"
+					+ "drop table MINISTERIO_DE_SALUD CASCADE CONSTRAINTS;"
+					+ "drop table PUNTO_VACUNACION CASCADE CONSTRAINTS;"
+					+ "drop table CITA CASCADE CONSTRAINTS;"
+					+ "drop table TRABAJADOR CASCADE CONSTRAINTS;"
+					+ "drop table VACUNA CASCADE CONSTRAINTS;"
+					+ "drop table OFICINA_REGIONAL_EPS CASCADE CONSTRAINTS;"
+					+ "drop table LIST_CONDICIONES_CIUDADANO CASCADE CONSTRAINTS;"
+					+ "drop table LIST_CONTRAINDICACIONES_VACUNA CASCADE CONSTRAINTS;"
+					+ "drop table CONDICION CASCADE CONSTRAINTS;"
+					+ "drop table TIPO_PUNTO_VACUNACION CASCADE CONSTRAINTS;"
+					+ "drop table ESTADO_VACUNACION CASCADE CONSTRAINTS;"
+					+ "drop table TRABAJO CASCADE CONSTRAINTS;"
+					+ "drop table PRIORIZACION CASCADE CONSTRAINTS;");
+			tx.commit ();
+			log.info ("Borrada la base de datos");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+	}
+	
+	
 	/**
 	public Cita buscarCita(Date fecha, long ciudadano) {
 		PersistenceManager pm = pmf.getPersistenceManager();
